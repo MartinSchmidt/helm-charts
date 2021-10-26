@@ -1,11 +1,18 @@
 apiVersion: v1
 entries:
-  loadbalancer:
+  vault:
   - apiVersion: v2
-    created: "2021-10-26T11:31:27.245080726Z"
-    digest: 26362f3629f7ddf6e596dfa756e14b1d37bb708dcd32cb5519825933e0db11e3
-    name: loadbalancer
+    created: "2021-10-26T11:31:46.610477912Z"
+    dependencies:
+    - condition: vault.enabled
+      name: vault
+      repository: https://helm.releases.hashicorp.com
+      version: 0.13.0
+    description: A Helm chart for Kubernetes
+    digest: 46d3afca20cc35e365834d2782dbcbe279d2606adcf21ead151d92d760c10f05
+    name: vault
+    type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/loadbalancer-v0.1.5/loadbalancer-v0.1.5.tgz
-    version: v0.1.5
-generated: "2021-10-26T11:31:27.245086126Z"
+    - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.0/vault-0.1.0.tgz
+    version: 0.1.0
+generated: "2021-10-26T11:31:46.610484412Z"
