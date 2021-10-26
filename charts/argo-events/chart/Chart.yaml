@@ -1,0 +1,11 @@
+apiVersion: v2
+name: chart
+description: A Helm umbrella chart for ArgoEvents
+type: application
+version: v0.1.0
+
+dependencies:
+- name: argo-events
+  version: "1.6.2"
+  repository: "https://argoproj.github.io/argo-helm"
+  condition: argo-events.enabled
