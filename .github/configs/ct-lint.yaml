@@ -29,7 +29,6 @@ chart-dirs:
   - charts/vault
 chart-repos:
   - argo=https://argoproj.github.io/argo-helm
-  - charts=https://distributed-technologies.github.io/helm-charts/
   - repo=https://distributed-technologies.github.io/helm-repository/
   - stable=https://charts.helm.sh/stable
 helm-extra-args: "--timeout 600s"
