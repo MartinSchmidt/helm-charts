@@ -1,0 +1,6 @@
+apiVersion: v2
+name: test-app
+description: A Helm chart for an example app using an ingress route
+
+type: application
+version: 0.1.0
