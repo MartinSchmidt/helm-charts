@@ -1,0 +1,9 @@
+dependencies:
+- name: argo-cd
+  repository: https://argoproj.github.io/argo-helm
+  version: 3.22.1
+- name: CNI
+  repository: https://distributed-technologies.github.io/helm-repository/
+  version: v0.3.1
+digest: sha256:6bd14b03a90578ba34aaea0106ef6c077f9236496c5b2d076b0deee20d656d38
+generated: "2021-10-25T21:35:50.982095095+02:00"
