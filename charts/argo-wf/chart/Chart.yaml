@@ -2,7 +2,7 @@ apiVersion: v2
 name: argo-wf
 description: A Helm chart for Argo Workflow
 type: application
-version: 0.1.1
+version: 0.1.2
 
 dependencies:
   - name: argo
