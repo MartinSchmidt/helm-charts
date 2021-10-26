@@ -1,0 +1,14 @@
+apiVersion: v2
+type: application
+name: nidhogg
+description: A chart that deploys nidhogg.
+version: v1.0.4
+
+dependencies:
+  - name: argo-cd
+    version: "3.22.1"
+    repository: "https://argoproj.github.io/argo-helm"
+  - name: CNI
+    version: "v0.3.1"
+    repository: "https://distributed-technologies.github.io/helm-repository/"
+    condition: 'installCNI'
