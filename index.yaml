@@ -1,18 +1,17 @@
 apiVersion: v1
 entries:
-  vault:
+  rook:
   - apiVersion: v2
-    created: "2021-10-26T11:31:46.610477912Z"
+    created: "2021-10-26T11:32:03.137148956Z"
     dependencies:
-    - condition: vault.enabled
-      name: vault
-      repository: https://helm.releases.hashicorp.com
-      version: 0.13.0
-    description: A Helm chart for Kubernetes
-    digest: 46d3afca20cc35e365834d2782dbcbe279d2606adcf21ead151d92d760c10f05
-    name: vault
+    - name: rook-ceph
+      repository: https://charts.rook.io/release
+      version: v1.7.2
+    description: A Helm chart for Rook
+    digest: b2b45e8e9057ae04f7cb90703cf58b17bf686323ab08275fe3d24c1c96db3463
+    name: rook
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.0/vault-0.1.0.tgz
-    version: 0.1.0
-generated: "2021-10-26T11:31:46.610484412Z"
+    - https://github.com/distributed-technologies/helm-charts/releases/download/rook-0.1.2/rook-0.1.2.tgz
+    version: 0.1.2
+generated: "2021-10-26T11:32:03.137160856Z"
