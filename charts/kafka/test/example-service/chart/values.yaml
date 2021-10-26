@@ -1,0 +1,12 @@
+clusterName: my-cluster
+imagePullPolicy: Always
+topics:
+  consumer:
+    name: example-kafka-consumer
+    partitions: 1
+    replicas: 1
+  producer:
+    name: example-kafka-producer
+    partitions: 1
+    replicas: 1
+
