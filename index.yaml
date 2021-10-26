@@ -2,17 +2,17 @@ apiVersion: v1
 entries:
   chart:
   - apiVersion: v2
-    created: "2021-10-26T08:54:23.079556918Z"
+    created: "2021-10-26T08:56:42.516947033Z"
     dependencies:
     - condition: argo-events.enabled
       name: argo-events
       repository: https://argoproj.github.io/argo-helm
       version: 1.6.2
     description: A Helm umbrella chart for ArgoEvents
-    digest: 07fea5a87763a1b47509e0d83eba48070c1686dcde8745f4e564838ac953103e
+    digest: a8876c9498e874c5d9ad8589156dd5eb787200f78225151c60dadfcae9bb44bb
     name: chart
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/chart-v0.1.1/chart-v0.1.1.tgz
-    version: v0.1.1
-generated: "2021-10-26T08:54:23.079564018Z"
+    - https://github.com/distributed-technologies/helm-charts/releases/download/chart-v0.1.2/chart-v0.1.2.tgz
+    version: v0.1.2
+generated: "2021-10-26T08:56:42.516953133Z"
