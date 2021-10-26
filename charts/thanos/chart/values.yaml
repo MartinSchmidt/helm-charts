@@ -1,0 +1,3 @@
+thanos:
+  enabled: true
+  # docs:  https://github.com/banzaicloud/banzai-charts/blob/master/thanos/values.yaml
