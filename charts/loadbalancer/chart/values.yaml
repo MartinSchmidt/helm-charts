@@ -1,0 +1,14 @@
+env: prod
+ipRangeStart: 10.0.0.10
+ipRangeStop: 10.0.0.100
+speaker:
+  image:
+    repository: quay.io/metallb/speaker
+    tag: main
+    imagePullPolicy: IfNotPresent
+
+controller:
+  image:
+    repository: quay.io/metallb/controller
+    tag: main
+    imagePullPolicy: IfNotPresent
