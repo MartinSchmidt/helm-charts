@@ -1,7 +1,0 @@
-#apiVersion: objectbucket.io/v1alpha1
-#kind: ObjectBucketClaim
-#metadata:
-#  name: artifactory-bucket
-#spec:
-#  bucketName: argowf-bucket
-#  storageClassName: rook-ceph-bucket
