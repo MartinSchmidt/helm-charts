@@ -1,0 +1,16 @@
+(default) {
+    log
+    errors
+    cache 300
+    loop
+}
+
+. {
+    forward . /etc/resolv.conf
+    import default
+}
+
+garagen {
+    file db.garagen
+    import default
+}
