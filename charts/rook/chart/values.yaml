@@ -1,0 +1,3 @@
+rook-ceph:
+  image:
+    tag: v1.7.2
