@@ -8,3 +8,4 @@ dependencies:
 - name: thanos
   version: "7.0.1"
   repository: "https://charts.bitnami.com/bitnami"
+  condition: thanos.enabled
