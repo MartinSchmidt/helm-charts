@@ -1,0 +1,10 @@
+apiVersion: v2
+name: harbor
+description: A Helm chart for setting up Harbor for Kubernetes
+type: application
+version: v0.1.2
+
+dependencies:
+- name: harbor
+  version: "1.6.1"
+  repository: "https://helm.goharbor.io"
