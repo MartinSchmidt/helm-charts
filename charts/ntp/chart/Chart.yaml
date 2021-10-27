@@ -1,0 +1,4 @@
+apiVersion: v2
+name: ntp
+version: 0.1.1
+description: A helm chart for our ntp-server
