@@ -4,8 +4,8 @@ cluster:
   name: my-cluster
   kafka:
     storage:
-      class: rook-ceph-block
-      size: 20Gi
+#      class: rook-ceph-block
+#      size: 20Gi
     replicas: 3
     resources:
       requests:
@@ -22,8 +22,8 @@ cluster:
       minimumInSyncReplicas: 3
   zookeeper:
     storage:
-      class: rook-ceph-block
-      size: 5Gi
+#      class: rook-ceph-block
+#      size: 5Gi
     replicas: 3
     resources:
       requests:
@@ -60,7 +60,7 @@ cluster:
 # Values for the exporter helm chart dependency:
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/values.yaml
 prometheus-kafka-exporter:
-  enabled: true
+  enabled: false
   kafkaServer:
     - my-cluster-kafka-plain-bootstrap:9092
   prometheus:
@@ -82,7 +82,7 @@ cp-helm-charts:
   # Values for the connect cluster inside the dependency:
   # https://github.com/confluentinc/cp-helm-charts/blob/master/charts/cp-kafka-connect/values.yaml
   cp-kafka-connect:
-    enabled: true
+    enabled: false
     image: "docker.io/jcrmindster/kafka-connector-spool-dir"
     imageTag: "0.0.13"
     kafka:

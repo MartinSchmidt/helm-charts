@@ -1,0 +1,12 @@
+dependencies:
+- name: strimzi-kafka-operator
+  repository: https://strimzi.io/charts/
+  version: 0.22.1
+- name: prometheus-kafka-exporter
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 1.1.0
+- name: cp-helm-charts
+  repository: https://confluentinc.github.io/cp-helm-charts/
+  version: 0.6.1
+digest: sha256:e137a2934e14c4483aec91518a97ed172809a8e87ba6ef1f821ce779fb24ee57
+generated: "2021-10-27T11:55:13.262737308+02:00"
