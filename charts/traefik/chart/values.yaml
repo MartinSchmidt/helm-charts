@@ -20,5 +20,5 @@ traefik:
     fallbackApiVersion: "v1"
 
   service:
-    enabled: true
+    enabled: false
     type: LoadBalancer
