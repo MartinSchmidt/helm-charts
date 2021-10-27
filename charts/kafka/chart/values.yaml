@@ -4,7 +4,7 @@ cluster:
   name: my-cluster
   kafka:
     storage:
-      class: default
+      class: standard
       size: 1Gi
     replicas: 3
     resources:
@@ -22,7 +22,7 @@ cluster:
       minimumInSyncReplicas: 3
   zookeeper:
     storage:
-      class: default
+      class: standard
       size: 1Gi
     replicas: 3
     resources:
