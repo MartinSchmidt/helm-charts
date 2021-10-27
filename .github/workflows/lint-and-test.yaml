@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: distributed-technologies/helm-charts
-          path: charts/loadbalancer
+          path: charts
 
       - name: Install loadbalancer
         run: helm install test-lb loadbalancer/chart -f loadbalancer/test/values.yaml --namespace metallb-system --create-namespace
