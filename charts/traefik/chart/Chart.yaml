@@ -2,7 +2,7 @@ apiVersion: v2
 name: traefik
 description: A Helm chart for setting up Traefik as ingress controller for Kubernetes
 type: application
-version: v0.2.2
+version: 0.2.3
 
 dependencies:
 - name: traefik
