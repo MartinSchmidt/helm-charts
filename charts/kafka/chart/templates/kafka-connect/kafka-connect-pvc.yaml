@@ -1,0 +1,13 @@
+{{ if index .Values "cp-helm-charts.cp-kafka-connect.enabled" }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.connector.volume.name }}
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.connector.volume.size }}
+  storageClassName: {{ .Values.connector.volume.storageClassName }}
+{{ end }}

@@ -1,0 +1,30 @@
+{{ if eq .Values.env "test" }}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "test-kafka-ksql"
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: {{ .Release.Name }}-ksql-test
+      image: "docker.io/python:3.8-slim"
+      imagePullPolicy: {{ .Values.imagePullPolicy | quote }}
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsUser: 0
+      command:
+        - /bin/bash
+      args:
+        - -c
+        - /scripts/test_ksql.sh 
+      volumeMounts:
+        - name: scripts-vol
+          mountPath: /scripts
+  restartPolicy: Never
+  volumes:
+  - name: scripts-vol
+    configMap:
+      name: scripts-configmap
+      defaultMode: 0777
+{{ end }}
