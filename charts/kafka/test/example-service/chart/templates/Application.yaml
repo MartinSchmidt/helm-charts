@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kafka-example-service
+  name: kafka-example-service
+spec:
+  selector:
+    matchLabels:
+      app: kafka-example-service
+  template:
+    metadata:
+      labels:
+        app: kafka-example-service
+    spec:
+      containers:
+      - image: jcrmindster/kafka-example-service:10.5
+        command: 
+        - "python"
+        - "app/example_service.py"
+        - "{{ .Values.clusterName }}-kafka-bootstrap:9093"
+        - {{ .Values.topics.consumer.name }}
+        - {{ .Values.topics.producer.name }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        name: kafka-example-service
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi

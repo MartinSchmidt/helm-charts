@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: git-server
+  name: git-server
+spec:
+  selector:
+    matchLabels:
+      app: git-server
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: git-server
+    spec:
+      {{- with .Values.affinity }}
+      affinity: 
+{{ toYaml . | indent 8}}
+      {{- end }}
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: git-server
+        env:
+          - name: GIT_PROJECTS
+            value: "{{ join " " .Values.repos }}"
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        readinessProbe:
+          exec:
+            command:
+            - nc 
+            - -z 
+            - -v 
+            - "localhost"
+            - "22"
+        volumeMounts:
+        - mountPath: /git-server/keys
+          name: git-server-keys
+        - mountPath: /git-server/repos
+          name: git-server-repos
+      volumes:
+        - name: git-server-keys
+          {{- .Values.gitServerKeysVolume | toYaml | nindent 10 }}
+        - name: git-server-repos
+          {{- .Values.gitServerReposVolume | toYaml | nindent 10 }}

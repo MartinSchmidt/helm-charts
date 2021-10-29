@@ -1,0 +1,21 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: {{ .Values.topics.consumer.name }}
+  labels:
+    strimzi.io/cluster: {{ .Values.clusterName }}
+spec: 
+  topicName: {{ .Values.topics.consumer.name }}
+  partitions: {{ .Values.topics.consumer.partitions }}
+  replicas: {{ .Values.topics.consumer.replicas }}
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: {{ .Values.topics.producer.name }}
+  labels:
+    strimzi.io/cluster: {{ .Values.clusterName }}
+spec: 
+  topicName: {{ .Values.topics.producer.name }}
+  partitions: {{ .Values.topics.producer.partitions }}
+  replicas: {{ .Values.topics.producer.replicas }}

@@ -1,0 +1,167 @@
+env: prod
+# Docs https://github.com/strimzi/strimzi-kafka-operator/blob/main/helm-charts/helm3/strimzi-kafka-operator/values.yaml
+cluster:
+  name: my-cluster
+  kafka:
+    storage:
+      class: standard
+      size: 1Gi
+    replicas: 3
+    resources:
+      requests:
+        memory: 500Mi
+        cpu: "100m"
+      limits:
+        memory: 2Gi
+        cpu: "1"
+    # If a topic does not exist, create it if someone writes to it.
+    autoCreateTopic: "false"
+    offsetTopicReplicationFactor: 3
+    transactionStateLog:
+      replicationFactor: 3
+      minimumInSyncReplicas: 3
+  zookeeper:
+    storage:
+      class: standard
+      size: 1Gi
+    replicas: 3
+    resources:
+      requests:
+        memory: 500Mi
+        cpu: "100m"
+      limits:
+        memory: 2Gi
+        cpu: "1"
+  entityOperator:
+    tlsSidecar:
+      resources:
+        requests:
+          memory: 64Mi
+          cpu: "100m"
+        limits:
+          memory: 128Mi
+          cpu: 500m
+    topicOperator:
+      resources:
+        requests:
+          memory: 512Mi
+          cpu: "100m"
+        limits:
+          memory: 512Mi
+          cpu: "1"
+    userOperator:
+      resources:
+        requests:
+          memory: 512Mi
+          cpu: "100m"
+        limits:
+          memory: 512Mi
+          cpu: "1"
+# Values for the exporter helm chart dependency:
+# https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/values.yaml
+prometheus-kafka-exporter:
+  enabled: false
+  kafkaServer:
+    - my-cluster-kafka-plain-bootstrap:9092
+  prometheus:
+    serviceMonitor:
+      enabled: true
+      namespace: kafka
+      additionalLabels:
+        release: prometheus
+# Values for the confluent helm chart dependency:
+# https://github.com/confluentinc/cp-helm-charts/blob/master/values.yaml
+cp-helm-charts:
+  enabled: true
+  cp-zookeeper:
+    enabled: false
+  cp-kafka:
+    enabled: false
+  cp-kafka-rest:
+    enabled: false
+  # Values for the connect cluster inside the dependency:
+  # https://github.com/confluentinc/cp-helm-charts/blob/master/charts/cp-kafka-connect/values.yaml
+  cp-kafka-connect:
+    enabled: false
+    image: "docker.io/jcrmindster/kafka-connector-spool-dir"
+    imageTag: "0.0.13"
+    kafka:
+      bootstrapServers: "my-cluster-kafka-plain-bootstrap:9092"
+    volumes:
+      - name: parquet-connector-source-volume
+        configMap:
+          name: parquet-connector-source
+          defaultMode: 0777
+      - name: kafka-connect-ceph-filesystem
+        persistentVolumeClaim:
+          claimName: cephfs-pvc1
+    volumeMounts:
+      - name: parquet-connector-source-volume
+        mountPath: /etc/kafka-connectors/connector_parquet_reader.sh
+        subPath: connector_parquet_reader.sh
+      - name: kafka-connect-ceph-filesystem
+        mountPath: /kafka/
+    customEnv: {
+      CUSTOM_SCRIPT_PATH: /etc/kafka-connectors/connector_parquet_reader.sh
+    }
+    configurationOverrides:
+      "plugin.path": "/usr/share/java,/usr/share/confluent-hub-components"
+      "key.converter": "org.apache.kafka.connect.converters.ByteArrayConverter"
+      "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter"
+      "key.converter.schemas.enable": "false"
+      "value.converter.schemas.enable": "false"
+      "internal.key.converter": "org.apache.kafka.connect.json.JsonConverter"
+      "internal.value.converter": "org.apache.kafka.connect.json.JsonConverter"
+      "config.storage.replication.factor": "1"
+      "offset.storage.replication.factor": "1"
+      "status.storage.replication.factor": "1"
+    livenessProbe:
+      httpGet:
+        path: /connectors
+        port: 8083
+      initialDelaySeconds: 30
+      periodSeconds: 5
+      failureThreshold: 20
+
+  # Docs: https://github.com/confluentinc/cp-helm-charts/blob/master/charts/cp-ksql-server/values.yaml
+  cp-ksql-server:
+    enabled: true
+    image: confluentinc/cp-ksqldb-server
+    imageTag: 6.1.0
+    cp-schema-registry:
+      url: http://kafka-cp-schema-registry:8081
+    kafka:
+      bootstrapServers: my-cluster-kafka-plain-bootstrap:9092
+  cp-schema-registry:
+    enabled: true
+    image: confluentinc/cp-schema-registry
+    imageTag: 6.1.0
+    kafka:
+      bootstrapServers: my-cluster-kafka-plain-bootstrap:9092
+  cp-control-center:
+    enabled: false
+
+# The following topics will be created by the operator
+topics:
+  - name: topic-test-1
+    partitions: 1
+    replicas: 1
+
+# The following topics will be created as well as directory-source-connectors in /kafka/{name}/input
+connector:
+  volume:
+    size: 10Gi
+    name: cephfs-pvc1
+    storageClassName: rook-cephfs
+  topic_partitions: 1
+  topic_replicas: 1
+  topics:
+  - name: scada
+  - name: direct-radiation
+  - name: global-radiation
+  - name: temperature-2m
+  - name: temperature-100m
+  - name: wind-direction-10m
+  - name: wind-direction-100m
+  - name: wind-speed-10m
+  - name: wind-speed-100m

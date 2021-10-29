@@ -1,0 +1,14 @@
+env: test
+replicaCount: 1
+image:
+  pullPolicy: Always
+gitServerKeysVolume: 
+  hostPath: 
+    path: /git-server/keys
+    type: Directory
+gitServerReposVolume:
+  emptyDir: {}
+
+service:
+  type: LoadBalancer
+  port: 22

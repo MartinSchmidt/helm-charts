@@ -1,0 +1,6 @@
+PasswordAuthentication no
+AuthenticationMethods publickey
+AllowUsers git
+
+# override default of no subsystems
+Subsystem    sftp    /usr/lib/ssh/sftp-server
