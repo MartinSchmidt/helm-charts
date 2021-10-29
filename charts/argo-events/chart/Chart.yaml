@@ -2,7 +2,7 @@ apiVersion: v2
 name: argo-events
 description: A Helm umbrella chart for ArgoEvents
 type: application
-version: 0.1.3
+version: 0.1.4
 
 dependencies:
 - name: argo-events

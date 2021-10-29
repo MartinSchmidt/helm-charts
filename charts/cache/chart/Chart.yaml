@@ -2,7 +2,7 @@ apiVersion: v2
 name: cache
 description: A Helm chart pull-through cache
 type: application
-version: 0.1.3
+version: 0.1.4
 
 dependencies:
 - name: docker-registry-mirror
