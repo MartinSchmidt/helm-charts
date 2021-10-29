@@ -1,101 +1,116 @@
 apiVersion: v1
 entries:
+  argo-events:
+  - apiVersion: v2
+    created: "2021-10-29T08:24:19.43412437Z"
+    dependencies:
+    - condition: argo-events.enabled
+      name: argo-events
+      repository: https://argoproj.github.io/argo-helm
+      version: 1.6.2
+    description: A Helm umbrella chart for ArgoEvents
+    digest: 9e67c1dce3d282f617770bdc1f74614dfe07a19d04ed5ce3e1e95f4e038a9f4f
+    name: argo-events
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/argo-events-0.1.4/argo-events-0.1.4.tgz
+    version: 0.1.4
   argo-wf:
   - apiVersion: v2
-    created: "2021-10-29T06:56:15.402051719Z"
+    created: "2021-10-29T08:24:19.577729151Z"
     dependencies:
     - name: argo
       repository: https://argoproj.github.io/argo-helm
       version: v0.16.8
     description: A Helm chart for Argo Workflow
-    digest: 53852fd340b45847644af1fbd2d9cd975ea4eff4d03c6292680b8dd191080c2c
+    digest: 996d927624ebaf296bf490a3507fc81f8aa56a4fb04b0e59af4e323b0f227341
     name: argo-wf
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/argo-wf-0.1.2/argo-wf-0.1.2.tgz
-    version: 0.1.2
+    - https://github.com/distributed-technologies/helm-charts/releases/download/argo-wf-0.1.3/argo-wf-0.1.3.tgz
+    version: 0.1.3
   cache:
   - apiVersion: v2
-    created: "2021-10-29T06:56:15.629459666Z"
+    created: "2021-10-29T08:24:19.863879179Z"
     dependencies:
     - name: docker-registry-mirror
       repository: https://t83714.github.io/docker-registry-mirror
       version: v1.10.3
     description: A Helm chart pull-through cache
-    digest: d10c180b0ab1532df0d76258600640ba53d6d81da54a020a5750c215ecfd483c
+    digest: 5d58b1892a755683a9c1d19f59f7723f9641fdba53cae14d226a980d277d6a07
     name: cache
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/cache-0.1.3/cache-0.1.3.tgz
-    version: 0.1.3
+    - https://github.com/distributed-technologies/helm-charts/releases/download/cache-0.1.4/cache-0.1.4.tgz
+    version: 0.1.4
   cni:
   - apiVersion: v2
-    created: "2021-10-29T06:56:15.815074547Z"
+    created: "2021-10-29T08:24:20.000018216Z"
     description: A helm chart for our CNI
-    digest: 2eb6797b7a79c004185051ce51323ee60994bfe9a8351d66a7aacdce2103e9e1
+    digest: c00f9465565926d353be35b82fc814be5214b083eff13c42ccd6ab45d695714e
     name: cni
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/cni-0.3.4/cni-0.3.4.tgz
-    version: 0.3.4
+    - https://github.com/distributed-technologies/helm-charts/releases/download/cni-0.3.5/cni-0.3.5.tgz
+    version: 0.3.5
   dns-server:
   - apiVersion: v2
-    created: "2021-10-29T06:56:16.009414783Z"
+    created: "2021-10-29T08:24:20.157573352Z"
     description: A Helm chart for setting up Bind9 as a DNS server for a .local domain
-    digest: c1a7dd3e9f1e75adbe94fe1804725cb557f18f413412c88bb2411b3b430165dc
+    digest: 49a52d7dd24ba861f6ae20a67892c70bf8cce8e1177e59441d41801ae453f713
     name: dns-server
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/dns-server-0.1.7/dns-server-0.1.7.tgz
-    version: 0.1.7
+    - https://github.com/distributed-technologies/helm-charts/releases/download/dns-server-0.1.8/dns-server-0.1.8.tgz
+    version: 0.1.8
   git-server:
   - apiVersion: v2
-    created: "2021-10-29T06:56:16.217009604Z"
+    created: "2021-10-29T08:24:20.453941213Z"
     description: A Helm chart for a Git ssh server in Kubernetes
-    digest: ce6584ac2f5ce753bff7e03d40ab516614c5bbdf85352b52cc7ef546665d22b2
+    digest: 451323869f2416ff57f264f713ac571e16696aac921829d4a84d41d35d645c40
     name: git-server
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/git-server-0.1.1/git-server-0.1.1.tgz
-    version: 0.1.1
+    - https://github.com/distributed-technologies/helm-charts/releases/download/git-server-0.1.2/git-server-0.1.2.tgz
+    version: 0.1.2
   grafana:
   - apiVersion: v2
-    created: "2021-10-29T06:56:16.44902388Z"
+    created: "2021-10-29T08:24:20.596305854Z"
     dependencies:
     - name: grafana
       repository: https://grafana.github.io/helm-charts
       version: 6.16.14
     description: A Helm umbrella chart for Grafana
-    digest: e125fbe9f8b6f63c2348fe75236c9f50dfd2dc18b7308f770ec322848a950885
+    digest: 7bec3de9d061d07c7ab8208e889e23776ed64fcacd9f74cd51f51bf4606d9bad
     name: grafana
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/grafana-0.1.7/grafana-0.1.7.tgz
-    version: 0.1.7
+    - https://github.com/distributed-technologies/helm-charts/releases/download/grafana-0.1.8/grafana-0.1.8.tgz
+    version: 0.1.8
   ha-proxy:
   - apiVersion: v2
-    created: "2021-10-29T06:56:16.655100991Z"
+    created: "2021-10-29T08:24:20.744551986Z"
     description: A Helm chart for a haproxy that loadbalances the kubernetes api-server
-    digest: 48776b4bc1b49e27f7ccd611c88573d27d574c47415c57e143476aa0de1c75f2
+    digest: d635b060806e2ac5245fca11812ab0b55c6499c6ecadbd2b03c9b6d61a8b0d1d
     name: ha-proxy
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/ha-proxy-0.1.2/ha-proxy-0.1.2.tgz
-    version: 0.1.2
+    - https://github.com/distributed-technologies/helm-charts/releases/download/ha-proxy-0.1.3/ha-proxy-0.1.3.tgz
+    version: 0.1.3
   harbor:
   - apiVersion: v2
-    created: "2021-10-29T06:56:16.915275947Z"
+    created: "2021-10-29T08:24:20.91401381Z"
     dependencies:
     - name: harbor
       repository: https://helm.goharbor.io
       version: 1.6.1
     description: A Helm chart for setting up Harbor for Kubernetes
-    digest: a8d691e448ed76643f9dc270ba6707d9494060cc3d72d0dd256138722310e722
+    digest: f43a902ec48357602c843ebd50577ff5aa9b3f4a20e40965e33d18f635e38b3e
     name: harbor
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/harbor-v0.1.2/harbor-v0.1.2.tgz
-    version: v0.1.2
+    - https://github.com/distributed-technologies/helm-charts/releases/download/harbor-0.1.3/harbor-0.1.3.tgz
+    version: 0.1.3
   jaeger:
   - apiVersion: v2
-    created: "2021-10-29T06:56:17.167822953Z"
+    created: "2021-10-29T08:24:21.086585835Z"
     dependencies:
     - name: jaeger
       repository: https://jaegertracing.github.io/helm-charts
@@ -104,15 +119,15 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 1.8.0
     description: An umbrella Helm chart for Jaeger
-    digest: 61c821a5d8d12c61422e86537074b27fc22349b24c9b62fcba4fbddac462cc38
+    digest: b594b698ec27c0ce6f72dd095ae80e731aeebdf85840aa2a2fc90ae85c8ed721
     name: jaeger
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/jaeger-0.1.1/jaeger-0.1.1.tgz
-    version: 0.1.1
+    - https://github.com/distributed-technologies/helm-charts/releases/download/jaeger-0.1.2/jaeger-0.1.2.tgz
+    version: 0.1.2
   kafka:
   - apiVersion: v2
-    created: "2021-10-29T06:56:17.425737694Z"
+    created: "2021-10-29T08:24:21.280556658Z"
     dependencies:
     - name: strimzi-kafka-operator
       repository: https://strimzi.io/charts/
@@ -126,40 +141,48 @@ entries:
       repository: https://confluentinc.github.io/cp-helm-charts/
       version: 0.6.1
     description: A Helm chart for Kubernetes
-    digest: d9b2f02d736089d0676396ef6f8c4405693d5529db3d0c75dac73e1095a68669
+    digest: 832e696995641286ac73e2ee11e89cae6b67252118a5136e3987c9f949c807c6
     name: kafka
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/kafka-0.2.1/kafka-0.2.1.tgz
-    version: 0.2.1
+    - https://github.com/distributed-technologies/helm-charts/releases/download/kafka-0.2.2/kafka-0.2.2.tgz
+    version: 0.2.2
   lightvessel:
   - apiVersion: v2
-    created: "2021-10-29T06:56:17.639692856Z"
+    created: "2021-10-29T08:24:21.416861901Z"
     description: A Helm library chart for lightvessel. This chart keeps the template
       files needed for Yggdrasil and applications.
-    digest: 17bade9a75c9c6b33963cb289bd5552c4f7a2c22273e3ae3d39fea3ec36171cd
+    digest: a2401313850ab38b5f28eef39bb72ee27015c64d7d9e67d949f1d953409dba4a
     name: lightvessel
     type: library
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/lightvessel-2.0.1/lightvessel-2.0.1.tgz
-    version: 2.0.1
+    - https://github.com/distributed-technologies/helm-charts/releases/download/lightvessel-2.0.2/lightvessel-2.0.2.tgz
+    version: 2.0.2
+  loadbalancer:
+  - apiVersion: v2
+    created: "2021-10-29T08:24:21.549630529Z"
+    digest: 87ca9190a1fc48c9d76690c1727421c6f83381093b1d9450b0dab201806c3c5c
+    name: loadbalancer
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/loadbalancer-0.1.6/loadbalancer-0.1.6.tgz
+    version: 0.1.6
   loki:
   - apiVersion: v2
-    created: "2021-10-29T06:56:17.906253451Z"
+    created: "2021-10-29T08:24:21.732475489Z"
     dependencies:
     - name: loki-stack
       repository: https://grafana.github.io/helm-charts
       version: 2.3.1
     description: A Helm umbrella chart for Loki
-    digest: 406e3dcfb403ec2ec84feb419d9ddb0531d2695a822d81eb3254bf541d7d9e12
+    digest: c2ccb404140ab5aa6f25c68e47c90bf7dad43262cbc0e6c44f33e775edf18173
     name: loki
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/loki-0.1.1/loki-0.1.1.tgz
-    version: 0.1.1
+    - https://github.com/distributed-technologies/helm-charts/releases/download/loki-0.1.2/loki-0.1.2.tgz
+    version: 0.1.2
   nidhogg:
   - apiVersion: v2
-    created: "2021-10-29T06:56:18.137421322Z"
+    created: "2021-10-29T08:24:21.887381239Z"
     dependencies:
     - name: argo-cd
       repository: https://argoproj.github.io/argo-helm
@@ -169,75 +192,104 @@ entries:
       repository: https://distributed-technologies.github.io/helm-repository/
       version: v0.3.1
     description: A chart that deploys nidhogg.
-    digest: 0b33e5484a32b432af1cc7ea9ff9f389382dc207b9c702e19d61c56b6286a22a
+    digest: d5e40bc88f2a39955f283337d4965eaac3fabd3b8fdbe16271de572491ab5cd8
     name: nidhogg
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/nidhogg-1.0.5/nidhogg-1.0.5.tgz
-    version: 1.0.5
+    - https://github.com/distributed-technologies/helm-charts/releases/download/nidhogg-1.0.6/nidhogg-1.0.6.tgz
+    version: 1.0.6
   ntp:
   - apiVersion: v2
-    created: "2021-10-29T06:56:18.34925207Z"
+    created: "2021-10-29T08:24:22.01535241Z"
     description: A helm chart for our ntp-server
-    digest: 3e2800837e787cdabcb78a0f9eb7c6484024da1f8db6a29775f6741ba91096d1
+    digest: 7a1a85989d20e242dd424bbe98d412ce25e5668f31985e92e76a6aba47125e66
     name: ntp
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/ntp-0.1.1/ntp-0.1.1.tgz
-    version: 0.1.1
+    - https://github.com/distributed-technologies/helm-charts/releases/download/ntp-0.1.2/ntp-0.1.2.tgz
+    version: 0.1.2
   prometheus:
   - apiVersion: v2
-    created: "2021-10-29T06:56:18.595184035Z"
+    created: "2021-10-29T08:24:22.260994617Z"
     dependencies:
     - name: kube-prometheus-stack
       repository: https://prometheus-community.github.io/helm-charts
       version: 19.1.0
     description: A Helm chart for Prometheus
-    digest: 5b2034b14d455355c742dd694ce8d5ed696af2c7cf9a56d07e2555196de90416
+    digest: 65d8aeae73095a07f52c5e2b7faee30fc951c0fb2a4e29f3844803b8ff521d0b
     name: prometheus
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/prometheus-0.1.1/prometheus-0.1.1.tgz
-    version: 0.1.1
+    - https://github.com/distributed-technologies/helm-charts/releases/download/prometheus-0.1.2/prometheus-0.1.2.tgz
+    version: 0.1.2
+  rook:
+  - apiVersion: v2
+    created: "2021-10-29T08:24:22.435263198Z"
+    dependencies:
+    - name: rook-ceph
+      repository: https://charts.rook.io/release
+      version: v1.7.2
+    description: A Helm chart for Rook
+    digest: 0d9c16a988d6e0dfd6d4b02173d6334e61c122d1825c4f1467253b418a93f1c9
+    name: rook
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/rook-0.1.3/rook-0.1.3.tgz
+    version: 0.1.3
   rook-ceph-cluster:
   - apiVersion: v2
-    created: "2021-10-29T06:56:18.7940159Z"
+    created: "2021-10-29T08:24:22.582963708Z"
     dependencies:
     - name: rook-ceph-cluster
       repository: https://charts.rook.io/release
       version: 1.7.2
     description: Manages a single Ceph cluster namespace for Rook
-    digest: 60e2f4cc323fa1c271e4e623fbd336fd806dd7932f8171931c5fc8319ec04452
+    digest: 3f79af13669560572aeec4ad647440e70aab817a598753e47365fd0e7cb77ec2
     name: rook-ceph-cluster
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/rook-ceph-cluster-0.1.5/rook-ceph-cluster-0.1.5.tgz
-    version: 0.1.5
+    - https://github.com/distributed-technologies/helm-charts/releases/download/rook-ceph-cluster-0.1.6/rook-ceph-cluster-0.1.6.tgz
+    version: 0.1.6
   thanos:
   - apiVersion: v2
-    created: "2021-10-29T06:56:19.037378448Z"
+    created: "2021-10-29T08:24:22.758254507Z"
     dependencies:
     - condition: thanos.enabled
       name: thanos
       repository: https://charts.bitnami.com/bitnami
       version: 7.0.1
     description: A Helm chart for Kubernetes
-    digest: 51632da0b719ecad392506b721e98e2db671ae1fd55d507a7e975a7623308a85
+    digest: b03023bbaa96bccc12650aefa7331d1fb5c6c3a5a51d52f6b95da94eb8b026b1
     name: thanos
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/thanos-0.1.0/thanos-0.1.0.tgz
-    version: 0.1.0
+    - https://github.com/distributed-technologies/helm-charts/releases/download/thanos-0.1.1/thanos-0.1.1.tgz
+    version: 0.1.1
   traefik:
   - apiVersion: v2
-    created: "2021-10-29T06:56:19.247516885Z"
+    created: "2021-10-29T08:24:22.927140197Z"
     dependencies:
     - name: traefik
       repository: https://helm.traefik.io/traefik
       version: 9.19.0
     description: A Helm chart for setting up Traefik as ingress controller for Kubernetes
-    digest: 6ebbd5554bf4e4f86698dfa06832144422b001dde57db0d86e12f4223b24fbd2
+    digest: 258829f08172cf4f43c95cd998678e408cc722e74372e15d4b470a4c27b3f51c
     name: traefik
     type: application
     urls:
-    - https://github.com/distributed-technologies/helm-charts/releases/download/traefik-0.2.3/traefik-0.2.3.tgz
-    version: 0.2.3
-generated: "2021-10-29T06:56:19.247527485Z"
+    - https://github.com/distributed-technologies/helm-charts/releases/download/traefik-0.2.4/traefik-0.2.4.tgz
+    version: 0.2.4
+  vault:
+  - apiVersion: v2
+    created: "2021-10-29T08:24:23.086539879Z"
+    dependencies:
+    - condition: vault.enabled
+      name: vault
+      repository: https://helm.releases.hashicorp.com
+      version: 0.13.0
+    description: A Helm chart for Kubernetes
+    digest: 925a2b8c7a39bd7cf7a28c7c2ba7971c98be3cf3a426fda782c010d67f757dd3
+    name: vault
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
+    version: 0.1.1
+generated: "2021-10-29T08:24:23.086548979Z"
