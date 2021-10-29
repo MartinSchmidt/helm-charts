@@ -20,6 +20,20 @@ jobs:
         run: |
           helm repo add argo https://argoproj.github.io/argo-helm
           helm repo add stable https://charts.helm.sh/stable
+          helm repo add repo https://distributed-technologies.github.io/helm-repository/
+          helm repo add rook https://charts.rook.io/release
+          helm repo add cache https://t83714.github.io/docker-registry-mirror
+          helm repo add grafana https://grafana.github.io/helm-charts
+          helm repo add harbor https://helm.goharbor.io
+          helm repo add jaeger https://jaegertracing.github.io/helm-charts
+          helm repo add common https://charts.bitnami.com/bitnami
+          helm repo add kafka https://strimzi.io/charts/
+          helm repo add kafkaexport https://prometheus-community.github.io/helm-charts
+          helm repo add cp https://confluentinc.github.io/cp-helm-charts/
+          helm repo add thanos https://kubernetes-charts.banzaicloud.com
+          helm repo add traefik https://helm.traefik.io/traefik
+          helm repo add vault https://helm.releases.hashicorp.com
+
       - name: Configure Git
         run: |
           git config user.name "Bot"
