@@ -1,4 +1,4 @@
 #!/bin/sh -l
-
-pwd
+PWD= pwd
+echo "::set-output name=pwd::$PWD"
 echo "::set-output name=time::$time"
