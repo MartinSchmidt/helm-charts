@@ -1,5 +1,4 @@
 #!/bin/sh -l
 
-echo "Hello $1"
-time=$(date)
+pwd
 echo "::set-output name=time::$time"
