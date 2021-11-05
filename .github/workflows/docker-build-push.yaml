@@ -44,7 +44,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ matrix.path }}
 
       - name: Build and push Docker image
         if: steps.check_files.outputs.files_exists == 'true'
@@ -52,5 +52,5 @@ jobs:
         with:
           context: charts/${{ matrix.path }}/container
           push: true
-          tags: ${{ steps.meta.outputs.tags }}/dumme:${{ matrix.path }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
