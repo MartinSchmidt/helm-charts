@@ -52,5 +52,5 @@ jobs:
         with:
           context: charts/${{ matrix.path }}/container
           push: true
-          tags: ${{ matrix.path }}:${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}/dumme
           labels: ${{ steps.meta.outputs.labels }}
