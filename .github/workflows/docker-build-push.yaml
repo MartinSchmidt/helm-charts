@@ -52,5 +52,5 @@ jobs:
         with:
           context: ${{ matrix.path }}
           push: true
-          tags: ${{ matrix.path }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
