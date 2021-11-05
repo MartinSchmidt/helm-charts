@@ -4,8 +4,6 @@ description: 'Check for dependency updates for helm charts'
 outputs:
   time: # id of output
     description: 'The time we greeted you'
-  pwd: # id of output
-    description: 'pwd'
 runs:
   using: 'docker'
   image: 'Dockerfile'
