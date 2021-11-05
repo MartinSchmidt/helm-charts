@@ -45,10 +45,6 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ matrix.path }}
-          tags: | 
-            type=schedule
-            type=ref,event=tag
-            type=semver,pattern={{version}}
 
       - name: Build and push Docker image
         if: steps.check_files.outputs.files_exists == 'true'
