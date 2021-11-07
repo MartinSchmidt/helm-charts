@@ -54,6 +54,5 @@ jobs:
         run: helm install test-lb helm-charts/charts/loadbalancer/chart -f helm-charts/charts/loadbalancer/test/values.yaml --namespace metallb-system --create-namespace
 
       - name: Run chart-testing (install)
-        if: steps.list-changed.outputs.changed == 'true'
         run: ct install --config ./.github/configs/ct-install.yaml
         if: steps.list-changed.outputs.changed == 'true'
