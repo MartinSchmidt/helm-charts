@@ -4,7 +4,7 @@ yggdrasil:
 
 installCNI: true
 
-argo-cd:
+argo-cd-proxy-chart:
   argo-cd:
     controller:
       replicas: 3

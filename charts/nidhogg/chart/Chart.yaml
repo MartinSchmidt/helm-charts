@@ -5,7 +5,7 @@ description: A chart that deploys nidhogg.
 version: 1.0.7
 
 dependencies:
-  - name: argo-cd
+  - name: argo-cd-proxy-chart
     version: "0.1.0"
     repository: "https://distributed-technologies.github.io/helm-charts/"
   - name: CNI
