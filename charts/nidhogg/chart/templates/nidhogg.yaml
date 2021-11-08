@@ -18,6 +18,10 @@ spec:
 {{- end }}
     helm:
       version: v3
+      values: |
+        nidhogg:
+          yggdrasil:
+{{ toYaml .Values.yggdrasil | indent 12 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .Release.Namespace }}
