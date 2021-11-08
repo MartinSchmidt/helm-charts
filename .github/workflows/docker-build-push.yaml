@@ -1,0 +1,64 @@
+name: Create and publish a Docker image
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy: 
+      matrix: 
+        path: ["argo-events", "argo-wf", "cache", "ceph", "cni", 
+                "dns-server", "git-server", "grafana", "ha-proxy", "harbor",
+                "jaeger", "kafka", "lightvessel", "loadbalancer", "loki",
+                "nidhogg", "ntp", "prometheus", "rook", "rook-helper",
+                "thanos", "traefik", "vault"]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with: 
+          fetch-depth: '0'
+      
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "charts/${{ matrix.path }}/container/Dockerfile"
+
+      - name: Log in to the Container registry
+        if: steps.check_files.outputs.files_exists == 'true'
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get helm chart version
+        run: | 
+          echo HELM_VERSION=$(grep "version: " charts/${{ matrix.path }}/chart/Chart.yaml | cut -f2 -d' ') >> $GITHUB_ENV
+
+      - name: Extract metadata (tags, labels) for Docker
+        if: steps.check_files.outputs.files_exists == 'true'
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/${{ matrix.path }}
+          tags: type=raw, value=${{ env.HELM_VERSION }}
+
+      - name: Build and push Docker image
+        if: steps.check_files.outputs.files_exists == 'true'
+        uses: docker/build-push-action@v2
+        with:
+          context: charts/${{ matrix.path }}/container
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
