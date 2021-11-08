@@ -38,12 +38,8 @@ spec:
             - "localhost"
             - "22"
         volumeMounts:
-        - mountPath: /git-server/keys
-          name: git-server-keys
         - mountPath: /git-server/repos
           name: git-server-repos
       volumes:
-        - name: git-server-keys
-          {{- .Values.gitServerKeysVolume | toYaml | nindent 10 }}
         - name: git-server-repos
           {{- .Values.gitServerReposVolume | toYaml | nindent 10 }}
