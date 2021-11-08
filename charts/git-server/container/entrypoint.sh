@@ -9,14 +9,11 @@
 # Commands:
 #   -start    starts the git server (nginx + fcgi)
 #
-#   -init     turns directories under `/var/lib/initial`
-#             into bare repositories at `/var/lib/git`
-# 
+
 
 set -o errexit
 
 readonly GIT_PROJECT_ROOT="/var/lib/git"
-readonly GIT_INITIAL_ROOT="/var/lib/initial"
 readonly GIT_HTTP_EXPORT_ALL="true"
 readonly GIT_USER="git"
 readonly GIT_GROUP="git"
@@ -26,11 +23,17 @@ readonly USERID="nginx"
 readonly SOCKUSERID="$USERID"
 readonly FCGISOCKET="/var/run/fcgiwrap.socket"
 
+# String list of repos to create
+readonly GIT_REPOS=$1
+
 main() {
   mkdir -p $GIT_PROJECT_ROOT
+  echo "Found $GIT_REPOS"
 
-  # Checks if $GIT_INITIAL_ROOT has files
-  if [[ $(ls -A ${GIT_INITIAL_ROOT}) ]]; then
+  git config --global init.defaultBranch main
+
+  if [[ -n $GIT_REPOS ]]; then
+    echo "Initializing repos $GIT_REPOS"
     initialize_initial_repositories
   fi
   initialize_services
@@ -58,8 +61,8 @@ initialize_services() {
 }
 
 initialize_initial_repositories() {
-  cd $GIT_INITIAL_ROOT
-  for dir in $(find . -name "*" -type d -maxdepth 1 -mindepth 1); do
+  
+  for dir in $GIT_REPOS; do
     echo "Initializing repository $dir"
     init_and_commit $dir
   done

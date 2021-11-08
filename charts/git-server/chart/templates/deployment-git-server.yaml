@@ -21,10 +21,8 @@ spec:
       containers:
       - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        name: git-server
-        env:
-          - name: GIT_PROJECTS
-            value: "{{ join " " .Values.repos }}"
+        args: [ "{{ join " " .Values.repos }}" ]
+        name: git-server 
         resources:
           limits:
             cpu: 100m
