@@ -8,7 +8,7 @@ image:
 
 service:
   type: LoadBalancer
-  port: 22
+  port: 80
 
 affinity: {}
 

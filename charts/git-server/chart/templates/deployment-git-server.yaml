@@ -36,7 +36,7 @@ spec:
             - -z 
             - -v 
             - "localhost"
-            - "22"
+            - "80"
         volumeMounts:
         - mountPath: /git-server/repos
           name: git-server-repos

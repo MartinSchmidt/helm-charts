@@ -1,21 +1,19 @@
-FROM alpine:3.14
+FROM nginx:alpine
 
-WORKDIR /git-server/
+RUN set -x && \
+  apk --update upgrade                                  &&  \
+  apk add git-daemon bash fcgiwrap spawn-fcgi wget             &&  \
+  adduser git -h /var/lib/git -D                        &&  \
+  adduser nginx git                                     &&  \
+  git config --system http.receivepack true             &&  \
+  git config --system http.uploadpack true              &&  \
+  git config --system user.email "gitserver@git.com"    &&  \
+  git config --system user.name "Git Server"            &&  \
+  ln -sf /dev/stdout /var/log/nginx/access.log          &&  \
+  ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN apk add --no-cache openssh git
+ADD ./etc /etc
+ADD ./entrypoint.sh /usr/local/bin/entrypoint
 
-COPY sshd_config /etc/ssh/sshd_config
-
-COPY start.sh /git-server/
-
-RUN git config --global init.defaultBranch main
-
-RUN mkdir /git-server/keys \
-  && adduser -D -s /usr/bin/git-shell git \
-  && mkdir /home/git/.ssh \
-  && echo git:* | chpasswd -e \
-  && chown git:git /home/git/.ssh
-
-EXPOSE 22
-
-CMD [ "sh", "start.sh" ] 
+ENTRYPOINT [ "entrypoint" ]
+CMD [ "-start" ]
