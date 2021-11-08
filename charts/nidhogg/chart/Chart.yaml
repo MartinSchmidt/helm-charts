@@ -6,8 +6,8 @@ version: 1.0.7
 
 dependencies:
   - name: argo-cd
-    version: "3.22.1"
-    repository: "https://argoproj.github.io/argo-helm"
+    version: "0.1.0"
+    repository: "https://distributed-technologies.github.io/helm-charts/"
   - name: CNI
     version: "v0.3.1"
     repository: "https://distributed-technologies.github.io/helm-repository/"

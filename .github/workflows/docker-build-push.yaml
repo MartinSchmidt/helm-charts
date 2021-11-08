@@ -17,7 +17,7 @@ jobs:
       packages: write
     strategy: 
       matrix: 
-        path: ["argo-events", "argo-wf", "cache", "ceph", "cni", 
+        path: ["argo-cd", "argo-events", "argo-wf", "cache", "ceph", "cni", 
                 "dns-server", "git-server", "grafana", "ha-proxy", "harbor",
                 "jaeger", "kafka", "lightvessel", "loadbalancer", "loki",
                 "nidhogg", "ntp", "prometheus", "rook", "rook-helper",

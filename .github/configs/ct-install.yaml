@@ -4,6 +4,7 @@
 remote: origin
 target-branch: main
 chart-dirs:
+  - charts/argo-cd
   - charts/argo-events
   - charts/argo-wf
   - charts/cache
