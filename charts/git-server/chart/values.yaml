@@ -19,5 +19,4 @@ gitServerReposVolume:
   emptyDir: {}
 # All git repositories created
 repos:
-  - services-git-server
-  - git-project
+  - git-test-project
