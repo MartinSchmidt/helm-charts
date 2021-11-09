@@ -1,0 +1,18 @@
+{{with .Values.helmServer}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: helm-server-service
+spec:
+  selector:
+    app: helm-server
+  ports:
+    - protocol: TCP
+      port: {{.service.port}}
+      targetPort: {{.service.port}}
+      name: http
+  type: {{.service.type}}
+  {{- if (and (eq .service.type "LoadBalancer") (not (empty .service.loadBalancerIP)))}}
+  loadBalancerIP: {{.service.loadBalancerIP}}
+  {{- end}}
+{{- end}}

@@ -1,0 +1,22 @@
+env: test
+imageRegistry:
+  keysVolume:
+    type: hostPath
+    config:
+      path: /certs
+      type: Directory
+  service:
+    type: LoadBalancer
+    port: 443
+    loadBalancerIP: 172.18.0.11
+
+helmServer:
+  replicaCount: 1
+  service:
+    type: LoadBalancer
+    port: 80
+    loadBalancerIP: 172.18.0.10
+  dataVolume:
+    size: 1G
+    storageClass: local-storage
+    accessMode: ReadWriteOnce

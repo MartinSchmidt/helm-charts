@@ -1,0 +1,13 @@
+{{with .Values.helmServer}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: helm-registry-data-pvc
+spec:
+  accessModes:
+    - {{.dataVolume.accessMode}}
+  resources:
+    requests:
+      storage: {{.dataVolume.size}}
+  storageClassName: {{.dataVolume.storageClass}}
+{{end}}
