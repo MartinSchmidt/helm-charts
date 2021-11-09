@@ -2,8 +2,8 @@ dependencies:
 - name: argo-cd-proxy-chart
   repository: https://distributed-technologies.github.io/helm-charts/
   version: 0.1.2
-- name: CNI
-  repository: https://distributed-technologies.github.io/helm-repository/
-  version: v0.3.1
-digest: sha256:b563fefa603cc4c76d03754d369803b78ae1f1432a8c7c4309a7eb5cb0ddbbc4
-generated: "2021-11-09T09:15:20.757973409+01:00"
+- name: cni
+  repository: https://distributed-technologies.github.io/helm-charts/
+  version: 0.3.5
+digest: sha256:4ae0510b3bf02e42977c9c95ec746205678327ba85a5619d7f32ce0e6d488d87
+generated: "2021-11-09T12:06:50.447285678+01:00"
