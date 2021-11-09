@@ -36,8 +36,9 @@ spec:
             - "localhost"
             - "80"
         volumeMounts:
-        - mountPath: /git-server/repos
+        - mountPath: /var/lib/git/
           name: git-server-repos
       volumes:
         - name: git-server-repos
-          {{- .Values.gitServerReposVolume | toYaml | nindent 10 }}
+          persistentVolumeClaim:
+            claimName: git-server-data-pvc

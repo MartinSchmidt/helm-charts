@@ -1,3 +1,4 @@
+env: test
 replicaCount: 1
 
 image:
@@ -7,13 +8,16 @@ image:
   tag: "feature-git-server"
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 80
 
 affinity: {}
 
-# Create a volume where all trusted public keys are stored in a folder.
-gitServerKeysVolume:
+dataVolume:
+  size: 1G
+  storageClass: standard
+  accessMode: ReadWriteOnce
+
 # The volume for holding the repos. Required for HA.
 gitServerReposVolume:
   emptyDir: {}
