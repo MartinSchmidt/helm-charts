@@ -27,6 +27,7 @@ chart-dirs:
   - charts/thanos
   - charts/traefik
   - charts/vault
+  - charts/artifact-registry
 chart-repos:
   - argo=https://argoproj.github.io/argo-helm
   - repo=https://distributed-technologies.github.io/helm-repository/
