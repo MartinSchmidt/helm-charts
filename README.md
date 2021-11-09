@@ -1,6 +1,19 @@
 # helm-charts
 This is our mono repository that contains all of our proxy charts. 
 
+### Adding a Helm chart
+If you would like to add a new service or Helm chart in general to this repository, please follow these steps carefully. 
+1. Add a new folder to the charts/ directory named after your Helm chart. 
+2. Inside this new folder, add a chart/ folder and put your Helm chart in there
+3. It is important that you have a values.yaml file, even if it is empty, since the linter will otherwise fail
+4. If you have any dependencies from a new helm repo that is not currently on the list in the follow files, you need to add it to the lists in the following files: 
+   1. /.github/configs/ct-install.yaml under the "chart-repos" section
+   2. /.github/configs/ct-lint.yaml under the "chart-repos" section
+   3. /.github/workflows/publish.yaml under the step "Add dependency chart repos"
+5. You should now add your chart to the matrixes in the following workflows:
+   1. /.github/workflows/docker-build-push.yaml add the name of your folder to the matrix.path list
+   2. /.github/workflows/dependency-checker.yaml add the name of your folder to the matrix.path list
+
 ### Building docker images
 To include a docker container and have it build and push to the local image registry on github, do the following: 
 1. In the folder of your service, create a `container/` folder
