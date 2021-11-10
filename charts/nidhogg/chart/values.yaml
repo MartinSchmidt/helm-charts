@@ -4,6 +4,9 @@ yggdrasil:
 
 installCNI: true
 
+lb-proxy:
+  enabled: false
+
 argo-cd-proxy-chart:
   argo-cd:
     controller:
