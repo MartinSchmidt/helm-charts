@@ -5,5 +5,8 @@ dependencies:
 - name: cni
   repository: https://distributed-technologies.github.io/helm-charts/
   version: 0.3.5
-digest: sha256:4ae0510b3bf02e42977c9c95ec746205678327ba85a5619d7f32ce0e6d488d87
-generated: "2021-11-09T12:06:50.447285678+01:00"
+- name: lb-proxy
+  repository: https://distributed-technologies.github.io/helm-charts/
+  version: 0.1.0
+digest: sha256:dd84d120bb67c11d86cd9178a9df37b97d388c65277d9d6092d6ac464842c391
+generated: "2021-11-10T10:30:06.864760973+01:00"
