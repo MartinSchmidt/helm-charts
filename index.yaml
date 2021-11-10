@@ -161,6 +161,15 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/kafka-0.2.2/kafka-0.2.2.tgz
     version: 0.2.2
+  lb-proxy:
+  - apiVersion: v2
+    created: "2021-11-10T09:27:24.058304228Z"
+    description: A Helm chart for lb-proxy
+    digest: d34519bbbb69eda8cef83609403179d7de37b7e0c9d612de2f9ad50de21be7c0
+    name: lb-proxy
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/lb-proxy-0.1.0/lb-proxy-0.1.0.tgz
+    version: 0.1.0
   lightvessel:
   - apiVersion: v2
     created: "2021-10-29T08:24:21.416861901Z"
@@ -374,4 +383,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2021-11-09T11:11:46.326512008Z"
+generated: "2021-11-10T09:27:24.058326429Z"
