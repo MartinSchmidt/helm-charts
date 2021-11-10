@@ -26,14 +26,11 @@ spec:
           limits:
             cpu: 100m
             memory: 100Mi
-        readinessProbe:
-          exec:
-            command:
-            - nc 
-            - -z 
-            - -v 
-            - "localhost"
-            - "80"
+        volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf 
+          subPath: nginx.conf
+          readOnly: true
+          name: nginx-conf-volume
       - image: "{{ .Values.fcgi.image.repository }}:{{ .Values.fcgi.image.tag }}"
         imagePullPolicy: {{ .Values.fcgi.image.pullPolicy }}
         name: git-server-fcgi
@@ -45,3 +42,9 @@ spec:
         - name: git-server-repos
           persistentVolumeClaim:
             claimName: git-server-data-pvc
+        - name: nginx-conf-volume
+          configMap:
+            name: nginx-conf
+            items:
+              - key: nginx.conf
+                path: nginx.conf

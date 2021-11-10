@@ -2,10 +2,9 @@ env: test
 replicaCount: 1
 nginx:
   image:
-    repository: git-server-nginx
+    repository: nginx
     pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: "0.1.27"
+    tag: "1.21.4"
 
 fcgi:
   image:
