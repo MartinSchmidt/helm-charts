@@ -19,10 +19,9 @@ spec:
 {{ toYaml . | indent 8}}
       {{- end }}
       containers:
-      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        args: [ "{{ join " " .Values.repos }}" ]
-        name: git-server 
+      - image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
+        imagePullPolicy: {{ .Values.nginx.image.pullPolicy }}
+        name: git-server-nginx
         resources:
           limits:
             cpu: 100m
@@ -35,6 +34,10 @@ spec:
             - -v 
             - "localhost"
             - "80"
+      - image: "{{ .Values.fcgi.image.repository }}:{{ .Values.fcgi.image.tag }}"
+        imagePullPolicy: {{ .Values.fcgi.image.pullPolicy }}
+        name: git-server-fcgi
+        args: [ "{{ join " " .Values.repos }}" ]
         volumeMounts:
         - mountPath: /var/lib/git/
           name: git-server-repos

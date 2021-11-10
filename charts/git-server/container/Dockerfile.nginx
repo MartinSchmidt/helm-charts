@@ -1,0 +1,13 @@
+FROM nginx:1.21-alpine
+
+RUN set -x && \
+  apk --update upgrade                                  &&  \
+  apk add bash wget                                     &&  \
+  ln -sf /dev/stdout /var/log/nginx/access.log          &&  \
+  ln -sf /dev/stderr /var/log/nginx/error.log
+
+ADD ./etc /etc
+ADD ./entrypoint.sh /usr/local/bin/entrypoint
+
+ENTRYPOINT [ "entrypoint" ]
+CMD [ "-start" ]

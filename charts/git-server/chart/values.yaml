@@ -1,18 +1,23 @@
 env: test
 replicaCount: 1
+nginx:
+  image:
+    repository: git-server-nginx
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "0.1.27"
 
-image:
-  repository: ghcr.io/distributed-technologies/services-git-server
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "feature-git-server"
+fcgi:
+  image:
+    repository: ghcr.io/distributed-technologies/helm-charts/git-server
+    pullPolicy: IfNotPresent
+    tag: "0.2.2"
 
 service:
   type: ClusterIP
   port: 80
 
 affinity: {}
-
 dataVolume:
   size: 1G
   storageClass: standard
