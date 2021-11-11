@@ -1,4 +1,4 @@
 apiVersion: v2
 name: lb-proxy
 description: A Helm chart for lb-proxy
-version: 0.1.0
+version: 0.1.1

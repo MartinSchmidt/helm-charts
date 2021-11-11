@@ -45,3 +45,10 @@ spec:
         - name: config
           configMap:
             name: {{ include "chart.fullname" . }}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                {{- include "chart.selectorLabels" . | nindent 16 }}
+            topologyKey: kubernetes.io/hostname
