@@ -78,6 +78,14 @@ entries:
     version: 0.1.8
   git-server:
   - apiVersion: v2
+    created: "2021-11-12T07:39:18.501478694Z"
+    description: A Helm chart for a Git ssh server in Kubernetes
+    digest: 6b4544e74483f1920f9441eaec76dcba395a99e5094d8d0493c0216a4d73f0f3
+    name: git-server
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/git-server-0.2.2/git-server-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
     created: "2021-10-29T08:24:20.453941213Z"
     description: A Helm chart for a Git ssh server in Kubernetes
     digest: 451323869f2416ff57f264f713ac571e16696aac921829d4a84d41d35d645c40
@@ -404,4 +412,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2021-11-10T09:40:17.673288321Z"
+generated: "2021-11-12T07:39:18.501501994Z"
