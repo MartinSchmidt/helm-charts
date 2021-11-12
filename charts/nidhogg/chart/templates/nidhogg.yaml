@@ -21,7 +21,7 @@ spec:
       values: |
         nidhogg:
           yggdrasil:
-{{ toYaml .Values.yggdrasil | indent 12 }}
+            {{- toYaml .Values.yggdrasil | nindent 12 }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .Release.Namespace }}
