@@ -19,31 +19,32 @@ spec:
 {{ toYaml . | indent 8}}
       {{- end }}
       containers:
-      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        name: git-server
-        env:
-          - name: GIT_PROJECTS
-            value: "{{ join " " .Values.repos }}"
+      - image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
+        imagePullPolicy: {{ .Values.nginx.image.pullPolicy }}
+        name: git-server-nginx
         resources:
           limits:
             cpu: 100m
             memory: 100Mi
-        readinessProbe:
-          exec:
-            command:
-            - nc 
-            - -z 
-            - -v 
-            - "localhost"
-            - "22"
         volumeMounts:
-        - mountPath: /git-server/keys
-          name: git-server-keys
-        - mountPath: /git-server/repos
+        - mountPath: /etc/nginx/nginx.conf 
+          subPath: nginx.conf
+          readOnly: true
+          name: nginx-conf-volume
+      - image: "{{ .Values.fcgi.image.repository }}:{{ .Values.fcgi.image.tag }}"
+        imagePullPolicy: {{ .Values.fcgi.image.pullPolicy }}
+        name: git-server-fcgi
+        args: [ "{{ join " " .Values.repos }}" ]
+        volumeMounts:
+        - mountPath: /var/lib/git/
           name: git-server-repos
       volumes:
-        - name: git-server-keys
-          {{- .Values.gitServerKeysVolume | toYaml | nindent 10 }}
         - name: git-server-repos
-          {{- .Values.gitServerReposVolume | toYaml | nindent 10 }}
+          persistentVolumeClaim:
+            claimName: git-server-data-pvc
+        - name: nginx-conf-volume
+          configMap:
+            name: nginx-conf
+            items:
+              - key: nginx.conf
+                path: nginx.conf

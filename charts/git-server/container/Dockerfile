@@ -1,21 +1,12 @@
-FROM alpine:3.14
+FROM alpine:3.13.6
 
-WORKDIR /git-server/
+RUN set -x && \
+  apk --update upgrade                                  &&  \
+  apk add git-daemon bash fcgiwrap spawn-fcgi      &&  \
+  adduser git -h /var/lib/git -D                        &&  \
+  git config --system http.receivepack true             &&  \
+  git config --system http.uploadpack true                                  
 
-RUN apk add --no-cache openssh git
+ADD ./fcgi.sh /usr/local/bin/entrypoint
 
-COPY sshd_config /etc/ssh/sshd_config
-
-COPY start.sh /git-server/
-
-RUN git config --global init.defaultBranch main
-
-RUN mkdir /git-server/keys \
-  && adduser -D -s /usr/bin/git-shell git \
-  && mkdir /home/git/.ssh \
-  && echo git:* | chpasswd -e \
-  && chown git:git /home/git/.ssh
-
-EXPOSE 22
-
-CMD [ "sh", "start.sh" ] 
+ENTRYPOINT [ "entrypoint" ]

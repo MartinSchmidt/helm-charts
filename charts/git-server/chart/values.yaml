@@ -1,24 +1,30 @@
-replicaCount: 3
+env: test
+replicaCount: 1
+nginx:
+  image:
+    repository: nginx
+    pullPolicy: IfNotPresent
+    tag: "1.21.4"
 
-image:
-  repository: ghcr.io/distributed-technologies/services-git-server
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "feature-git-server"
+fcgi:
+  image:
+    repository: ghcr.io/distributed-technologies/helm-charts/git-server
+    pullPolicy: IfNotPresent
+    tag: "0.2.2"
 
 service:
-  type: LoadBalancer
-  port: 22
+  type: ClusterIP
+  port: 80
 
 affinity: {}
+dataVolume:
+  size: 1G
+  storageClass: standard
+  accessMode: ReadWriteOnce
 
-# Create a volume where all trusted public keys are stored in a folder.
-gitServerKeysVolume:
-  emptyDir: {}
 # The volume for holding the repos. Required for HA.
 gitServerReposVolume:
   emptyDir: {}
 # All git repositories created
 repos:
-  - services-git-server
-  - git-project
+  - git-test-project

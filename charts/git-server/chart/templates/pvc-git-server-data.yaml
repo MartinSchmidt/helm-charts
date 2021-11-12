@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: git-server-data-pvc
+spec:
+  accessModes:
+    - {{ .Values.dataVolume.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.dataVolume.size }}
+  storageClassName: {{ .Values.dataVolume.storageClass}}
