@@ -29,7 +29,7 @@ imageRegistry:
     tag: "2.7"
   service:
     type: ClusterIP
-    port: 443
+    port: 80
   resources:
     limits:
       cpu: 100m
@@ -38,9 +38,8 @@ imageRegistry:
       cpu: 100m
       memory: 128Mi
   affinity: {}
-  keysVolume:
-    type: emptyDir
-    config: {}
+  tls:
+    enabled: false
   dataVolume:
     size: 1G
     storageClass: standard

@@ -30,20 +30,26 @@ spec:
             port: {{.service.port}}
         env:
         - name: REGISTRY_HTTP_ADDR
-          value: 0.0.0.0:443
+          value: 0.0.0.0:{{.service.port}}
+        {{- if .tls.enabled }}
         - name: REGISTRY_HTTP_TLS_CERTIFICATE
           value: /certs/domain.crt
         - name: REGISTRY_HTTP_TLS_KEY
           value: /certs/domain.key
+        {{- end }}
         volumeMounts:
+        {{- if .tls.enabled }}
         - mountPath: /certs/
           name: image-registry-keys
+        {{- end }}
         - mountPath: /var/lib/registry/
           name: image-registry-data
       volumes:
+      {{- if .tls.enabled }}
       - name: image-registry-keys
-        {{- .keysVolume.type | nindent 8}}:
-        {{- .keysVolume.config | toYaml | nindent 10}}
+        {{- .tls.keysVolume.type | nindent 8}}:
+        {{- .tls.keysVolume.config | toYaml | nindent 10}}
+      {{- end }}
       - name: image-registry-data
         persistentVolumeClaim:
           claimName: image-registry-data-pvc

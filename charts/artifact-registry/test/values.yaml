@@ -1,13 +1,8 @@
 env: test
 imageRegistry:
-  keysVolume:
-    type: hostPath
-    config:
-      path: /certs
-      type: Directory
   service:
     type: LoadBalancer
-    port: 443
+    port: 80
     loadBalancerIP: 172.18.0.11
 
 helmServer:

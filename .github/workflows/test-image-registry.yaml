@@ -9,25 +9,6 @@ jobs:
   test-helm-server-can-pull:
     runs-on: ubuntu-latest
     steps:
-
-      - name: Make cert dir
-        run: mkdir /home/runner/certs
-
-      - name: Generate certificate
-        run: | 
-          openssl req -newkey rsa:4096 -nodes -sha256 -keyout /home/runner/certs/domain.key \
-            -addext "subjectAltName = IP:172.18.0.11" \
-            -x509 \
-            -days 365 \
-            -out /home/runner/certs/domain.crt \
-            -subj "/C=te/ST=st/L=te/O=st/OU=te/CN=172.18.0.11"
-      
-      - name: Make trusted cert dir for docker
-        run: sudo mkdir /etc/docker/certs.d/172.18.0.11:443/ -p
-
-      - name: Copy trusted cert
-        run: sudo cp /home/runner/certs/domain.crt /etc/docker/certs.d/172.18.0.11:443/ca.crt
-
       - uses: actions/checkout@v2
 
       - name: Create k8s Kind Cluster
@@ -53,10 +34,10 @@ jobs:
 
       - name: Test registry (push)
         run: |
-          docker pull alpine 
-          docker tag alpine 172.18.0.11:443/alpine 
-          docker push 172.18.0.11:443/alpine
+          podman pull alpine 
+          podman tag alpine 172.18.0.11:80/alpine 
+          podman push 172.18.0.11:80/alpine --tls-verify=false
       
       - name: Test registry (pull)
         run: |
-          docker pull 172.18.0.11:443/alpine
+          podman pull 172.18.0.11:80/alpine --tls-verify=false
