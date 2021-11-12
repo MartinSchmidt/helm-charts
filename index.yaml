@@ -70,6 +70,16 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/cache-0.1.4/cache-0.1.4.tgz
     version: 0.1.4
+  chart:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-11-12T14:32:18.108822393Z"
+    description: A Helm chart for artifact storage
+    digest: faf606bee1351389fd4cc3f7dd9afce4344846f26849a01b78273427ec195c43
+    name: chart
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/chart-v0.1.0/chart-v0.1.0.tgz
+    version: v0.1.0
   cni:
   - apiVersion: v2
     created: "2021-10-29T08:24:20.000018216Z"
@@ -446,4 +456,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2021-11-12T11:52:03.201735186Z"
+generated: "2021-11-12T14:32:18.108872094Z"
