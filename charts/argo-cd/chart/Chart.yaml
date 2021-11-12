@@ -2,7 +2,7 @@ apiVersion: v2
 name: argo-cd-proxy-chart
 description: A proxy helm chart for argo cd
 type: application
-version: 0.1.2
+version: 0.1.3
 
 dependencies:
   - name: argo-cd
