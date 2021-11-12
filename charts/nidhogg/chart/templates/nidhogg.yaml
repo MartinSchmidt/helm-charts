@@ -22,6 +22,36 @@ spec:
         nidhogg:
           yggdrasil:
             {{- toYaml .Values.yggdrasil | nindent 12 }}
+          {{- with (index .Values "lb-proxy") }}
+          {{- if .enabled }}
+          lb-proxy:
+            enabled: {{ .enabled }}
+            config:
+              {{- toYaml .config | nindent 14 }}
+          {{- end }}
+          {{- end }}
+          {{- with (index .Values "argo-cd-proxy-chart") }}
+          argo-cd-proxy-chart:
+            {{- if .config }}
+            config:
+              {{- toYaml .config | nindent 14 }}
+            {{- end }}
+            {{- with (index . "argo-cd") }}
+            {{- if or .server.volumeMounts .repoServer.volumeMounts }}
+            argo-cd:
+              server:
+                volumeMounts:
+                  {{- toYaml .server.volumeMounts | nindent 18 }}
+                volumes:
+                  {{- toYaml .server.volumes | nindent 18 }}
+              repoServer:
+                volumeMounts:
+                  {{- toYaml .repoServer.volumeMounts | nindent 18 }}
+                volumes:
+                  {{- toYaml .repoServer.volumes | nindent 18 }}
+            {{- end }}
+            {{- end }}
+          {{- end }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .Release.Namespace }}
