@@ -1,0 +1,17 @@
+{{with .Values.imageRegistry}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-registry-service
+spec:
+  selector:
+    app: image-registry
+  ports:
+    - protocol: TCP
+      port: {{.service.port}}
+      targetPort: {{.service.port}}
+  type: {{.service.type}}
+  {{- if (and (eq .service.type "LoadBalancer") (not (empty .service.loadBalancerIP)))}}
+  loadBalancerIP: {{.service.loadBalancerIP}}
+  {{- end}}
+{{- end}}

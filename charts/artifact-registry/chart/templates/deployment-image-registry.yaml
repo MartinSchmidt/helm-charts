@@ -1,0 +1,56 @@
+{{with .Values.imageRegistry}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: image-registry
+  name: image-registry
+spec:
+  selector:
+    matchLabels:
+      app: image-registry
+  replicas: {{.replicaCount}}
+  template:
+    metadata:
+      labels:
+        app: image-registry
+    spec:
+      {{- with .affinity}}
+      affinity:
+      {{toYaml . | indent 8}}
+      {{- end }}
+      containers:
+      - image: "{{ .image.repository }}:{{ .image.tag }}"
+        imagePullPolicy: {{.image.pullPolicy}}
+        name: image-registry
+        resources:
+        {{- toYaml .resources | nindent 12}}
+        readinessProbe:
+          httpGet:
+            port: {{.service.port}}
+        env:
+        - name: REGISTRY_HTTP_ADDR
+          value: 0.0.0.0:{{.service.port}}
+        {{- if .tls.enabled }}
+        - name: REGISTRY_HTTP_TLS_CERTIFICATE
+          value: /certs/domain.crt
+        - name: REGISTRY_HTTP_TLS_KEY
+          value: /certs/domain.key
+        {{- end }}
+        volumeMounts:
+        {{- if .tls.enabled }}
+        - mountPath: /certs/
+          name: image-registry-keys
+        {{- end }}
+        - mountPath: /var/lib/registry/
+          name: image-registry-data
+      volumes:
+      {{- if .tls.enabled }}
+      - name: image-registry-keys
+        {{- .tls.keysVolume.type | nindent 8}}:
+        {{- .tls.keysVolume.config | toYaml | nindent 10}}
+      {{- end }}
+      - name: image-registry-data
+        persistentVolumeClaim:
+          claimName: image-registry-data-pvc
+{{end}}

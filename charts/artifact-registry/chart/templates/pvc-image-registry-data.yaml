@@ -1,0 +1,13 @@
+{{with .Values.imageRegistry}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: image-registry-data-pvc
+spec:
+  accessModes:
+    - {{.dataVolume.accessMode}}
+  resources:
+    requests:
+      storage: {{.dataVolume.size}}
+  storageClassName: {{.dataVolume.storageClass}}
+{{end}}

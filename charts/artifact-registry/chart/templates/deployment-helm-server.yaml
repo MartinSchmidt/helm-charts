@@ -1,0 +1,50 @@
+{{with .Values.helmServer}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: helm-server
+  name: helm-server
+spec:
+  selector:
+    matchLabels:
+      app: helm-server
+  replicas: {{.replicaCount}}
+  template:
+    metadata:
+      labels:
+        app: helm-server
+    spec:
+      {{- with .affinity}}
+      affinity:
+      {{toYaml . | indent 8}}
+      {{- end}}
+      containers:
+      - image: "{{ .image.repository }}:{{ .image.tag }}"
+        imagePullPolicy: {{.image.pullPolicy}}
+        name: helm-server
+        resources:
+        {{- toYaml .resources | nindent 12}}
+        readinessProbe:
+            tcpSocket:
+              port: 80
+        livenessProbe:
+            tcpSocket:
+              port: 80
+        volumeMounts:
+        - mountPath: /charts
+          name: helm-charts
+        - mountPath: /etc/nginx # mount nginx-conf volumn to /etc/nginx
+          readOnly: true
+          name: nginx-conf
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: nginx-conf
+          items:
+            - key: nginx.conf
+              path: nginx.conf
+      - name: helm-charts
+        persistentVolumeClaim:
+          claimName: helm-registry-data-pvc
+{{- end}}
