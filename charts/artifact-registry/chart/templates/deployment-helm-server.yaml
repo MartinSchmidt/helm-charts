@@ -40,7 +40,7 @@ spec:
       volumes:
       - name: nginx-conf
         configMap:
-          name: nginx-conf
+          name: helm-server-nginx-conf
           items:
             - key: nginx.conf
               path: nginx.conf
