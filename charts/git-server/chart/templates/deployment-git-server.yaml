@@ -44,7 +44,7 @@ spec:
             claimName: git-server-data-pvc
         - name: nginx-conf-volume
           configMap:
-            name: nginx-conf
+            name: git-server-nginx-conf
             items:
               - key: nginx.conf
                 path: nginx.conf

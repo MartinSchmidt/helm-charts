@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: nginx-conf
+  name: git-server-nginx-conf
 data:
   nginx.conf: |
     user                    nginx;
