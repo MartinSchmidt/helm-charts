@@ -37,7 +37,7 @@ static_resources:
   clusters:
   - name: http
     connect_timeout: 0.25s
-    type: STATIC
+    type: STRICT_DNS
     load_assignment:
       cluster_name: foo
       endpoints:
@@ -45,11 +45,11 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: 95.217.163.246
+                address: fwd-proxy-envoy-webserver
                 port_value: 80
   - name: https
     connect_timeout: 0.25s
-    type: STATIC
+    type: STRICT_DNS
     load_assignment:
       cluster_name: foo2
       endpoints:
@@ -57,5 +57,5 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: 95.217.163.246
+                address: fwd-proxy-envoy-webserver
                 port_value: 443
