@@ -56,6 +56,16 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/argo-wf-0.1.3/argo-wf-0.1.3.tgz
     version: 0.1.3
+  artifact-repository:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-11-15T16:42:14.615602091Z"
+    description: A Helm chart for artifact storage
+    digest: 51af43d4c1747803e3d2e962a27854ef337a795c6ef01d612214fffe550db284
+    name: artifact-repository
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/artifact-repository-0.1.1/artifact-repository-0.1.1.tgz
+    version: 0.1.1
   cache:
   - apiVersion: v2
     created: "2021-10-29T08:24:19.863879179Z"
@@ -100,6 +110,14 @@ entries:
     - https://github.com/distributed-technologies/helm-charts/releases/download/dns-server-0.1.8/dns-server-0.1.8.tgz
     version: 0.1.8
   git-server:
+  - apiVersion: v2
+    created: "2021-11-15T16:42:14.811178606Z"
+    description: A Helm chart for a Git ssh server in Kubernetes
+    digest: bd656e710213d32137adaea03b5f8b9461ea4f4eb2030c3aad76743f390201f5
+    name: git-server
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/git-server-0.2.3/git-server-0.2.3.tgz
+    version: 0.2.3
   - apiVersion: v2
     created: "2021-11-12T07:39:18.501478694Z"
     description: A Helm chart for a Git ssh server in Kubernetes
@@ -456,4 +474,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2021-11-12T14:32:18.108872094Z"
+generated: "2021-11-15T16:42:14.811349422Z"
