@@ -10,18 +10,35 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
+  generate-matrix: 
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./charts/
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Check dependencies action checkout step
+        uses: actions/checkout@v2
+        id: check-dependencies
+      - name: set-matrix
+        id: set-matrix
+        run: |
+          ARRAYSTART="{\"path\": [\""
+          ARRAYLIST=$(echo *)
+          ARRAYLIST="${ARRAYLIST// /\",\"}"
+          ARRAYEND="\"]}"
+          JSONSTRING="${ARRAYSTART}${ARRAYLIST}${ARRAYEND}"
+          echo "::set-output name=matrix::$JSONSTRING"
   build-and-push-image:
+    needs: generate-matrix
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     strategy: 
-      matrix: 
-        path: ["argo-cd", "argo-events", "argo-wf", "cache", "ceph", "cni", 
-                "dns-server", "git-server", "grafana", "ha-proxy", "harbor",
-                "jaeger", "kafka", "lightvessel", "loadbalancer", "loki",
-                "nidhogg", "ntp", "prometheus", "rook", "rook-helper",
-                "thanos", "traefik", "vault"]
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
