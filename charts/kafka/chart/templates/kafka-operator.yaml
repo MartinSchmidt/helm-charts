@@ -11,18 +11,8 @@ spec:
         metadata:
           labels:
             app: kafka-broker
-        affinity:
-          podAntiAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              - labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - kafka-broker
-                topologyKey: "kubernetes.io/hostname"
     replicas: {{ .Values.cluster.kafka.replicas }}
-    version: 2.7.0 
+    version: {{ .Values.cluster.kafka.version }} 
     logging: 
       type: inline
       loggers:
@@ -62,8 +52,8 @@ spec:
       offsets.topic.replication.factor: {{ .Values.cluster.kafka.offsetTopicReplicationFactor }}
       transaction.state.log.replication.factor: {{ .Values.cluster.kafka.transactionStateLog.replicationFactor }}
       transaction.state.log.min.isr: {{ .Values.cluster.kafka.transactionStateLog.minimumInSyncReplicas }}
-      log.message.format.version: 2.7
-      inter.broker.protocol.version: 2.7
+      log.message.format.version: {{ .Values.cluster.kafka.version }}
+      inter.broker.protocol.version: {{ .Values.cluster.kafka.version }}
       ssl.cipher.suites: "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384" 
       ssl.enabled.protocols: "TLSv1.2"
       ssl.protocol: "TLSv1.2"
@@ -83,16 +73,6 @@ spec:
         metadata:
           labels:
             app: kafka-zookeeper
-        affinity:
-          podAntiAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-              - labelSelector:
-                  matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                        - kafka-zookeeper
-                topologyKey: "kubernetes.io/hostname" 
     replicas: {{ .Values.cluster.zookeeper.replicas }}
     logging:
       type: inline
@@ -160,3 +140,10 @@ spec:
   kafkaExporter:
     topicRegex: ".*"
     groupRegex: ".*"
+    resources:
+      requests:
+        memory: {{ .Values.cluster.kafkaExporter.resources.requests.memory }}
+        cpu: {{ .Values.cluster.kafkaExporter.resources.requests.cpu }}
+      limits:
+        memory: {{ .Values.cluster.kafkaExporter.resources.limits.memory }}
+        cpu: {{ .Values.cluster.kafkaExporter.resources.limits.cpu }}

@@ -1,4 +1,3 @@
-{{ if index .Values "cp-helm-charts.cp-kafka-connect.enabled" }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -10,4 +9,3 @@ spec:
     requests:
       storage: {{ .Values.connector.volume.size }}
   storageClassName: {{ .Values.connector.volume.storageClassName }}
-{{ end }}
