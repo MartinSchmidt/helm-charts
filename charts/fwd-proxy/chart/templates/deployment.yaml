@@ -13,6 +13,7 @@ spec:
     metadata:
       annotations:
         checksum/configmap: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/configmap-tls: {{ include (print $.Template.BasePath "/configmap-tls.yaml") . | sha256sum }}
       {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -37,11 +38,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: http
           resources:
             {{- toYaml .Values.envoyproxy.resources | nindent 12 }}
@@ -56,11 +57,11 @@ spec:
           imagePullPolicy: {{ .Values.nginx.image.pullPolicy }}
           livenessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: 80
           readinessProbe:
             httpGet:
-              path: /
+              path: /healthz
               port: 80
           resources:
             {{- toYaml .Values.nginx.resources | nindent 12 }}
@@ -68,10 +69,16 @@ spec:
             - mountPath: /etc/nginx/nginx.conf
               name: config
               subPath: nginx.conf
+            - mountPath: /etc/nginx/ssl
+              name: ssl
+              readOnly: true
       volumes:
         - name: config
           configMap:
             name: {{ include "fwd-proxy.fullname" . }}
+        - name: ssl
+          secret:
+            secretName: {{ include "fwd-proxy.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
