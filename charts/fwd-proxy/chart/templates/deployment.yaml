@@ -40,10 +40,6 @@ spec:
             httpGet:
               path: /healthz
               port: http
-          readinessProbe:
-            httpGet:
-              path: /healthz
-              port: http
           resources:
             {{- toYaml .Values.envoyproxy.resources | nindent 12 }}
           volumeMounts:
@@ -56,10 +52,6 @@ spec:
           image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
           imagePullPolicy: {{ .Values.nginx.image.pullPolicy }}
           livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 80
-          readinessProbe:
             httpGet:
               path: /healthz
               port: 80
