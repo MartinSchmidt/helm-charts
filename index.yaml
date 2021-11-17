@@ -242,6 +242,13 @@ entries:
     version: 2.0.2
   loadbalancer:
   - apiVersion: v2
+    created: "2021-11-17T12:54:13.003647137Z"
+    digest: 181f5980f3b817adc9346157d8e9f095c9bda575099a49bb4c561e84b9b688fd
+    name: loadbalancer
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/loadbalancer-0.1.7/loadbalancer-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
     created: "2021-10-29T08:24:21.549630529Z"
     digest: 87ca9190a1fc48c9d76690c1727421c6f83381093b1d9450b0dab201806c3c5c
     name: loadbalancer
@@ -494,4 +501,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2021-11-15T18:55:43.151490264Z"
+generated: "2021-11-17T12:54:13.003687036Z"
