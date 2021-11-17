@@ -4,11 +4,11 @@ ipRangeStop: 10.0.0.100
 speaker:
   image:
     repository: quay.io/metallb/speaker
-    tag: main
+    tag: v0.11.0
     imagePullPolicy: IfNotPresent
 
 controller:
   image:
     repository: quay.io/metallb/controller
-    tag: main
+    tag: v0.11.0
     imagePullPolicy: IfNotPresent
