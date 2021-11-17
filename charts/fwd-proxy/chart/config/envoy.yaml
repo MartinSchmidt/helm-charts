@@ -50,7 +50,7 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: fwd-proxy-envoy-webserver
+                address: 127.0.0.1
                 port_value: 80
   - name: https
     connect_timeout: 0.25s
@@ -62,5 +62,5 @@ static_resources:
         - endpoint:
             address:
               socket_address:
-                address: fwd-proxy-envoy-webserver
+                address: 127.0.0.1
                 port_value: 443

@@ -7,3 +7,5 @@ metadata:
 data:
   envoy.yaml: | 
     {{- .Files.Get "config/envoy.yaml" | nindent 4 }}
+  nginx.conf: |
+    {{- .Files.Get "config/nginx.conf" | nindent 4 }}

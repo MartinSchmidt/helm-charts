@@ -1,19 +1,21 @@
 nameOverride: ""
 fullnameOverride: ""
 
+replicaCount: 1
+
 imagePullSecrets: []
 
-securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+podAnnotations: {}
 
-webserver:
-  replicaCount: 1
+podSecurityContext: {}
+  # fsGroup: 2000
 
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30000
+
+nginx:
   image:
     repository: nginx
     pullPolicy: IfNotPresent
@@ -28,10 +30,6 @@ webserver:
     # runAsNonRoot: true
     # runAsUser: 1000
 
-  service:
-    type: ClusterIP
-    port: 80
-
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -44,45 +42,32 @@ webserver:
     #   cpu: 100m
     #   memory: 128Mi
 
-  nodeSelector: {}
+envoyproxy:
+  image:
+    repository: envoyproxy/envoy
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "v1.20.0"
 
-  tolerations: []
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
 
-  affinity: {}
-
-# Default values for fwd-proxy.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-replicaCount: 1
-
-image:
-  repository: envoyproxy/envoy
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.20.0"
-
-podAnnotations: {}
-
-podSecurityContext: {}
-  # fsGroup: 2000
-
-service:
-  type: NodePort
-  port: 80
-  nodePort: 30000
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
 
 nodeSelector: {}
 

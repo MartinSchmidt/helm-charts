@@ -26,11 +26,11 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: envoyproxy
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+            {{- toYaml .Values.envoyproxy.securityContext | nindent 12 }}
+          image: "{{ .Values.envoyproxy.image.repository }}:{{ .Values.envoyproxy.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.envoyproxy.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 10000
@@ -44,11 +44,30 @@ spec:
               path: /
               port: http
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.envoyproxy.resources | nindent 12 }}
           volumeMounts:
             - mountPath: /etc/envoy/envoy.yaml
               name: config
               subPath: envoy.yaml
+        - name: nginx
+          securityContext:
+            {{- toYaml .Values.nginx.securityContext | nindent 12 }}
+          image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
+          imagePullPolicy: {{ .Values.nginx.image.pullPolicy }}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+          resources:
+            {{- toYaml .Values.nginx.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: config
+              subPath: nginx.conf
       volumes:
         - name: config
           configMap:
