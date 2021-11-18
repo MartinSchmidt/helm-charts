@@ -22,31 +22,6 @@ argo-cd-proxy-chart:
     server:
       replicas: 3
       config:
-        repositories: |
-          - type: helm
-            url: https://argoproj.github.io/argo-helm
-            name: argoproj
-          - type: helm
-            url: https://distributed-technologies.github.io/helm-repository/
-            name: dt-helmrepo
-          - type: helm
-            url: https://kubernetes.github.io/kube-state-metrics
-            name: metrics
-          - type: helm
-            url: https://prometheus-community.github.io/helm-charts
-            name: node-exporter
-          - type: helm
-            url: https://grafana.github.io/helm-charts
-            name: grafana
-          - type: helm
-            url: https://strimzi.io/charts/
-            name: strimzi-kafka-operator
-          - type: helm
-            url: https://confluentinc.github.io/cp-helm-charts/
-            name: cp-helm-charts
-          - type: helm
-            url: https://charts.rook.io/release
-            name: rook-release
         resource.customizations: |
           admissionregistration.k8s.io/MutatingWebhookConfiguration:
             ignoreDifferences: |
