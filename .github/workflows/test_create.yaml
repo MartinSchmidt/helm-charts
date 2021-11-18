@@ -1,0 +1,52 @@
+name: Test the deployment of the Kafka
+
+on: pull_request
+
+jobs:
+  test-kafka-can-create-topic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create k8s Kind Cluster
+        uses: helm/kind-action@v1.2.0
+        with: 
+         config: "charts/kafka/test/kind.yaml" 
+      
+      - name: Install dependencies
+        run: helm dependency update charts/kafka/chart/
+      
+      - name: Install LB to test kafka
+        run: | 
+          helm install --set ipRangeStart=172.19.0.10 \
+            --set ipRangeStop=172.19.0.20  \
+            --set imagePullPolicy=Always \
+            lb https://github.com/distributed-technologies/services-loadbalancer/releases/download/v0.1.3/default.mukube-loadbalancer-v0.1.3.tgz
+
+      - name: Install Kafka
+        run: |
+          helm install -f charts/kafka/test/values.yaml test-kafka charts/kafka/chart/ 
+
+      - name: Wait for Kafka pods to run
+        run: |
+         ./charts/kafka/chart/scripts/wait_for_pod.sh my-cluster-kafka-0
+         ./charts/kafka/chart/scripts/wait_for_pod.sh my-cluster-zookeeper-0
+    
+      - name: Wait for entity-operator
+        run: |
+         ./charts/kafka/chart/scripts/wait_for_pod.sh entity-operator
+
+      - name: Install example service
+        run: helm install kafka-example-service charts/kafka/test/example-service/chart
+
+      - name: Helm test Kafka connection
+        run: helm test test-kafka --filter name=test-kafka-connection
+
+      - name: Helm test Kafka example service
+        run: helm test test-kafka --filter name=test-kafka-example-service
+
+      - name: Wait for ksql-server
+        run: |
+         ./charts/kafka/chart/scripts/wait_for_pod.sh kafka-cp-ksql-server
+
+      - name: Helm test Kafka ksql
+        run: helm test test-kafka --filter name=test-kafka-ksql

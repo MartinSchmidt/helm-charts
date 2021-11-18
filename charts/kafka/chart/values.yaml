@@ -3,6 +3,7 @@ env: prod
 cluster:
   name: my-cluster
   kafka:
+    version: 2.8.0
     storage:
       class: standard
       size: 1Gi
@@ -57,6 +58,15 @@ cluster:
         limits:
           memory: 512Mi
           cpu: "1"
+  kafkaExporter:
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: "100m"
+      limits:
+        memory: 128Mi
+        cpu: "100m"
+
 # Values for the exporter helm chart dependency:
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/values.yaml
 prometheus-kafka-exporter:
@@ -127,7 +137,7 @@ cp-helm-charts:
   cp-ksql-server:
     enabled: true
     image: confluentinc/cp-ksqldb-server
-    imageTag: 6.1.0
+    imageTag: 6.2.1
     cp-schema-registry:
       url: http://kafka-cp-schema-registry:8081
     kafka:
@@ -135,7 +145,7 @@ cp-helm-charts:
   cp-schema-registry:
     enabled: true
     image: confluentinc/cp-schema-registry
-    imageTag: 6.1.0
+    imageTag: 6.2.1
     kafka:
       bootstrapServers: my-cluster-kafka-plain-bootstrap:9092
   cp-control-center:
