@@ -1,6 +1,9 @@
 name: Test the deployment of the Kafka
 
-on: pull_request
+on: 
+  pull_request:
+    paths:
+      - 'charts/kafka/**'
 
 jobs:
   test-kafka-can-create-topic:
