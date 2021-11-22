@@ -35,14 +35,8 @@ jobs:
         run: |
          ./charts/kafka/chart/scripts/wait_for_pod.sh entity-operator
 
-      - name: Install example service
-        run: helm install kafka-example-service charts/kafka/test/example-service/chart
-
       - name: Helm test Kafka connection
         run: helm test test-kafka --filter name=test-kafka-connection
-
-      - name: Helm test Kafka example service
-        run: helm test test-kafka --filter name=test-kafka-example-service
 
       - name: Wait for ksql-server
         run: |

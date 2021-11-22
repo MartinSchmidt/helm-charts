@@ -1,8 +1,0 @@
-apiVersion: v2
-name: kafka-example-service
-description: A Helm chart for an application that consumes a topica nad produces to another
-type: application
-version: v0.1.0
-appVersion: "1.0.0"
-
-  
