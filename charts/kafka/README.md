@@ -22,8 +22,6 @@ Then we install our chart with ` helm install test-kafka chart/ --set env=test`.
 # Monitoring 
 
 Kafka Strimzi does not export metrics by default and needs to have a exporter installed from this chart https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/
-# Kafka Directory Connectors
-The helm chart creates a Kafka Connect cluster, where Kafka Connectors can be applied. At default directory source connectors have been configured to listen on /kafka/{topic-name}/input folder in the Connect pod, and write the file as bytes to the {topic-name} topic. To configure more of these connectors add topic names to the values.yaml file in the 'connector.topics' list.  
 
 # KafkaDB - ksql
 

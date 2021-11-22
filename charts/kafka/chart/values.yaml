@@ -93,45 +93,6 @@ cp-helm-charts:
   # https://github.com/confluentinc/cp-helm-charts/blob/master/charts/cp-kafka-connect/values.yaml
   cp-kafka-connect:
     enabled: false
-    image: "docker.io/jcrmindster/kafka-connector-spool-dir"
-    imageTag: "0.0.13"
-    kafka:
-      bootstrapServers: "my-cluster-kafka-plain-bootstrap:9092"
-    volumes:
-      - name: parquet-connector-source-volume
-        configMap:
-          name: parquet-connector-source
-          defaultMode: 0777
-      - name: kafka-connect-ceph-filesystem
-        persistentVolumeClaim:
-          claimName: cephfs-pvc1
-    volumeMounts:
-      - name: parquet-connector-source-volume
-        mountPath: /etc/kafka-connectors/connector_parquet_reader.sh
-        subPath: connector_parquet_reader.sh
-      - name: kafka-connect-ceph-filesystem
-        mountPath: /kafka/
-    customEnv: {
-      CUSTOM_SCRIPT_PATH: /etc/kafka-connectors/connector_parquet_reader.sh
-    }
-    configurationOverrides:
-      "plugin.path": "/usr/share/java,/usr/share/confluent-hub-components"
-      "key.converter": "org.apache.kafka.connect.converters.ByteArrayConverter"
-      "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter"
-      "key.converter.schemas.enable": "false"
-      "value.converter.schemas.enable": "false"
-      "internal.key.converter": "org.apache.kafka.connect.json.JsonConverter"
-      "internal.value.converter": "org.apache.kafka.connect.json.JsonConverter"
-      "config.storage.replication.factor": "1"
-      "offset.storage.replication.factor": "1"
-      "status.storage.replication.factor": "1"
-    livenessProbe:
-      httpGet:
-        path: /connectors
-        port: 8083
-      initialDelaySeconds: 30
-      periodSeconds: 5
-      failureThreshold: 20
 
   # Docs: https://github.com/confluentinc/cp-helm-charts/blob/master/charts/cp-ksql-server/values.yaml
   cp-ksql-server:
@@ -156,22 +117,3 @@ topics:
   - name: topic-test-1
     partitions: 1
     replicas: 1
-
-# The following topics will be created as well as directory-source-connectors in /kafka/{name}/input
-connector:
-  volume:
-    size: 10Gi
-    name: cephfs-pvc1
-    storageClassName: rook-cephfs
-  topic_partitions: 1
-  topic_replicas: 1
-  topics:
-  - name: scada
-  - name: direct-radiation
-  - name: global-radiation
-  - name: temperature-2m
-  - name: temperature-100m
-  - name: wind-direction-10m
-  - name: wind-direction-100m
-  - name: wind-speed-10m
-  - name: wind-speed-100m
