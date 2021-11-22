@@ -3,6 +3,7 @@ yggdrasil:
   targetRevision: "main"
 
 installCNI: true
+monitorNidhogg: true
 
 lb-proxy:
   enabled: false
