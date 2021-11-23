@@ -119,6 +119,17 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/dns-server-0.1.8/dns-server-0.1.8.tgz
     version: 0.1.8
+  fwd-proxy:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-11-23T07:19:36.674061059Z"
+    description: A Helm chart for Kubernetes
+    digest: fd36037ae1e8d6d452e22b48e592d5da708b010b0768245c8227cc0a0d3acd38
+    name: fwd-proxy
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/fwd-proxy-0.1.0/fwd-proxy-0.1.0.tgz
+    version: 0.1.0
   git-server:
   - apiVersion: v2
     created: "2021-11-15T16:42:14.811178606Z"
@@ -585,4 +596,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2021-11-22T18:40:24.622656105Z"
+generated: "2021-11-23T07:19:36.67418466Z"
