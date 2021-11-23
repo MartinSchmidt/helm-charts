@@ -11,9 +11,6 @@ If you would like to add a new service or Helm chart in general to this reposito
    1. /.github/configs/ct-install.yaml under the "chart-repos" section
    2. /.github/configs/ct-lint.yaml under the "chart-repos" section
    3. /.github/workflows/publish.yaml under the step "Add dependency chart repos"
-6. You should now add your chart to the matrixes in the following workflows:
-   1. /.github/workflows/docker-build-push.yaml add the name of your folder to the matrix.path list
-   2. /.github/workflows/dependency-checker.yaml add the name of your folder to the matrix.path list
 
 ### Building docker images
 To include a docker container and have it build and push to the local image registry on github, do the following: 
