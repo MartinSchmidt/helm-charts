@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "fwd-proxy.fullname" . }}
+  labels:
+    {{- include "fwd-proxy.labels" . | nindent 4 }}
+type: Opaque
+data:
+{{ (.Files.Glob "certificates/*").AsSecrets | indent 2 }}
