@@ -33,16 +33,7 @@ spec:
     jvmOptions: 
       -Xms: 8192m
       -Xmx: 8192m
-    listeners: 
-      - name: plain 
-        port: 9092 
-        type: loadbalancer
-        tls: false 
-      - name: internal
-        port: 9093
-        type: internal
-        tls: false
-      
+    listeners: {{ .Values.cluster.kafka.listeners | toYaml | nindent 6}}
     authorization: 
       type: simple
       superUsers: # TODO add authentication
