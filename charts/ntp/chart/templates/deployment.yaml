@@ -9,6 +9,7 @@ spec:
   strategy:
     rollingUpdate:
       maxUnavailable: 1
+      maxSurge: 0
   selector:
     matchLabels:
       app.kubernetes.io/component: ntp-server
@@ -48,6 +49,7 @@ spec:
               protocol: {{ .Values.service.protocol }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      priorityClassName: system-cluster-critical
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

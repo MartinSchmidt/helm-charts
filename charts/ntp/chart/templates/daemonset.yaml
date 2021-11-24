@@ -40,3 +40,4 @@ spec:
               value: {{ .Values.replicaCount | quote }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      priorityClassName: system-node-critical
