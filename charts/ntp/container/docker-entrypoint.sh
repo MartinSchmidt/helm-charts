@@ -11,6 +11,7 @@ case "${1}" in
     exec chronyd -U -d -f /etc/chrony/chrony-client.conf
     ;;
   server)
+    sed -e "s/{{NTP_SERVER}}/$NTP_SERVER/" -e "s/{{NTP_SERVERS}}/$NTP_SERVERS/" -i /etc/chrony/chrony-server.conf
     exec chronyd -x -U -d -f /etc/chrony/chrony-server.conf
     ;;
   *)

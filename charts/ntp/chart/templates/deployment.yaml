@@ -34,6 +34,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - server
+          env:
+            - name: NTP_SERVER
+              value: "{{ include "chart.fullname" . }}.{{ .Release.Namespace }}"
+            - name: NTP_SERVERS
+              value: {{ .Values.replicaCount | quote }}
           ports:
             - name: ntp
               containerPort: {{ .Values.service.port }}
