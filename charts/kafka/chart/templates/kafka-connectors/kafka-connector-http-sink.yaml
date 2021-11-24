@@ -1,0 +1,22 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: my-source-connector-http2
+  labels:
+    strimzi.io/cluster: my-connect-cluster
+spec:
+  class: nz.ac.auckland.kafka.http.sink.HttpSinkConnector
+  tasksMax: 2
+  config:
+    file: "/opt/kafka/LICENSE"
+    topics: topic-test-1
+    tasks.max: 1
+    value.converter: "org.apache.kafka.connect.storage.StringConverter"
+    key.cenverter: "org.apache.kafka.connect.storage.StringConverter"
+    header.converter: "org.apache.kafka.connect.storage.StringConverter"
+    callback.request.url: "http://my-release-nginx"
+    callback.request.method: "POST"
+    callback.request.headers: ""
+    retry.backoff.sec: "5,60,120,600"
+    request.delay.sec: 10
+    exception.strategy: "PROGRESS_BACK_OFF_DROP_MESSAGE"
