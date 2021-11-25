@@ -8,7 +8,7 @@ metadata:
 spec:
   version: 3.0.0
   replicas: 1
-  image: connect-http:v0.2.0
+  image: ghcr.io/distributed-technologies/kafka-http-sink-connector:1.0.18-snapshot-dev
   bootstrapServers: my-cluster-kafka-bootstrap:9093
   config:
     group.id: connect-cluster
