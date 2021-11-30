@@ -1,0 +1,10 @@
+apiVersion: v2
+name: sealed-secrets-proxy-chart
+description: A proxy helm chart for sealed-secrets
+type: application
+version: 0.1.0
+
+dependencies:
+  - name: sealedSecrets
+    version: "1.16.1"
+    repository: "https://bitnami-labs.github.io/sealed-secrets"
