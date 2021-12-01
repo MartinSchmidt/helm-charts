@@ -6,14 +6,14 @@ cluster:
     version: 2.8.0
     storage:
       class: standard
-      size: 1Gi
-    replicas: 3
+      size: 500Mi
+    replicas: 1
     # If a topic does not exist, create it if someone writes to it.
     autoCreateTopic: "false"
-    offsetTopicReplicationFactor: 3
+    offsetTopicReplicationFactor: 1
     transactionStateLog:
-      replicationFactor: 3
-      minimumInSyncReplicas: 3
+      replicationFactor: 1
+      minimumInSyncReplicas: 1
     # https://strimzi.io/docs/operators/in-development/using.html#type-GenericKafkaListener-reference
     listeners:
       - name: plain
@@ -40,14 +40,14 @@ cluster:
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/values.yaml
 prometheus-kafka-exporter:
   enabled: false
-  kafkaServer:
-    - my-cluster-kafka-bootstrap:9092
-  prometheus:
-    serviceMonitor:
-      enabled: true
-      namespace: kafka
-      additionalLabels:
-        release: prometheus
+# kafkaServer:
+#   - my-cluster-kafka-bootstrap:9092
+# prometheus:
+#   serviceMonitor:
+#     enabled: true
+#     namespace: kafka
+#     additionalLabels:
+#       release: prometheus
 # Values for the confluent helm chart dependency:
 # https://github.com/confluentinc/cp-helm-charts/blob/master/values.yaml
 cp-helm-charts:
