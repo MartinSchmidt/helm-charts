@@ -1,8 +1,6 @@
-{{ if eq .Values.env "test" }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: scripts-configmap
 data:
 {{ (.Files.Glob "scripts/*").AsConfig | indent 2 }}
-{{ end }}
