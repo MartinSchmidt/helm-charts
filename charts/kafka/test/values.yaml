@@ -3,62 +3,11 @@ image:
   repository: nginx
   imagePullPolicy: IfNotPresent
 cluster:
-  kafka:
-    replicas: 1
-    storage: 
-      class: standard
-      size: 500Mi 
-    resources:
-      requests:
-        memory: 2Gi
-        cpu: "100m"
-      limits:
-        memory: 2Gi
-        cpu: "1"
-    autoCreateTopic: "false"
-    offsetTopicReplicationFactor: 1
-    transactionStateLog:
-      replicationFactor: 1
-      minimumInSyncReplicas: 1
-  
   zookeeper:
     replicas: 1
     storage: 
       class: standard
       size: 500Mi 
-    resources:
-      requests:
-        memory: 2Gi
-        cpu: "100m"
-      limits:
-        memory: 2Gi
-        cpu: "1"
-
-  entityOperator:
-    tlsSidecar:
-      resources:
-        requests:
-          memory: 64Mi
-          cpu: "100m"
-        limits:
-          memory: 128Mi
-          cpu: 500m
-    topicOperator:
-      resources:
-        requests:
-          memory: 512Mi
-          cpu: "100m"
-        limits:
-          memory: 512Mi
-          cpu: "1"
-    userOperator:
-      resources:
-        requests:
-          memory: 512Mi
-          cpu: "100m"
-        limits:
-          memory: 512Mi
-          cpu: "1"
 
 cp-helm-charts:
   cp-ksql-server:
@@ -72,7 +21,6 @@ cp-helm-charts:
     prometheus:
       jmx:
         enabled: false
-
   
 prometheus-kafka-exporter:
   enabled: false
