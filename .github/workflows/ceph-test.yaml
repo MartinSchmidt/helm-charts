@@ -6,6 +6,8 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    env:
+      BLOCK: /dev/sdb
     name: build example and deploy to minikube
     steps:
     - uses: actions/checkout@v2
