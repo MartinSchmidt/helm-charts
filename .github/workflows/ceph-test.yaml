@@ -16,5 +16,9 @@ jobs:
         minikube version: 'v1.16.0'
         kubernetes version: 'v1.21.0'
         github token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: install pod
+      run: kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
+    
     - name: Try the cluster !
       run: kubectl get pods -A
