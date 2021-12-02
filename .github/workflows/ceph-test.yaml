@@ -3,43 +3,13 @@ on:
     branches:
       - feature/test-ceph
 
-defaults:
-  run:
-    # reference: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#using-a-specific-shell
-    shell: bash --noprofile --norc -eo pipefail -x {0}
-
-jobs: 
-  test-ceph: 
+jobs:
+  job1:
     runs-on: ubuntu-latest
-    env: 
-      BLOCK: /dev/sdb
-
-    steps: 
-      - name: checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-
-      - name: setup golang
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.16
-
-      - name: teardown minikube and docker
-        run: |
-          uptime
-          minikube delete
-          docker system prune -a
-
-      - name: setup minikube
-        run: |
-          sudo apt-get install build-essential -y
-          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-arm64
-          sudo install minikube-linux-arm64 /usr/local/bin/minikube
-          sudo rm -f minikube-linux-arm64
-          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/arm64/kubectl"
-          sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-          minikube start --memory 28g --cpus=12 --driver=docker
-
-      - name: print k8s cluster status
-        run: tests/scripts/github-action-helper.sh print_k8s_cluster_status
+    name: build example and deploy to minikube
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+    - name: Try the cluster !
+      run: kubectl get pods -A
