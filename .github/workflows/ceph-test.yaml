@@ -9,8 +9,15 @@ jobs:
     name: build example and deploy to minikube
     steps:
     - uses: actions/checkout@v2
-    - name: Start minikube
-      uses: medyagh/setup-minikube@master
+    - name: setup minikube
+      run: |
+        sudo apt-get install build-essential -y
+        curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+        sudo install minikube-linux-amd64 /usr/local/bin/minikube
+        sudo rm -f minikube-linux-amd64
+        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+        sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+        minikube start --memory 28g --cpus=12 --driver=docker
 
 #    - name: install pod
 #      run: kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
