@@ -28,3 +28,8 @@ jobs:
     - name: apply pod
       run: |
           until kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml; do sleep 1s; done
+
+    - name: use local disk and create partitions for osds
+      run: |
+        .github/scripts/github-action-helper.sh use_local_disk
+        .github/scripts/create-bluestore-partitions.sh --disk "$BLOCK" --osd-count 1
