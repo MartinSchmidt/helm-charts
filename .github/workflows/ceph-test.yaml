@@ -10,12 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Start minikube
-      #uses: medyagh/setup-minikube@master
-      uses: manusa/actions-setup-minikube@v2.4.2
-      with:
-        minikube version: 'v1.24.0'
-        kubernetes version: 'v1.20.9'
-        github token: ${{ secrets.GITHUB_TOKEN }}
+      uses: medyagh/setup-minikube@master
 
 #    - name: install pod
 #      run: kubectl apply -f https://k8s.io/examples/pods/simple-pod.yaml
