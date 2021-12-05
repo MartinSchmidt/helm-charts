@@ -13,6 +13,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: setup minikube
       run: |
+        exit 1
         sudo swapoff /mnt/swapfile
         sudo umount /mnt
         sudo blkdiscard --force -v /dev/sda
@@ -24,7 +25,10 @@ jobs:
         df -h
         exit 1
         minikube start --memory 6g --cpus=2 --driver=docker
-        
+
+    - name: Debug with tmate on failure
+      if: ${{ failure() }}
+      uses: mxschmitt/action-tmate@v3
 
     - name: print k8s cluster status
       run: |
