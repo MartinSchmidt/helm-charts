@@ -15,6 +15,8 @@ jobs:
       run: |
         sudo swapoff /mnt/swapfile
         sudo umount /mnt
+        sudo blkdiscard --force -v /dev/sda
+        sudo fdisk -l
         sudo wipefs --all /dev/sda
         sudo fdisk -l
         sudo swapon
