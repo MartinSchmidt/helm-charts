@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: {{ .Release.Name }}-ksql-test
-      image: "docker.io/python:3.8-slim"
+      image: "docker.io/python:3.7-slim-buster"
       imagePullPolicy: IfNotPresent
       securityContext:
         allowPrivilegeEscalation: false
