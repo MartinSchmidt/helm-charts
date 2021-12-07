@@ -5,6 +5,7 @@ metadata:
   annotations:
     "helm.sh/hook": test
 spec:
+  serviceAccountName: internal-kubectl
   containers:
     - name: {{ .Release.Name }}-route-test
       image: "docker.io/python:rc-buster"

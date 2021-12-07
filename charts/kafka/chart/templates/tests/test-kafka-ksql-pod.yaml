@@ -5,6 +5,7 @@ metadata:
   annotations:
     "helm.sh/hook": test
 spec:
+  serviceAccountName: internal-kubectl
   containers:
     - name: {{ .Release.Name }}-ksql-test
       image: "docker.io/python:3.7-slim-buster"
@@ -16,7 +17,7 @@ spec:
         - /bin/bash
       args:
         - -c
-        - /scripts/test_ksql.sh 
+        - /scripts/test_ksql.sh {{ .Release.Namespace }}
       volumeMounts:
         - name: scripts-vol
           mountPath: /scripts
