@@ -60,7 +60,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ matrix.path }}-dep-upgrade-${{ steps.run-script.outputs.version }}-to-${{ steps.run-script.outputs.highestversion }}
+          branch: update/${{ matrix.path }}-dep-${{ steps.run-script.outputs.name }}-from-${{ steps.run-script.outputs.version }}-to-${{ steps.run-script.outputs.highestversion }}
           base: main
           delete-branch: true
           title: Dependency update ${{ steps.run-script.outputs.name }} from ${{ steps.run-script.outputs.version }} to ${{ steps.run-script.outputs.highestversion }}.
