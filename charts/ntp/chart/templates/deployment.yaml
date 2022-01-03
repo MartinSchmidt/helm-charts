@@ -39,9 +39,13 @@ spec:
           args:
             - server
           env:
+            {{- if .Values.ntp.server }}
             - name: NTP_SERVER
+              value: "{{ .Values.ntp.server }}"
+            {{- end }}
+            - name: INTERNAL_NTP_SERVER
               value: "{{ include "chart.fullname" . }}.{{ .Release.Namespace }}"
-            - name: NTP_SERVERS
+            - name: INTERNAL_NTP_SERVERS
               value: {{ .Values.replicaCount | quote }}
           ports:
             - name: ntp

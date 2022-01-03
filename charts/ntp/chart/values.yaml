@@ -4,7 +4,11 @@ image:
   repository: ghcr.io/distributed-technologies/helm-charts/ntp
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1.3"
+  tag: "0.1.4"
+
+ntp: {}
+  # Override the NTP server (ex: a internal NTP server)
+  # server: pool.ntp.org
 
 imagePullSecrets: []
 nameOverride: ""

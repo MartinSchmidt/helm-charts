@@ -34,9 +34,9 @@ spec:
           args:
             - client
           env:
-            - name: NTP_SERVER
+            - name: INTERNAL_NTP_SERVER
               value: "{{ include "chart.fullname" . }}.{{ .Release.Namespace }}"
-            - name: NTP_SERVERS
+            - name: INTERNAL_NTP_SERVERS
               value: {{ .Values.replicaCount | quote }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
