@@ -1,6 +1,6 @@
 on: 
   schedule:
-    - cron:  '0 0 * * 0'
+    - cron:  '0 0 1 * *'
 
 jobs:
   generate-matrix: 
@@ -67,7 +67,7 @@ jobs:
           body: "There is a dependency update for the dependency ${{ steps.run-script.outputs.name }} version ${{ steps.run-script.outputs.version }} => ${{ steps.run-script.outputs.highestversion }}. 
                   \n\n You can find the patch notes at the source URL: ${{ steps.run-script.outputs.url }}"
           labels: Automatic
-          reviewers: jaxels10,klausenbusk,jacobcrawford,SomeFriendlyGhost,skovbakke
+          reviewers: jaxels10
 
       - name: Create pull request
         if: ${{ steps.run-script.outputs.dependencies-changed > 1 }}
@@ -80,4 +80,4 @@ jobs:
           title: Multiple dependency updates for ${{ matrix.path }}.
           body: "There are dependency updates for the chart ${{ matrix.path }}."
           labels: Automatic
-          reviewers: jaxels10,klausenbusk,jacobcrawford,SomeFriendlyGhost,skovbakke
+          reviewers: jaxels10
