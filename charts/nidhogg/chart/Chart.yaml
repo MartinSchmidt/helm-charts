@@ -2,7 +2,7 @@ apiVersion: v2
 type: application
 name: nidhogg
 description: A chart that deploys nidhogg.
-version: 1.0.14
+version: 1.0.15
 
 dependencies:
   - name: argo-cd-proxy-chart
