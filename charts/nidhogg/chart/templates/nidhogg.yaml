@@ -33,6 +33,7 @@ spec:
           {{- end }}
           {{- with (index .Values "argo-cd-proxy-chart") }}
           argo-cd-proxy-chart:
+            dummy: "true"
             {{- if .config }}
             config:
               {{- toYaml .config | nindent 14 }}
