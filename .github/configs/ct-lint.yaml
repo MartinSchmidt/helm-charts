@@ -7,6 +7,7 @@ chart-dirs:
   - charts/argo-cd
   - charts/argo-events
   - charts/argo-wf
+  - charts/artifact-registry
   - charts/cache
   - charts/ceph
   - charts/cni
@@ -28,7 +29,6 @@ chart-dirs:
   - charts/thanos
   - charts/traefik
   - charts/vault
-  - charts/artifact-registry
 chart-repos:
   - helmcharts=https://distributed-technologies.github.io/helm-charts/
   - argo=https://argoproj.github.io/argo-helm
