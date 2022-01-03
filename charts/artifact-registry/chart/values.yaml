@@ -1,4 +1,6 @@
 env: prod
+localStorageClass:
+  enabled: true
 helmServer:
   replicaCount: 1
   image:
