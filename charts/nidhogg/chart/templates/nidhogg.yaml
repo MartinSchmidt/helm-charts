@@ -33,7 +33,7 @@ spec:
           {{- end }}
           {{- with (index .Values "argo-cd-proxy-chart") }}
           argo-cd-proxy-chart:
-            # This dummy value is set so that this argo-cd-proxy-chart is not ever empty and thereby overwrites the values that should be propagated 
+            # This dummy value is set so that this argo-cd-proxy-chart is not ever empty and thereby overwrites the values that should be propagated
             dummy: "true"
             {{- if .config }}
             config:
