@@ -8,6 +8,7 @@ spec:
   capacity:
     storage: 1G
   accessModes:
+      - ReadWriteMany
       - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   local:
