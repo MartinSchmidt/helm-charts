@@ -37,15 +37,31 @@ jobs:
       - name: Run chart-testing (lint)
         run: ct lint --debug --config ./.github/configs/ct-lint.yaml --lint-conf ./.github/configs/lintconf.yaml
 
-      - name: foo
+      - name: Prepare for CEPH
+        id: ceph
         if: contains(steps.list-changed.outputs.changed_charts, 'ceph') || contains(steps.list-changed.outputs.changed_charts, 'rook')
-        run: echo hi
+        run: |
+        sudo modprobe nbd
+        sudo apt update
+        sudo apt install -y qemu-utils
+        for i in {0..2}; do
+          truncate -s 10G disk$i.img
+          sudo qemu-nbd --connect=/dev/nbd$i --format=raw disk$i.img
+        done
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
         if: steps.list-changed.outputs.changed == 'true'
         with:
-          config: ci/kind.yaml
+          config: ci/kind2.yaml
+
+      - name: foo
+        if: steps.ceph.conclusion == 'success'
+        run: |
+          for c in $(docker ps -q); do
+            docker exec $c rm $(lsblk -n -o PATH) || true
+          done
+          kubectl delete storageclass standard
 
       - name: Checkout Loadbalancer
         if: steps.list-changed.outputs.changed == 'true'
