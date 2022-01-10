@@ -20,7 +20,7 @@ jobs:
           truncate -s 10G disk$i.img
           sudo qemu-nbd --connect=/dev/nbd$i --format=raw disk$i.img
         done
-        kind create --config ci/kind2.yaml
+        kind create cluster --config ci/kind2.yaml
         for c in $(docker ps -q); do
           for d in $(); do
             docker exec $c rm $(lsblk -n -o PATH) || true
