@@ -8,6 +8,7 @@ chart-dirs:
   - charts/argo-events
   - charts/argo-wf
   - charts/cache
+  - charts/ceph
   - charts/cni
   - charts/dns-server
   - charts/git-server
