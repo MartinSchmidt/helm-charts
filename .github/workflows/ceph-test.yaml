@@ -18,7 +18,7 @@ jobs:
         sudo apt install -y qemu-utils
         for i in {0..2}; do
           truncate -s 10G disk$i.img
-          sudo qemu-nbd --connect=/dev/nbd0 disk$i.img
+          sudo qemu-nbd --connect=/dev/nbd$i --format=raw disk$i.img
         done
         exit 1
         sudo swapoff /mnt/swapfile
