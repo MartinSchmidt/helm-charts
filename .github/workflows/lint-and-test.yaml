@@ -55,7 +55,7 @@ jobs:
         with:
           config: ci/kind2.yaml
 
-      - name: Remove non-CEPH block devices from nodes (Ceph preparation)
+      - name: Remove non-Ceph block devices from nodes (Ceph preparation)
         if: steps.ceph.conclusion == 'success'
         run: |
           for c in $(docker ps -q); do
