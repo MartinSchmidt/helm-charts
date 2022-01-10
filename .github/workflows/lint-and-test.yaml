@@ -65,7 +65,7 @@ jobs:
 
       - name: Install Ceph
         if: contains(steps.list-changed.outputs.changed_charts, 'ceph')
-        run: helm install rook charts/rook/chart --namespace rook-ceph --create-namespace
+        run: helm install --dependency-update rook charts/rook/chart --namespace rook-ceph --create-namespace
 
       - name: Checkout Loadbalancer
         if: steps.list-changed.outputs.changed == 'true'
