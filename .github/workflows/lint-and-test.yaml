@@ -41,13 +41,13 @@ jobs:
         id: ceph
         if: contains(steps.list-changed.outputs.changed_charts, 'ceph') || contains(steps.list-changed.outputs.changed_charts, 'rook')
         run: |
-        sudo modprobe nbd
-        sudo apt update
-        sudo apt install -y qemu-utils
-        for i in {0..2}; do
-          truncate -s 10G disk$i.img
-          sudo qemu-nbd --connect=/dev/nbd$i --format=raw disk$i.img
-        done
+          sudo modprobe nbd
+          sudo apt update
+          sudo apt install -y qemu-utils
+          for i in {0..2}; do
+            truncate -s 10G disk$i.img
+            sudo qemu-nbd --connect=/dev/nbd$i --format=raw disk$i.img
+          done
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
