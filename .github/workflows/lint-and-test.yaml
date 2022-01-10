@@ -37,7 +37,7 @@ jobs:
       - name: Run chart-testing (lint)
         run: ct lint --debug --config ./.github/configs/ct-lint.yaml --lint-conf ./.github/configs/lintconf.yaml
 
-      - name: Prepare for CEPH
+      - name: Create block devices for CEPH
         id: ceph
         if: contains(steps.list-changed.outputs.changed_charts, 'ceph') || contains(steps.list-changed.outputs.changed_charts, 'rook')
         run: |
@@ -55,7 +55,7 @@ jobs:
         with:
           config: ci/kind2.yaml
 
-      - name: foo
+      - name: Remove non-CEPH block devices from nodes (CEPH preparation)
         if: steps.ceph.conclusion == 'success'
         run: |
           for c in $(docker ps -q); do
