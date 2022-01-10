@@ -33,11 +33,12 @@ jobs:
             echo "::set-output name=changed::true"
             echo "::set-output name=changed_charts::$charts"
           fi
+          echo $charts
       - name: Run chart-testing (lint)
         run: ct lint --debug --config ./.github/configs/ct-lint.yaml --lint-conf ./.github/configs/lintconf.yaml
 
       - name: foo
-        if: contains(steps.list-changed.outputs.changed.charts, 'ceph') || contains(steps.list-changed.outputs.changed.charts, 'rook')
+        if: contains(steps.list-changed.outputs.changed_charts, 'ceph') || contains(steps.list-changed.outputs.changed_charts, 'rook')
         run: echo hi
 
       - name: Create kind cluster
