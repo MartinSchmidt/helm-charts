@@ -1,6 +1,6 @@
 name: Lint and Test Charts
 
-on: pull_request
+on: [pull_request, push]
 
 jobs:
   lint-test:
@@ -35,6 +35,10 @@ jobs:
           fi
       - name: Run chart-testing (lint)
         run: ct lint --debug --config ./.github/configs/ct-lint.yaml --lint-conf ./.github/configs/lintconf.yaml
+
+      - name: foo
+        if: contains(steps.list-changed.outputs.changed.charts, 'ceph') || contains(steps.list-changed.outputs.changed.charts, 'rook')
+        run: echo hi
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
