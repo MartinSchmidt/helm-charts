@@ -25,7 +25,7 @@ jobs:
           docker exec $c rm $(lsblk -n -o PATH) || true
         done
         kubectl delete storageclass standard
-        exit 1
+        exit 0
         kubectl create -f ci/pvc.yaml
         while true; do
           sleep 1
