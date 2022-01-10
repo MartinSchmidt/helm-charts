@@ -20,18 +20,17 @@ jobs:
           truncate -s 10G disk$i.img
           sudo qemu-nbd --connect=/dev/nbd$i --format=raw disk$i.img
         done
-        exit 1
-        sudo swapoff /mnt/swapfile
-        sudo umount /mnt
-        sudo blkdiscard --force -v /dev/sda
-        sudo fdisk -l
-        sudo wipefs --all /dev/sda
-        sudo fdisk -l
-        sudo swapon
-        mount
-        df -h
-        exit 1
-        minikube start --memory 6g --cpus=2 --driver=docker
+        kind create --config ci/kind2.yaml
+        for c in $(docker ps -q); do
+          for d in $(); do
+            docker exec $c rm $(lsblk -n -o PATH) || true
+          done
+        done
+        kubectl delete storageclass default
+        kubectl create -f ci/pvc.yaml
+        while true; do
+          sleep 1
+        done
 
     - name: Debug with tmate on failure
       if: ${{ failure() }}
