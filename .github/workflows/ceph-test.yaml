@@ -27,9 +27,11 @@ jobs:
           done
         done
         kubectl delete storageclass standard
+        exit 1
         kubectl create -f ci/pvc.yaml
         while true; do
           sleep 1
+          kubectl get pvc
         done
 
     - name: Debug with tmate on failure
