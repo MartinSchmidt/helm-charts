@@ -37,7 +37,7 @@ jobs:
       - name: Run chart-testing (lint)
         run: ct lint --debug --config ./.github/configs/ct-lint.yaml --lint-conf ./.github/configs/lintconf.yaml
 
-      - name: Create block devices for CEPH
+      - name: Create block devices for Ceph
         id: ceph
         if: contains(steps.list-changed.outputs.changed_charts, 'ceph') || contains(steps.list-changed.outputs.changed_charts, 'rook')
         run: |
@@ -55,7 +55,7 @@ jobs:
         with:
           config: ci/kind2.yaml
 
-      - name: Remove non-CEPH block devices from nodes (CEPH preparation)
+      - name: Remove non-CEPH block devices from nodes (Ceph preparation)
         if: steps.ceph.conclusion == 'success'
         run: |
           for c in $(docker ps -q); do
@@ -63,7 +63,7 @@ jobs:
           done
           kubectl delete storageclass standard
 
-      - name: Install ceph
+      - name: Install Ceph
         if: contains(steps.list-changed.outputs.changed_charts, 'ceph')
         run: helm install rook charts/rook/chart --namespace rook-ceph --create-namespace
 
