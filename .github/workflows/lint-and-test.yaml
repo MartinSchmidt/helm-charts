@@ -83,5 +83,5 @@ jobs:
         if: steps.list-changed.outputs.changed == 'true'
 
       - name: Debug with tmate on failure
-        if: ${{ failure() }}
+        if: ${{ always() }}
         uses: mxschmitt/action-tmate@v3
