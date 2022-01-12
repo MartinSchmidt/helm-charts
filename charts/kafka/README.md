@@ -8,15 +8,8 @@ Example of the Strimzi resources for Kafka can be found [here](https://github.co
 
 
 # Testing 
-For testing the helm chart we use [ Kubernetes In Docker ](https://kind.sigs.k8s.io/). We create a 3 node cluster with the command `kind create cluster -config test/kind.yaml`. We install a loadbalancer so that we can use ips to acces the brokers when we install the Kafka cluster. A loadbalancer can be installed with: 
-``` 
-helm install --set ipRangeStart=172.19.0.10 \
-            --set ipRangeStop=172.19.0.20  \
-            --set imagePullPolicy=Always \
-            lb https://github.com/distributed-technologies/services-loadbalancer/releases/download/v0.1.3/default.mukube-loadbalancer-v0.1.3.tgz 
-```
-The ip interval for the loadbalancer should match the one controlled by docker. This can be checked with the command: `docker network inspect -f '{{.IPAM.Config}}' kind` 
-Then we install our chart with ` helm install test-kafka chart/ --set env=test`. 
+For testing the helm chart we use [ Kubernetes In Docker ](https://kind.sigs.k8s.io/). We create a 3 node cluster with the command `kind create cluster -config ci/kind.yaml`.
+Then we install and test our chart with ` helm install default chart/ && helm test default`. 
 
 
 # Monitoring 
