@@ -67,6 +67,10 @@ jobs:
         if: contains(steps.list-changed.outputs.changed_charts, 'ceph')
         run: helm install --dependency-update rook charts/rook/chart --namespace rook-ceph --create-namespace
 
+      - name: Create block devices for Ceph
+        if: contains(steps.list-changed.outputs.changed_charts, 'ceph') || contains(steps.list-changed.outputs.changed_charts, 'rook')
+        run: exit 1
+
       - name: Checkout Loadbalancer
         if: steps.list-changed.outputs.changed == 'true'
         uses: actions/checkout@v2
