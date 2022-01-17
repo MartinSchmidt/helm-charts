@@ -157,6 +157,19 @@ entries:
     version: 0.1.2
   grafana:
   - apiVersion: v2
+    created: "2022-01-17T14:31:19.237914455Z"
+    dependencies:
+    - name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.20.5
+    description: A Helm umbrella chart for Grafana
+    digest: 7e317a2878f0d9aa3f56b6bbe7271961a88bc197c4ca135c3db86c1e67d3744e
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/grafana-0.1.9/grafana-0.1.9.tgz
+    version: 0.1.9
+  - apiVersion: v2
     created: "2021-10-29T08:24:20.596305854Z"
     dependencies:
     - name: grafana
@@ -675,4 +688,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-01-03T11:41:57.963471199Z"
+generated: "2022-01-17T14:31:19.238118553Z"
