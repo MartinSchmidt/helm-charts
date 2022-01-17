@@ -3,7 +3,8 @@ name: grafana
 description: A Helm umbrella chart for Grafana
 type: application
 version: 0.1.9
+
 dependencies:
   - name: grafana
-    version: "6.20.3"
+    version: "6.20.5"
     repository: "https://grafana.github.io/helm-charts"
