@@ -369,6 +369,16 @@ entries:
     version: 0.1.0
   lightvessel:
   - apiVersion: v2
+    created: "2022-01-21T13:56:49.761625122Z"
+    description: A Helm library chart for lightvessel. This chart keeps the template
+      files needed for Yggdrasil and applications.
+    digest: cbd24f12e42743ea0dee82c546e570b29d3fcccc2ee14709cf05730afcec25fc
+    name: lightvessel
+    type: library
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/lightvessel-2.0.3/lightvessel-2.0.3.tgz
+    version: 2.0.3
+  - apiVersion: v2
     created: "2021-10-29T08:24:21.416861901Z"
     description: A Helm library chart for lightvessel. This chart keeps the template
       files needed for Yggdrasil and applications.
@@ -718,4 +728,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-01-21T13:31:16.119228828Z"
+generated: "2022-01-21T13:56:49.761756522Z"
