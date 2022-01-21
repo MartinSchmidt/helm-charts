@@ -6,85 +6,48 @@ cluster:
     version: 2.8.0
     storage:
       class: standard
-      size: 1Gi
-    replicas: 3
-    resources:
-      requests:
-        memory: 500Mi
-        cpu: "100m"
-      limits:
-        memory: 2Gi
-        cpu: "1"
+      size: 500Mi
+    replicas: 1
     # If a topic does not exist, create it if someone writes to it.
     autoCreateTopic: "false"
-    offsetTopicReplicationFactor: 3
+    offsetTopicReplicationFactor: 1
     transactionStateLog:
-      replicationFactor: 3
-      minimumInSyncReplicas: 3
+      replicationFactor: 1
+      minimumInSyncReplicas: 1
     # https://strimzi.io/docs/operators/in-development/using.html#type-GenericKafkaListener-reference
     listeners:
       - name: plain
         port: 9092
         type: internal
         tls: false
+    resources: {}
   zookeeper:
     storage:
       class: standard
-      size: 1Gi
-    replicas: 3
-    resources:
-      requests:
-        memory: 500Mi
-        cpu: "100m"
-      limits:
-        memory: 2Gi
-        cpu: "1"
+      size: 500Mi
+    replicas: 1
+    resources: {}
   entityOperator:
     tlsSidecar:
-      resources:
-        requests:
-          memory: 64Mi
-          cpu: "100m"
-        limits:
-          memory: 128Mi
-          cpu: 500m
+      resources: {}
     topicOperator:
-      resources:
-        requests:
-          memory: 512Mi
-          cpu: "100m"
-        limits:
-          memory: 512Mi
-          cpu: "1"
+      resources: {}
     userOperator:
-      resources:
-        requests:
-          memory: 512Mi
-          cpu: "100m"
-        limits:
-          memory: 512Mi
-          cpu: "1"
+      resources: {}
   kafkaExporter:
-    resources:
-      requests:
-        memory: 128Mi
-        cpu: "100m"
-      limits:
-        memory: 128Mi
-        cpu: "100m"
-
+    resources: {}
 # Values for the exporter helm chart dependency:
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/values.yaml
 prometheus-kafka-exporter:
   enabled: false
-  kafkaServer:
-    - my-cluster-kafka-bootstrap:9092
-  prometheus:
-    serviceMonitor:
-      enabled: true
-      namespace: kafka
-      additionalLabels:
-        release: prometheus
+# kafkaServer:
+#   - my-cluster-kafka-bootstrap:9092
+# prometheus:
+#   serviceMonitor:
+#     enabled: true
+#     namespace: kafka
+#     additionalLabels:
+#       release: prometheus
 # Values for the confluent helm chart dependency:
 # https://github.com/confluentinc/cp-helm-charts/blob/master/values.yaml
 cp-helm-charts:

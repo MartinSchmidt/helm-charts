@@ -1,4 +1,8 @@
 env: prod
+localStorageClass:
+  enabled: true
+  nodeName: chart-testing-worker
+  path: "/home"
 helmServer:
   replicaCount: 1
   image:
@@ -18,8 +22,8 @@ helmServer:
   affinity: {}
   dataVolume:
     size: 1G
-    storageClass: standard
-    accessMode: ReadWriteOnce
+    storageClass: local-storage
+    accessMode: ReadWriteMany
 
 imageRegistry:
   replicaCount: 1

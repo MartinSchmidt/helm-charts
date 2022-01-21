@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "test-kafka-ksql"
+  name: "test-image-registry"
   annotations:
     "helm.sh/hook": test
 spec:
   serviceAccountName: internal-kubectl
   containers:
-    - name: {{ .Release.Name }}-ksql-test
-      image: "docker.io/python:3.7-slim-buster"
+    - name: {{ .Release.Name }}-image-registry-test
+      image: "debian:11"
       imagePullPolicy: IfNotPresent
       securityContext:
         allowPrivilegeEscalation: false
@@ -17,7 +17,7 @@ spec:
         - /bin/bash
       args:
         - -c
-        - /scripts/test_ksql.sh {{ .Release.Name }}
+        - /scripts/test_image_registry.sh
       volumeMounts:
         - name: scripts-vol
           mountPath: /scripts
