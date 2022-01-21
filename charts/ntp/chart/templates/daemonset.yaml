@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: {{ include "chart.fullname" . }}
+  name: {{ include "chart.fullname" . }}-client
   labels:
     {{- include "chart.labels" . | nindent 4 }}
 spec:
@@ -34,9 +34,10 @@ spec:
           args:
             - client
           env:
-            - name: NTP_SERVER
+            - name: INTERNAL_NTP_SERVER
               value: "{{ include "chart.fullname" . }}.{{ .Release.Namespace }}"
-            - name: NTP_SERVERS
+            - name: INTERNAL_NTP_SERVERS
               value: {{ .Values.replicaCount | quote }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      priorityClassName: system-node-critical

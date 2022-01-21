@@ -9,7 +9,7 @@ RUN rm /etc/chrony/chrony.conf && \
     mkdir /run/chrony && \
     chmod 750 /run/chrony && \
     chown _chrony:_chrony /run/chrony && \
-    setcap cap_sys_time+ep /usr/sbin/chronyd
+    setcap cap_sys_time,cap_net_bind_service+ep /usr/sbin/chronyd
 COPY docker-entrypoint.sh /usr/local/bin/
 COPY chrony-client.conf /etc/chrony/
 COPY chrony-server.conf /etc/chrony/

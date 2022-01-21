@@ -1,11 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "chart.fullname" . }}
+  name: {{ include "chart.fullname" . }}-server
   labels:
     {{- include "chart.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   selector:
     matchLabels:
       app.kubernetes.io/component: ntp-server
@@ -34,12 +38,22 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - server
+          env:
+            {{- if .Values.ntp.server }}
+            - name: NTP_SERVER
+              value: "{{ .Values.ntp.server }}"
+            {{- end }}
+            - name: INTERNAL_NTP_SERVER
+              value: "{{ include "chart.fullname" . }}.{{ .Release.Namespace }}"
+            - name: INTERNAL_NTP_SERVERS
+              value: {{ .Values.replicaCount | quote }}
           ports:
             - name: ntp
               containerPort: {{ .Values.service.port }}
               protocol: {{ .Values.service.protocol }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      priorityClassName: system-cluster-critical
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

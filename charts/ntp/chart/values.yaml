@@ -1,10 +1,14 @@
 replicaCount: 2
 
 image:
-  repository: ghcr.io/distributed-technologies/services-ntp
+  repository: ghcr.io/distributed-technologies/helm-charts/ntp
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "main"
+  tag: "0.1.4"
+
+ntp: {}
+  # Override the NTP server (ex: a internal NTP server)
+  # server: pool.ntp.org
 
 imagePullSecrets: []
 nameOverride: ""
@@ -27,14 +31,10 @@ service:
   port: 123
   protocol: UDP
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+resources:
+  limits:
+    cpu: 100m
+    memory: 16Mi
+  requests:
+    cpu: 25m
+    memory: 16Mi

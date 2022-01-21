@@ -12,12 +12,14 @@ chart-dirs:
   - charts/ceph
   - charts/cni
   - charts/dns-server
+  - charts/fwd-proxy
   - charts/git-server
   - charts/grafana
   - charts/ha-proxy
   - charts/harbor
   - charts/jaeger
   - charts/kafka
+  - charts/lb-proxy
   - charts/lightvessel
   - charts/loadbalancer
   - charts/loki
