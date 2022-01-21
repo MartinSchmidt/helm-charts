@@ -17,7 +17,7 @@ spec:
         - /bin/bash
       args:
         - -c
-        - /scripts/test_ksql.sh {{ .Release.Namespace }}
+        - /scripts/test_ksql.sh {{ .Release.Name }}
       volumeMounts:
         - name: scripts-vol
           mountPath: /scripts
