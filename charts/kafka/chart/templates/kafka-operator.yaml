@@ -11,6 +11,15 @@ spec:
         metadata:
           labels:
             app: kafka-broker
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchLabels:
+                      app: kafka-broker
+                  topologyKey: "kubernetes.io/hostname"
     replicas: {{ .Values.cluster.kafka.replicas }}
     version: {{ .Values.cluster.kafka.version }} 
     logging: 
@@ -58,6 +67,15 @@ spec:
         metadata:
           labels:
             app: kafka-zookeeper
+        affinity:
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  labelSelector:
+                    matchLabels:
+                      app: kafka-zookeeper
+                  topologyKey: "kubernetes.io/hostname"
     replicas: {{ .Values.cluster.zookeeper.replicas }}
     logging:
       type: inline
@@ -77,8 +95,6 @@ spec:
         configMapKeyRef:
           name: kafka-metrics
           key: zookeeper-metrics-config.yml
-      
-
   entityOperator: 
     tlsSidecar: 
       resources: {{ .Values.cluster.entityOperator.tlsSidecar.resources | toYaml | nindent 8 }}
