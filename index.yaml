@@ -111,6 +111,18 @@ entries:
     version: v0.1.0
   cni:
   - apiVersion: v2
+    created: "2022-01-31T12:19:41.481144392Z"
+    dependencies:
+    - name: cilium
+      repository: https://helm.cilium.io/
+      version: 1.11.1
+    description: A helm chart for our CNI
+    digest: bff347a761203c60de9e4c6137983a471e9f3912cb7bce600167040641ee25a5
+    name: cni
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/cni-1.0.0/cni-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
     created: "2021-10-29T08:24:20.000018216Z"
     description: A helm chart for our CNI
     digest: c00f9465565926d353be35b82fc814be5214b083eff13c42ccd6ab45d695714e
@@ -749,4 +761,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-01-31T09:36:40.376647881Z"
+generated: "2022-01-31T12:19:41.481204996Z"
