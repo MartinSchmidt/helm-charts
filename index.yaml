@@ -452,6 +452,27 @@ entries:
     version: 0.1.2
   nidhogg:
   - apiVersion: v2
+    created: "2022-01-31T12:43:30.979799817Z"
+    dependencies:
+    - name: argo-cd-proxy-chart
+      repository: https://distributed-technologies.github.io/helm-charts/
+      version: 0.1.3
+    - condition: installCNI
+      name: cni
+      repository: https://distributed-technologies.github.io/helm-charts/
+      version: 1.0.0
+    - condition: lb-proxy.enabled
+      name: lb-proxy
+      repository: https://distributed-technologies.github.io/helm-charts/
+      version: 0.1.0
+    description: A chart that deploys nidhogg.
+    digest: af4901f2568b7ab123fafcd76ac4d6a99337e8f1be5dca24bf4fcd1280a054a4
+    name: nidhogg
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/nidhogg-1.0.16/nidhogg-1.0.16.tgz
+    version: 1.0.16
+  - apiVersion: v2
     created: "2022-01-03T11:41:57.963207496Z"
     dependencies:
     - name: argo-cd-proxy-chart
@@ -761,4 +782,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-01-31T12:19:41.481204996Z"
+generated: "2022-01-31T12:43:30.979894518Z"
