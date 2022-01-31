@@ -245,6 +245,27 @@ entries:
     version: 0.1.2
   kafka:
   - apiVersion: v2
+    created: "2022-01-31T13:48:36.799096557Z"
+    dependencies:
+    - name: strimzi-kafka-operator
+      repository: https://strimzi.io/charts/
+      version: 0.26.1
+    - condition: prometheus-kafka-exporter.enabled
+      name: prometheus-kafka-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 1.1.0
+    - condition: cp-helm-charts.enabled
+      name: cp-helm-charts
+      repository: https://confluentinc.github.io/cp-helm-charts/
+      version: 0.6.1
+    description: A Helm chart for Kubernetes
+    digest: f68877986589de9bd9c6903ba24b9a4102da79c058ab41e813c2d48e1acccad0
+    name: kafka
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/kafka-1.1.1/kafka-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
     created: "2022-01-31T09:36:40.37644088Z"
     dependencies:
     - name: strimzi-kafka-operator
@@ -782,4 +803,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-01-31T12:43:30.979894518Z"
+generated: "2022-01-31T13:48:36.799321955Z"
