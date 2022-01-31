@@ -86,3 +86,7 @@ topics:
   - name: topic-test-1
     partitions: 1
     replicas: 1
+# Topic configuration: https://kafka.apache.org/documentation/#topicconfigs
+    config:
+      retention.ms: 7200000
+      segment.bytes: 1073741824
