@@ -72,12 +72,30 @@ cp-helm-charts:
       url: http://kafka-cp-schema-registry:8081
     kafka:
       bootstrapServers: my-cluster-kafka-bootstrap:9092
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: cp-ksql-server
+              topologyKey: "kubernetes.io/hostname"
   cp-schema-registry:
     enabled: true
     image: confluentinc/cp-schema-registry
     imageTag: 6.2.1
     kafka:
       bootstrapServers: my-cluster-kafka-bootstrap:9092
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: cp-schema-registry
+              topologyKey: "kubernetes.io/hostname"
   cp-control-center:
     enabled: false
 
