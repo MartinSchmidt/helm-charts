@@ -1,0 +1,8 @@
+apiVersion: v2
+name: helper-ceph-crd
+description: A helper chart that will help with ceph storage in k8s
+type: application
+version: 0.1.0
+
+maintainers:
+  - name: MadsHT

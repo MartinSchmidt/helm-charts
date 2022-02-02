@@ -1,0 +1,17 @@
+{{ $root := . }}
+{{- range .Values.cephObjectStores }}
+---
+apiVersion: ceph.rook.io/v1
+kind: CephObjectStore
+metadata:
+  name: {{ .name }}
+  namespace: {{ .namespace }}
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4}}
+  {{- end }}
+spec:
+{{- with .spec -}}
+  {{ toYaml . | nindent 2 }}
+{{- end }}
+{{- end }}

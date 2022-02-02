@@ -17,6 +17,7 @@ chart-dirs:
   - charts/grafana
   - charts/ha-proxy
   - charts/harbor
+  - charts/helper-ceph-crd
   - charts/jaeger
   - charts/kafka
   - charts/lb-proxy
