@@ -29,6 +29,7 @@ chart-dirs:
   - charts/rook
   - charts/rook-helper
   - charts/thanos
+  - charts/tempo-distributed
   - charts/traefik
   - charts/vault
 chart-repos:

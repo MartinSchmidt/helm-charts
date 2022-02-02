@@ -1,0 +1,13 @@
+{{- if .Values.bucketClaim.enabled -}}
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: {{ .Values.bucketClaim.name }}
+  {{- with .Values.bucketClaim.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4}}
+  {{- end }}
+spec:
+  bucketName: {{ .Values.bucketClaim.bucketName }}
+  storageClassName: {{ .Values.bucketClaim.storageClassName }}
+{{- end -}}
