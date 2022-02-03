@@ -26,7 +26,9 @@ spec:
       type: inline
       loggers:
         kafka.root.logger.level: "INFO"
-    resources: {{ .Values.cluster.kafka.resources | toYaml | nindent 6 }}
+    {{- if .Values.cluster.kafka.resources }}
+    resources: {{- .Values.cluster.kafka.resources | toYaml | nindent 6 }}
+    {{- end }}
     readinessProbe: 
       initialDelaySeconds: 15
       timeoutSeconds: 5
@@ -81,7 +83,9 @@ spec:
       type: inline
       loggers:
         zookeeper.root.logger: "INFO"
-    resources: {{ .Values.cluster.zookeeper.resources | toYaml | nindent 6 }}
+    {{- if .Values.cluster.zookeeper.resources }}
+    resources: {{- .Values.cluster.zookeeper.resources | toYaml | nindent 6 }}
+    {{- end }}
     jvmOptions:
       -Xms: 4096m
       -Xmx: 4096m
@@ -97,7 +101,9 @@ spec:
           key: zookeeper-metrics-config.yml
   entityOperator: 
     tlsSidecar: 
-      resources: {{ .Values.cluster.entityOperator.tlsSidecar.resources | toYaml | nindent 8 }}
+      {{- if .Values.cluster.entityOperator.tlsSidecar.resources }}
+      resources: {{- .Values.cluster.entityOperator.tlsSidecar.resources | toYaml | nindent 8 }}
+      {{- end }}
     topicOperator:
       watchedNamespace: {{ .Release.Namespace }}
       reconciliationIntervalSeconds: 60
@@ -105,7 +111,9 @@ spec:
         type: inline
         loggers:
           rootLogger.level: "INFO"
-      resources: {{ .Values.cluster.entityOperator.topicOperator.resources | toYaml | nindent 8 }}
+      {{- if .Values.cluster.entityOperator.topicOperator.resources }}
+      resources: {{- .Values.cluster.entityOperator.topicOperator.resources | toYaml | nindent 8 }}
+      {{- end }}
     userOperator:
       watchedNamespace: {{ .Release.Namespace }}
       reconciliationIntervalSeconds: 60
@@ -113,8 +121,12 @@ spec:
         type: inline
         loggers:
           rootLogger.level: INFO
-      resources: {{ .Values.cluster.entityOperator.userOperator.resources | toYaml | nindent 8 }}
+      {{- if .Values.cluster.entityOperator.userOperator.resources }}
+      resources: {{- .Values.cluster.entityOperator.userOperator.resources | toYaml | nindent 8 }}
+      {{- end }}
   kafkaExporter:
     topicRegex: ".*"
     groupRegex: ".*"
-    resources: {{ .Values.cluster.kafkaExporter.resources | toYaml | nindent 6 }}
+    {{- if .Values.cluster.kafkaExporter.resources }}
+    resources: {{- .Values.cluster.kafkaExporter.resources | toYaml | nindent 6 }}
+    {{- end }}
