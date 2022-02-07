@@ -4,6 +4,7 @@ metadata:
   name: app
 spec:
   replicas: 1
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       name: app
@@ -12,7 +13,6 @@ spec:
       labels:
         name: app
     spec:
-      revisionHistoryLimit: 0
       containers:
       - name: app
         image: grafana/tns-app:latest
