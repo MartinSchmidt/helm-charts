@@ -1,3 +1,9 @@
-jaeger_agent_host: jaeger.default.svc.cluster.local
-jaeger_sampler_type: const
-jaeger_sampler_param: "1"
+ENV:
+  - name: JAEGER_AGENT_HOST
+    value: jaeger.default.svc.cluster.local
+  - name: JAEGER_TAGS
+    value: cluster=k8s,namespace={{ .Release.Namespace }}
+  - name: JAEGER_SAMPLER_TYPE
+    value: const
+  - name: JAEGER_SAMPLER_PARAM
+    value: "1"

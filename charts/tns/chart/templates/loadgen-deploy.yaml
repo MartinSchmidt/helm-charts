@@ -23,11 +23,4 @@ spec:
         - name: http-metrics
           containerPort: 80
         env:
-        - name: JAEGER_AGENT_HOST
-          value: {{ .Values.jaeger_agent_host }}
-        - name: JAEGER_TAGS
-          value: cluster=k8s,namespace={{ .Release.Namespace }}
-        - name: JAEGER_SAMPLER_TYPE
-          value: {{ .Values.jaeger_sampler_type }}
-        - name: JAEGER_SAMPLER_PARAM
-          value: {{ .Values.jaeger_sampler_param | quote }}
+{{- tpl (toYaml .Values.ENV) . | nindent 10 }}
