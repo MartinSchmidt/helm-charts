@@ -12,6 +12,7 @@ spec:
       labels:
         name: app
     spec:
+      revisionHistoryLimit: 0
       containers:
       - name: app
         image: grafana/tns-app:latest

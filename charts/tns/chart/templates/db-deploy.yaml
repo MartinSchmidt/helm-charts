@@ -12,6 +12,7 @@ spec:
       labels:
         name: db
     spec:
+      revisionHistoryLimit: 0
       containers:
       - name: db
         image: grafana/tns-db:latest

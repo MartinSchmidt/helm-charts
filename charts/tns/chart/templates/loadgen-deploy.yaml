@@ -12,6 +12,7 @@ spec:
       labels:
         name: loadgen
     spec:
+      revisionHistoryLimit: 0
       containers:
       - name: loadgen
         image: grafana/tns-loadgen:latest
