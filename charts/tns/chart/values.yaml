@@ -1,0 +1,3 @@
+jaeger_agent_host: jaeger.default.svc.cluster.local
+jaeger_sampler_type: const
+jaeger_sampler_param: "1"
