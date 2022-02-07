@@ -4,6 +4,7 @@ metadata:
   name: db
 spec:
   replicas: 1
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       name: db
@@ -12,7 +13,6 @@ spec:
       labels:
         name: db
     spec:
-      revisionHistoryLimit: 0
       containers:
       - name: db
         image: grafana/tns-db:latest
