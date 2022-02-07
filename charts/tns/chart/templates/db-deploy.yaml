@@ -29,4 +29,4 @@ spec:
         - name: JAEGER_SAMPLER_TYPE
           value: {{ .Values.jaeger_sampler_type }}
         - name: JAEGER_SAMPLER_PARAM
-          value: {{ .Values.jaeger_sampler_param }}
+          value: {{ .Values.jaeger_sampler_param | quote }}
