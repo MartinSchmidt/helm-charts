@@ -1,0 +1,19 @@
+bucketClaim:
+  # Enableing the bucket claim
+  enabled: false
+  # The name of the bucket claim
+  name: cortex-bucket-claim
+  # Annotations for the bucket claim
+  annotations:
+    # This annotations tells ArgoCD to skip the dryrun for this resource if the resource definition does not exist,
+    # the dryrun is still done if the CRD is present.
+    # We're using this because if we're unlucky, we could be in a situation where ceph could take to long to deploy the CRDs.
+    # Then this application would error, beacuse it could not deploy the resource.
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  # Name of the bucket in which to make the claim
+  bucketName: cortex-bucket
+  # Name of the storageClass that contains the bucket provider
+  storageClassName: ceph-bucket
+
+# https://github.com/cortexproject/cortex-helm-chart/blob/master/values.yaml
+# cortex:

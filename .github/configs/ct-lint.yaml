@@ -11,6 +11,7 @@ chart-dirs:
   - charts/cache
   - charts/ceph
   - charts/cni
+  - charts/cortex
   - charts/dns-server
   - charts/fwd-proxy
   - charts/git-server
