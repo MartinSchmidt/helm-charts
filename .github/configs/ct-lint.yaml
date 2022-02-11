@@ -51,6 +51,7 @@ chart-repos:
   - traefik=https://helm.traefik.io/traefik
   - vault=https://helm.releases.hashicorp.com
   - cilium=https://helm.cilium.io/
+  - cortex-helm=https://cortexproject.github.io/cortex-helm-chart
 helm-extra-args: "--timeout 600s"
 validate-chart-schema: false
 validate-maintainers: false
