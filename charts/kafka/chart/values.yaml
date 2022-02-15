@@ -1,5 +1,10 @@
 env: prod
 # Docs https://github.com/strimzi/strimzi-kafka-operator/blob/main/helm-charts/helm3/strimzi-kafka-operator/values.yaml
+strimzi-kafka-operator:
+  generateNetworkPolicy: false
+  extraEnvs:
+    - name: JAVA_OPTS
+      value: "-Xms80m -Xmx80m"
 cluster:
   name: my-cluster
   kafka:
