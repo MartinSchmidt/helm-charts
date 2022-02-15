@@ -143,6 +143,16 @@ entries:
   fwd-proxy:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2022-02-15T14:49:49.782874226Z"
+    description: A Helm chart for Kubernetes
+    digest: 7ac7b22f744cd3fa0935b4d85077ee05f97347857e0a235f5df96604ccd4199c
+    name: fwd-proxy
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/fwd-proxy-0.1.1/fwd-proxy-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-11-23T07:19:36.674061059Z"
     description: A Helm chart for Kubernetes
     digest: fd36037ae1e8d6d452e22b48e592d5da708b010b0768245c8227cc0a0d3acd38
@@ -851,4 +861,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-02-15T13:07:24.272082729Z"
+generated: "2022-02-15T14:49:49.782986732Z"
