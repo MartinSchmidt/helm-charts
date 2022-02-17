@@ -8,5 +8,7 @@ metadata:
 spec:
   pipelineStages:
     - docker: {}
+  namespaceSelector:
+    matchNames: {}
   selector:
     matchLabels: {}
