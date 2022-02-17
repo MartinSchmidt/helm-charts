@@ -32,6 +32,16 @@ storageClass:
       objectStoreName: my-store
       objectStoreNamespace: rook-ceph
       region: us-east-1
+    allowVolumeExpansion: # true
+    volumeBindingMode: # Immediate
+    mountOptions:
+    #   - debug
+    allowedTopologies:
+    #   - matchLabelExpressions:
+    #     - key: failure-domain.beta.kubernetes.io/zone
+    #       values:
+    #       - us-central1-a
+    #       - us-central1-b
 
 objBucketClaims:
   - name: ceph-bucket

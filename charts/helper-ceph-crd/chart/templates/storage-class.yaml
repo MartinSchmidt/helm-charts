@@ -5,15 +5,33 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: {{ .name }}
-  annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 {{- with .annotations }}
+  annotations:
 {{ toYaml . | indent 4 }}
 {{- end }}
-provisioner: {{ .provisioner }}
-reclaimPolicy: {{ .reclaimPolicy }}
+{{- with .provisioner }}
+provisioner: {{ . }}
+{{- end -}}
+{{- with .reclaimPolicy }}
+reclaimPolicy: {{ . }}
+{{- end -}}
+{{- with .allowVolumeExpansion }}
+allowVolumeExpansion: {{ . }}
+{{- end -}}
+{{- with .volumeBindingMode }}
+volumeBindingMode: {{ . }}
+{{- end -}}
+{{- with .mountOptions }}
+mountOptions:
+{{ toYaml . | indent 2 }}
+{{- end }}
+{{- with .allowedTopologies }}
+allowedTopologies:
+{{ toYaml . | indent 2 }}
+{{- end }}
 {{- with .parameters }}
 parameters:
 {{ toYaml . | indent 2}}
 {{- end }}
 {{- end -}}
+
