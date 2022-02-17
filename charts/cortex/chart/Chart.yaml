@@ -1,8 +1,8 @@
 apiVersion: v2
-name: Cortex
+name: cortex
 description: A Helm chart for Cortex
 type: application
-version: 0.1.0
+version: 0.1.1
 
 dependencies:
 - name: cortex
