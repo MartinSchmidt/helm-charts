@@ -1,0 +1,10 @@
+apiVersion: v2
+name: Cortex
+description: A Helm chart for Cortex
+type: application
+version: 0.1.0
+
+dependencies:
+- name: cortex
+  version: "1.2.0"
+  repository: "https://cortexproject.github.io/cortex-helm-chart"
