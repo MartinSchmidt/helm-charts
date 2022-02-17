@@ -4,7 +4,6 @@ metadata:
   labels:
     instance: primary
   name: cadvisor-monitor
-  namespace: default
 spec:
   endpoints:
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
