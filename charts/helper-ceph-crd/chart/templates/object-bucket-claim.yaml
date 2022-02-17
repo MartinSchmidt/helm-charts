@@ -1,17 +1,14 @@
 {{ $root := . }}
-{{- range .Values.objBucketClaims }}
+{{- range .Values.objBucketClaims -}}
 ---
 apiVersion: objectbucket.io/v1alpha1
 kind: ObjectBucketClaim
 metadata:
   name: {{ .name }}
-  {{- with .annotations }}
   annotations:
-    {{- toYaml . | nindent 4}}
-  {{- end }}
-spec:
-{{- with .spec }}
-{{- toYaml . | nindent 2 }}
-{{- end -}}
-
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+{{- with .annotations }}
+{{ toYaml . | indent 4 }}
 {{- end }}
+spec: {{ toYaml .spec | nindent 2 }}
+{{- end -}}

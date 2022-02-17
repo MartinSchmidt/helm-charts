@@ -1,18 +1,19 @@
 {{ $root := . }}
-{{- range .Values.storageClass }}
+{{- range .Values.storageClass -}}
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: {{ .name }}
-  {{- with .annotations }}
   annotations:
-    {{- toYaml . | nindent 4}}
-  {{- end }}
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+{{- with .annotations }}
+{{ toYaml . | indent 4 }}
+{{- end }}
 provisioner: {{ .provisioner }}
 reclaimPolicy: {{ .reclaimPolicy }}
 {{- with .parameters }}
 parameters:
-{{- toYaml . | nindent 2}}
+{{ toYaml . | indent 2}}
 {{- end }}
-{{- end }}
+{{- end -}}

@@ -1,17 +1,15 @@
 {{ $root := . }}
-{{- range .Values.cephObjectStores }}
+{{- range .Values.cephObjectStores -}}
 ---
 apiVersion: ceph.rook.io/v1
 kind: CephObjectStore
 metadata:
   name: {{ .name }}
   namespace: {{ .namespace }}
-  {{- with .annotations }}
   annotations:
-    {{- toYaml . | nindent 4}}
-  {{- end }}
-spec:
-{{- with .spec -}}
-  {{ toYaml . | nindent 2 }}
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+{{- with .annotations }}
+{{ toYaml . | indent 4 }}
 {{- end }}
+spec: {{ toYaml .spec | nindent 2 }}
 {{- end }}

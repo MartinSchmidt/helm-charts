@@ -1,8 +1,7 @@
 cephObjectStores:
   - name: my-store
     namespace: rook-ceph
-    annotations:
-      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    annotations: []
     spec:
       metadataPool:
         failureDomain: host
@@ -26,8 +25,7 @@ cephObjectStores:
 
 storageClass:
   - name: rook-ceph-bucket
-    annotations:
-      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    annotations: []
     provisioner: rook-ceph.ceph.rook.io/bucket
     reclaimPolicy: Delete
     parameters:
@@ -37,8 +35,7 @@ storageClass:
 
 objBucketClaims:
   - name: ceph-bucket
-    annotations:
-      argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    annotations: []
     spec:
       generateBucketName: ceph-bkt
       storageClassName: rook-ceph-bucket
