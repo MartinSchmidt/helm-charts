@@ -1,7 +1,0 @@
-apiVersion: objectbucket.io/v1alpha1                      │Delta compression using up to 24 threads
-kind: ObjectBucketClaim                                   │Compressing objects: 100% (6/6), done.
-metadata:                                                 │Writing objects: 100% (6/6), 512 bytes | 512.00 KiB/s, do
-  name: ceph-bucket-2                                        Connection refused
-channel 5: open failed: connect failed: Connection refused│Total 6 (delta 5), reused 0 (delta 0)
-  generateBucketName: ceph-bkt                            d: Connection refusedltas: 100% (5/5), completed with 5 lo
-  storageClassName: ceph-bucket
