@@ -16,6 +16,8 @@ chart-dirs:
   - charts/fwd-proxy
   - charts/git-server
   - charts/grafana
+  - charts/grafana-agent
+  - charts/grafana-agent-operator
   - charts/ha-proxy
   - charts/harbor
   - charts/jaeger
