@@ -243,6 +243,19 @@ entries:
     version: 0.1.8
   grafana-agent:
   - apiVersion: v2
+    created: "2022-02-21T14:53:11.651668801Z"
+    dependencies:
+    - name: grafana-agent-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.1.5
+    description: A Helm proxy chart for grafana-agent-operator and its resources
+    digest: e9b59bb8ce8cd20d2402ae246a3fd8eb6a581c238fa0f6553d98e4b1100d28fc
+    name: grafana-agent
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/grafana-agent-0.1.1/grafana-agent-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     created: "2022-02-21T11:29:51.403746158Z"
     description: A Helm chart for grafana-agent
     digest: cea6a9619795db543d61b3a264b4080143072d2831fb749c7377eedc21436fac
@@ -942,4 +955,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-02-21T13:55:50.246108208Z"
+generated: "2022-02-21T14:53:11.651896598Z"
