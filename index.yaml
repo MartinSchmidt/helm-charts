@@ -144,6 +144,20 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/cni-0.3.5/cni-0.3.5.tgz
     version: 0.3.5
+  cortex:
+  - apiVersion: v2
+    created: "2022-02-21T13:08:37.627000648Z"
+    dependencies:
+    - name: cortex
+      repository: https://cortexproject.github.io/cortex-helm-chart
+      version: 1.2.0
+    description: A Helm chart for Cortex
+    digest: 3d3b424dffb21d59de015c0e1439a72b8292c4a865e18ce9c21eaa80037a24f8
+    name: cortex
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/cortex-0.1.1/cortex-0.1.1.tgz
+    version: 0.1.1
   dns-server:
   - apiVersion: v2
     created: "2021-10-29T08:24:20.157573352Z"
@@ -899,4 +913,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-02-21T11:29:51.54662115Z"
+generated: "2022-02-21T13:08:37.627110759Z"
