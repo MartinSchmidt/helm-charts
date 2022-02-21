@@ -8,6 +8,6 @@ metadata:
     {{- toYaml . | nindent 4}}
   {{- end }}
 spec:
-  bucketName: {{ .Values.bucketClaim.bucketName }}
+  generateBucketName: {{ .Values.bucketClaim.bucketName }}
   storageClassName: {{ .Values.bucketClaim.storageClassName }}
 {{- end -}}
