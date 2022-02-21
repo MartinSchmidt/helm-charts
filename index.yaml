@@ -781,6 +781,14 @@ entries:
     version: 1.0.6
   ntp:
   - apiVersion: v2
+    created: "2022-02-21T13:55:50.245864805Z"
+    description: A helm chart for our ntp-server
+    digest: 32674f09b5e847e333f4719eed40cc35226abf271021efb3438c2df32f487660
+    name: ntp
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/ntp-0.1.6/ntp-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
     created: "2022-02-21T13:34:31.624926114Z"
     description: A helm chart for our ntp-server
     digest: 9f5d1cf1a2dec2d2d05e5a80bd22afe056a0cde4bc773f5576cf59b323802c89
@@ -934,4 +942,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-02-21T13:36:40.030237608Z"
+generated: "2022-02-21T13:55:50.246108208Z"
