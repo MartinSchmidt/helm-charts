@@ -1,9 +1,9 @@
 apiVersion: v2
 description: Manages a single Ceph cluster namespace for Rook
 name: rook-ceph-cluster
-version: 0.1.6
+version: 0.1.7
 
 dependencies:
   - name: rook-ceph-cluster
-    version: "1.7.2"
+    version: "1.8.5"
     repository: "https://charts.rook.io/release"
