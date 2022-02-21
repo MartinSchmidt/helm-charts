@@ -1,15 +1,2 @@
-loki:
-  loki:
-    enabled: true
-
-  promtail:
-    enabled: true
-
-  fluent-bit:
-    enabled: false
-
-  grafana:
-    enabled: false
-
-  prometheus:
-    enabled: false
+# https://github.com/grafana/helm-charts/blob/main/charts/loki-distributed/values.yaml
+# loki-distributed:
