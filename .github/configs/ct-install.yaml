@@ -14,7 +14,6 @@ chart-dirs:
   - charts/git-server
   - charts/grafana
   - charts/grafana-agent
-  - charts/grafana-agent-operator
   - charts/ha-proxy
   - charts/jaeger
   - charts/kafka
