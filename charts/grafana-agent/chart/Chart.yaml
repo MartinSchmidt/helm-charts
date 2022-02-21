@@ -1,5 +1,10 @@
 apiVersion: v2
 name: grafana-agent
-description: A Helm chart for grafana-agent
+description: A Helm proxy chart for grafana-agent-operator and its resources
 type: application
-version: 0.1.0
+version: 0.1.1
+
+dependencies:
+  - name: grafana-agent-operator
+    version: 0.1.5
+    repository: "https://grafana.github.io/helm-charts"
