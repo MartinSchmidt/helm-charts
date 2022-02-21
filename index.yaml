@@ -16,6 +16,19 @@ entries:
     version: 0.1.0
   argo-cd-proxy-chart:
   - apiVersion: v2
+    created: "2022-02-21T15:10:45.66058727Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 3.33.6
+    description: A proxy helm chart for argo cd
+    digest: 9436ec5d1bc82c7d3f3e17474e6bd2d6a0aedf2dd515dea355a77551f36d9562
+    name: argo-cd-proxy-chart
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/argo-cd-proxy-chart-0.1.4/argo-cd-proxy-chart-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     created: "2021-11-12T09:13:43.316570353Z"
     dependencies:
     - name: argo-cd
@@ -215,6 +228,19 @@ entries:
     - https://github.com/distributed-technologies/helm-charts/releases/download/git-server-0.1.2/git-server-0.1.2.tgz
     version: 0.1.2
   grafana:
+  - apiVersion: v2
+    created: "2022-02-21T15:10:45.848842899Z"
+    dependencies:
+    - name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.21.8
+    description: A Helm umbrella chart for Grafana
+    digest: e48e0bfb67ebca2a83575ba84f40e0fa54d3af8747ee34775a71aca98f7fbcb5
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/grafana-0.1.10/grafana-0.1.10.tgz
+    version: 0.1.10
   - apiVersion: v2
     created: "2022-01-17T14:31:19.237914455Z"
     dependencies:
@@ -862,6 +888,19 @@ entries:
     version: 0.1.2
   rook:
   - apiVersion: v2
+    created: "2022-02-21T15:10:46.022470778Z"
+    dependencies:
+    - name: rook-ceph
+      repository: https://charts.rook.io/release
+      version: 1.8.5
+    description: A Helm chart for Rook
+    digest: 3e790d8aa2646e793ae8be6a744cf864258395f0d0eb07d65bef280e153c6e2f
+    name: rook
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/rook-0.1.4/rook-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
     created: "2021-10-29T08:24:22.435263198Z"
     dependencies:
     - name: rook-ceph
@@ -885,6 +924,18 @@ entries:
     - https://github.com/distributed-technologies/helm-charts/releases/download/rook-ceph-0.1.0/rook-ceph-0.1.0.tgz
     version: 0.1.0
   rook-ceph-cluster:
+  - apiVersion: v2
+    created: "2022-02-21T15:10:46.180104094Z"
+    dependencies:
+    - name: rook-ceph-cluster
+      repository: https://charts.rook.io/release
+      version: 1.8.5
+    description: Manages a single Ceph cluster namespace for Rook
+    digest: 80c897ea9119394192d2666c4f3b03b495d2b9b75581bdb37422fac6630550e9
+    name: rook-ceph-cluster
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/rook-ceph-cluster-0.1.7/rook-ceph-cluster-0.1.7.tgz
+    version: 0.1.7
   - apiVersion: v2
     created: "2021-10-29T08:24:22.582963708Z"
     dependencies:
@@ -928,6 +979,19 @@ entries:
     version: 0.1.1
   traefik:
   - apiVersion: v2
+    created: "2022-02-21T15:10:46.337325205Z"
+    dependencies:
+    - name: traefik
+      repository: https://helm.traefik.io/traefik
+      version: 10.9.1
+    description: A Helm chart for setting up Traefik as ingress controller for Kubernetes
+    digest: f16d9cef833176657cfbb4f4a26205700a2020d1a30f461ccfb3003eac2ab129
+    name: traefik
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/traefik-0.2.5/traefik-0.2.5.tgz
+    version: 0.2.5
+  - apiVersion: v2
     created: "2021-10-29T08:24:22.927140197Z"
     dependencies:
     - name: traefik
@@ -955,4 +1019,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-02-21T14:53:11.651896598Z"
+generated: "2022-02-21T15:10:46.337474806Z"
