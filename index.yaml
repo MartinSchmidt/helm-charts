@@ -542,6 +542,19 @@ entries:
     version: 0.1.6
   loki:
   - apiVersion: v2
+    created: "2022-02-21T13:36:40.030066505Z"
+    dependencies:
+    - name: loki-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: 0.44.0
+    description: A Helm umbrella chart for Loki
+    digest: d0aa72a57120cbe1f76a5e02dedf8b68e7ac0643e9e712898227410671c5f5fa
+    name: loki
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/loki-1.0.0/loki-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
     created: "2021-10-29T08:24:21.732475489Z"
     dependencies:
     - name: loki-stack
@@ -921,4 +934,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-02-21T13:34:31.62516521Z"
+generated: "2022-02-21T13:36:40.030237608Z"
