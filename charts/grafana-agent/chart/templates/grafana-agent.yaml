@@ -9,6 +9,9 @@ spec:
   logLevel: info
   serviceAccountName: grafana-agent
   metrics:
+    global:
+      remoteWrite:
+      - url: {{ index .Values.metrics "remote-write-url" }}
     instanceSelector:
       matchLabels:
         agent: grafana-agent-metrics
@@ -19,3 +22,12 @@ spec:
     instanceSelector:
       matchLabels:
         agent: grafana-agent-logs
+
+  integrations:
+    agent:
+      enabled: {{ .Values.integrations.agent.enabled }}
+    node_exporter:
+      enabled: {{ .Values.integrations.node_exporter.enabled }}
+      rootfs_path: /host/root
+      sysfs_path: /host/sys
+      procfs_path: /host/proc
