@@ -159,6 +159,19 @@ entries:
     version: 0.3.5
   cortex:
   - apiVersion: v2
+    created: "2022-02-23T11:38:31.97042421Z"
+    dependencies:
+    - name: cortex
+      repository: https://cortexproject.github.io/cortex-helm-chart
+      version: 1.2.0
+    description: A Helm chart for Cortex
+    digest: 04f2f05eea73e204fc741405a047e54049215d6565910dcc0615d98922c568bc
+    name: cortex
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/cortex-0.1.2/cortex-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     created: "2022-02-21T13:08:37.627000648Z"
     dependencies:
     - name: cortex
@@ -971,6 +984,19 @@ entries:
     version: 0.1.6
   tempo-distributed:
   - apiVersion: v2
+    created: "2022-02-23T11:38:32.186778708Z"
+    dependencies:
+    - name: tempo-distributed
+      repository: https://grafana.github.io/helm-charts
+      version: 0.15.1
+    description: A Helm chart for tempo-distributed
+    digest: 32024c0afc03558891a4a6e0c01949160a0e57f9f37f60ec9906bc64086e83de
+    name: tempo-distributed
+    type: application
+    urls:
+    - https://github.com/distributed-technologies/helm-charts/releases/download/tempo-distributed-0.1.1/tempo-distributed-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     created: "2022-02-14T11:18:04.73081203Z"
     dependencies:
     - name: tempo-distributed
@@ -1040,4 +1066,4 @@ entries:
     urls:
     - https://github.com/distributed-technologies/helm-charts/releases/download/vault-0.1.1/vault-0.1.1.tgz
     version: 0.1.1
-generated: "2022-02-21T15:16:54.318421457Z"
+generated: "2022-02-23T11:38:32.186974409Z"
