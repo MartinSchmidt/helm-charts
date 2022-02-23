@@ -9,8 +9,10 @@ spec:
   logLevel: info
   serviceAccountName: grafana-agent
   metrics:
+    wal_directory: /tmp/agent
     global:
-      remoteWrite:
+      scrape_interval: 15s
+      remote_write:
       - url: {{ index .Values.metrics "remote-write-url" }}
     instanceSelector:
       matchLabels:
