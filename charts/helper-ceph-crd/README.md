@@ -1,6 +1,5 @@
 # helper-ceph-crd
-
-The idear for this helper chart is that it will facilitate a way to make a storage in k8s where needed, this is why it also contains a storage-class resource.
+This helper chart facilitates creation of ceph storage resources.
 
 This is a helper chart that you use as a dependency on you main chart doing something like:
 ```yaml
