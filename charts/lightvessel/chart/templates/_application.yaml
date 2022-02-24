@@ -42,7 +42,11 @@ spec:
       values: |
         {{- $valuesFilePath := printf "%s/%s/%s" ($configPath | dir) .name .source.valuesFile }}
         {{- $valuesFile := $root.Files.Get $valuesFilePath }}
-{{ tpl $valuesFile $root | indent 8 }}
+        {{- $values := (tpl $valuesFile $root | fromYaml) }}
+        {{- if get ($root.Values.valuesOverride | default dict) .name }}
+          {{- $values := mergeOverwrite $values (get $root.Values.valuesOverride .name) }}
+        {{- end }}
+{{ $values | toYaml | indent 8 }}
   # Destination cluster and namespace to deploy the application
   destination:
     server: {{ $root.Values.destinationServer | default $config.destinationServer | default "https://kubernetes.default.svc" }}
