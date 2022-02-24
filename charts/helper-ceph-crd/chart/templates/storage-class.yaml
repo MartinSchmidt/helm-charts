@@ -5,10 +5,8 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: {{ .name }}
-{{- with .annotations }}
   annotations:
-{{ toYaml . | indent 4 }}
-{{- end }}
+{{ toYaml .annotations | indent 4 }}
 {{- with .provisioner }}
 provisioner: {{ . }}
 {{- end -}}

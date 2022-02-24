@@ -1,7 +1,7 @@
 cephObjectStores:
   - name: my-store
     namespace: rook-ceph
-    annotations: []
+    annotations: {}
     spec:
       metadataPool:
         failureDomain: host
@@ -25,7 +25,7 @@ cephObjectStores:
 
 storageClass:
   - name: rook-ceph-bucket
-    annotations: []
+    annotations: {}
     provisioner: rook-ceph.ceph.rook.io/bucket
     reclaimPolicy: Delete
     parameters:
@@ -45,7 +45,7 @@ storageClass:
 
 objBucketClaims:
   - name: ceph-bucket
-    annotations: []
+    annotations: {}
     spec:
       generateBucketName: ceph-bkt
       storageClassName: rook-ceph-bucket
