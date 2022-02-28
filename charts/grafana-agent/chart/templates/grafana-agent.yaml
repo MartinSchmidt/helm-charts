@@ -8,6 +8,18 @@ spec:
   image: grafana/agent:v0.23.0
   logLevel: info
   serviceAccountName: grafana-agent
+
+  configMaps:
+    - agent-config
+
+  containers:
+    # - name: grafana-agent
+    #   args:
+    #     - '-config.file=/var/lib/grafana-agent/configmaps/agent.yml'
+    # - name: config-reloader
+    #   args:
+    #     - '-config.file=/var/lib/grafana-agent/configmaps/agent.yml'
+
   metrics:
     instanceSelector:
       matchLabels:
