@@ -13,12 +13,18 @@ spec:
     - agent-config
 
   containers:
-    # - name: grafana-agent
-    #   args:
-    #     - '-config.file=/var/lib/grafana-agent/configmaps/agent.yml'
-    # - name: config-reloader
-    #   args:
-    #     - '-config.file=/var/lib/grafana-agent/configmaps/agent.yml'
+    - name: grafana-agent
+      args:
+        - '-config.file=/var/lib/grafana-agent/configmaps/agent.yml'
+        - '-config.expand-env=true'
+        - '-reload-port=8081'
+    - name: config-reloader
+      args:
+        - '--config-file=/var/lib/grafana-agent/configmaps/agent.yml'
+        - '--config-envsubst-file=/var/lib/grafana-agent/config/agent.yml'
+        - '--watch-interval=1m'
+        - '--statefulset-ordinal-from-envvar=POD_NAME'
+        - '--reload-url=http://127.0.0.1:8081/-/reload'
 
   metrics:
     instanceSelector:
