@@ -44,6 +44,8 @@ cluster:
 # Values for the kafka MirrorMaker instance
 dataexport:
   enable: false
+  target:
+    bootstrapservers: 192.168.207.140:9093
 # Values for the exporter helm chart dependency:
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/values.yaml
 prometheus-kafka-exporter:
