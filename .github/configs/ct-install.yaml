@@ -11,6 +11,7 @@ chart-dirs:
   - charts/cache
   - charts/cni
   - charts/dns-server
+  - charts/exporters
   - charts/git-server
   - charts/grafana
   - charts/grafana-agent
@@ -37,7 +38,7 @@ chart-repos:
   - jaeger=https://jaegertracing.github.io/helm-charts
   - common=https://charts.bitnami.com/bitnami
   - kafka=https://strimzi.io/charts/
-  - kafkaexport=https://prometheus-community.github.io/helm-charts
+  - prometheus-community=https://prometheus-community.github.io/helm-charts
   - cp=https://confluentinc.github.io/cp-helm-charts/
   - thanos=https://kubernetes-charts.banzaicloud.com
   - traefik=https://helm.traefik.io/traefik
