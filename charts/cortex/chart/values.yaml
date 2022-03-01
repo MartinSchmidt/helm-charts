@@ -16,4 +16,57 @@ bucketClaim:
   storageClassName: ceph-bucket
 
 # https://github.com/cortexproject/cortex-helm-chart/blob/master/values.yaml
-# cortex:
+cortex:
+  alertmanager:
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        instance: primary
+
+  distributor:
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        instance: primary
+
+  ingester:
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        instance: primary
+
+  ruler:
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        instance: primary
+
+  querier:
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        instance: primary
+
+  query_frontend:
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        instance: primary
+
+  table_manager:
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        instance: primary
+
+  store_gateway:
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        instance: primary
+
+  compactor:
+    serviceMonitor:
+      enabled: true
+      additionalLabels:
+        instance: primary

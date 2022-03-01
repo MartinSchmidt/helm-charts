@@ -1,5 +1,5 @@
 kube-state-metrics:
-  ## set to true to add the release label so scraping of the servicemonitor with kube-prometheus-stack works out of the box
+  # set to true to add the release label so scraping of the servicemonitor with kube-prometheus-stack works out of the box
   # releaseLabel: false
   prometheus:
     monitor:
@@ -20,4 +20,4 @@ prometheus-kafka-exporter:
     enabled: true
     namespace: ""
     additionalLabels:
-      instance: primary  
+      instance: primary

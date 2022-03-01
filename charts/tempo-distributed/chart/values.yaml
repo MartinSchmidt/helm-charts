@@ -10,4 +10,8 @@ bucketClaim:
   storageClassName: ceph-bucket
 
 # https://github.com/grafana/helm-charts/blob/main/charts/tempo-distributed/values.yaml
-# tempo-distibuted:
+tempo-distibuted:
+  serviceMonitor:
+    enabled: true
+    labels:
+      instance: primary
