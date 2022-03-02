@@ -41,6 +41,9 @@ cluster:
       resources: {}
   kafkaExporter:
     resources: {}
+# Values for the kafka MirrorMaker instance
+dataexport:
+  enable: false
 # Values for the exporter helm chart dependency:
 # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/values.yaml
 prometheus-kafka-exporter:
