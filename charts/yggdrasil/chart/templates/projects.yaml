@@ -1,0 +1,32 @@
+{{- range .Values.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ required "name is required for a project." .name }}
+  namespace: {{ $.Release.Namespace }}
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: {{ required "description is required for a project." .description }}
+
+  # Allow manifests to deploy from any Git repos
+  sourceRepos:
+  - '*'
+
+  # Only permit applications to deploy to the guestbook namespace in the same cluster
+  destinations:
+  - namespace: {{ required "namespace is required for a project." .namespace }}
+    server: {{ $.destination }}
+
+  # Allow all namespaced-scoped resources to being created
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+
+  # Deny all cluster-scoped resources from being created, except for Namespace
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+{{- end }}

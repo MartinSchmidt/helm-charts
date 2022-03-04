@@ -1,40 +1,80 @@
-yggdrasil:
-  repoURL: "https://github.com/distributed-technologies/yggdrasil.git"
-  targetRevision: "main"
 
-installCNI: true
-monitorNidhogg: true
+# --- required parameters ---
+
+repo:
+  URL: # example: https://github.com/distributed-technologies/env-repo-template
+  targetRevision: # example: main
+  path: # example: .
+
+baseFolder: # example: /base
+envFolder: # example: /env/production 
+globalsFile: # example: globals.yaml
+destination: # example: https://kubernetes.default.svc
+
+# --- additional parameters ---
+
+
+nidhogg:
+  # # if not configured, nidhogg wil not monitor itself
+  # valuesFile: 
+  chart:
+    repo: https://martinschmidt.github.io/helm-charts/
+    name: nidhogg
+    version: 2.0.0-rc.1
+  # additionalResources: 
+
+yggdrasil:
+  # # if not configured, yggdrasil will be disabled
+  # valuesFile: 
+  chart:
+    repo: https://martinschmidt.github.io/helm-charts/
+    name: yggdrasil
+    version: 3.0.0-rc.1
+  # additionalResources: 
+
+argo-cd:
+  controller:
+    replicas: 3
+    env:
+      - name: "ARGOCD_CONTROLLER_REPLICAS"
+        value: "3"
+    enableStatefulSet: true
+  redis-ha:
+    enabled: true
+  redis:
+    enabled: false
+  server:
+    replicas: 3
+    config:
+      resource.customizations: |
+        admissionregistration.k8s.io/MutatingWebhookConfiguration:
+          ignoreDifferences: |
+            jsonPointers:
+            - /webhooks/0/clientConfig/caBundle
+        admissionregistration.k8s.io/ValidatingWebhookConfiguration:
+          ignoreDifferences: |
+            jsonPointers:
+            - /webhooks/0/clientConfig/caBundle
+            - /webhooks/0/namespaceSelector/matchExpressions/2
+        networking.k8s.io/Ingress:
+          health.lua: |
+            hs = {}
+            hs.status = "Healthy"
+            return hs
+            
+cni:
+  enabled: false
 
 lb-proxy:
   enabled: false
 
-argo-cd-proxy-chart:
-  argo-cd:
-    controller:
-      replicas: 3
-      env:
-        - name: "ARGOCD_CONTROLLER_REPLICAS"
-          value: "3"
-      enableStatefulSet: true
-    redis-ha:
-      enabled: true
-    redis:
-      enabled: false
-    server:
-      replicas: 3
-      config:
-        resource.customizations: |
-          admissionregistration.k8s.io/MutatingWebhookConfiguration:
-            ignoreDifferences: |
-              jsonPointers:
-              - /webhooks/0/clientConfig/caBundle
-          admissionregistration.k8s.io/ValidatingWebhookConfiguration:
-            ignoreDifferences: |
-              jsonPointers:
-              - /webhooks/0/clientConfig/caBundle
-              - /webhooks/0/namespaceSelector/matchExpressions/2
-          networking.k8s.io/Ingress:
-            health.lua: |
-              hs = {}
-              hs.status = "Healthy"
-              return hs
+additionalManifests:
+  # # additional manifests can be added as a list.
+  # - apiVersion: v1
+  #   kind: Secret
+  #   metadata:
+  #     name: mysecret
+  #   type: Opaque
+  #   data:
+  #     USER_NAME: YWRtaW4=
+  #     PASSWORD: MWYyZDFlMmU2N2Rm

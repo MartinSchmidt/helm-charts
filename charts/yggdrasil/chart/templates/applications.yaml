@@ -1,0 +1,60 @@
+---
+{{- range .Values.applications }}
+# {{ required ".Values.baseFolder is required!" .Values.baseFolder }}
+# {{ required ".Values.envFolder is required!" .Values.envFolder }}
+# {{ required ".Values.globalsFile is required!" .Values.globalsFile }}
+# {{ required ".Values.destination is required!" .Values.destination }}
+# {{ required "name is required for an application!" .name }}
+# {{ required "project is required for an application!" .project }}
+# {{ required "namespace is required for an application!" .namespace }}
+# {{ required "chart.repo is required for an application!"  .chart.repo }}
+# {{ required "chart.name is required for an application!" .chart.name }}
+# {{ required "chart.version is required for an application!" .chart.version }}
+# {{ required "overdrive.valuesFile is required for an application!" .overdrive.valuesFile }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+  namespace: {{ $.Release.Namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .project }}
+  source:
+    repoURL: {{ $.Values.repo.repoURL }}
+    targetRevision: {{ $.Values.repo.targetRevision }}
+    path: {{ $.Values.repo.path }}
+    plugin:
+      name: helm-overdrive
+      env:
+        - name: HELM_REPO
+          value: {{ .chart.repo }}
+        - name: CHART_NAME
+          value: {{ .chart.name }}
+        - name: CHART_VERSION
+          value: {{ .chart.version }}
+
+        - name: BASE_VALUES
+          value: {{ $.Values.baseFolder }}/{{ .overdrive.valuesFile }}
+        - name: BASE_GLOBAL
+          value: {{ $.Values.baseFolder }}/{{ $.Values.globalsFile }}
+
+        - name: ENV_VALUES
+          value: {{ $.Values.envFolder }}/{{ .overdrive.valuesFile }}
+        - name: ENV_GLOBAL
+          value: {{ $.Values.envFolder }}/{{ $.Values.globalsFile }}
+
+{{- if .overdrive.additionalResources }}
+        - name: BASE_EXTRA
+          value: {{ $.Values.baseFolder }}/{{ .overdrive.additionalResources }}
+        - name: ENV_EXTRA
+          value: {{ $.Values.envFolder }}/{{ .overdrive.additionalResources }}
+{{- end }}
+  destination:
+    server: {{ .Values.destination }}
+    namespace: {{ .namespace }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}

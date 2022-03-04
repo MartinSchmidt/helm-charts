@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: yggdrasil
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: 'Yggdrasil, the root of it all'
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: {{ .Release.Namespace }}
+      server: {{ .Values.destination }}
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'

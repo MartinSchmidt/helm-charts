@@ -1,0 +1,94 @@
+---
+{{- if (.Values.nidhogg).valuesFile }}
+# {{ required ".Values.repo.repoURL is required!" .Values.repo.repoURL }}
+# {{ required ".Values.repo.targetRevision is required!" .Values.repo.targetRevision }}
+# {{ required ".Values.repo.path is required!" .Values.repo.path }}
+# {{ required ".Values.baseFolder is required!" .Values.baseFolder }}
+# {{ required ".Values.envFolder is required!" .Values.envFolder }}
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nidhogg
+  namespace: {{ .Release.Namespace }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: yggdrasil
+  source:
+    repoURL: {{ .Values.repo.repoURL }}
+    targetRevision: {{ .Values.repo.targetRevision }}
+    path: {{ .Values.repo.path }}
+    plugin:
+      name: helm-overdrive
+      env:
+        - name: HELM_REPO
+          value: {{ .Values.nidhogg.chart.repo }}
+        - name: CHART_NAME
+          value: {{ .Values.nidhogg.chart.name }}
+        - name: CHART_VERSION
+          value: {{ .Values.nidhogg.chart.version }}
+
+        - name: BASE_VALUES
+          value: {{ .Values.baseFolder }}/{{ .Values.nidhogg.valuesFile }}
+        - name: BASE_GLOBAL
+          value: {{ .Values.baseFolder }}/{{ .Values.globalsFile }}
+
+        - name: ENV_VALUES
+          value: {{ .Values.envFolder }}/{{ .Values.nidhogg.valuesFile }}
+        - name: ENV_GLOBAL
+          value: {{ .Values.envFolder }}/{{ .Values.globalsFile }}
+
+{{- if .Values.yggdrasil.additionalResources }}
+        - name: BASE_EXTRA
+          value: {{ $.Values.baseFolder }}/{{ .Values.nidhogg.additionalResources }}
+        - name: ENV_EXTRA
+          value: {{ $.Values.envFolder }}/{{ .Values.nidhogg.additionalResources }}
+{{- end }}
+    # helm:
+    #   version: v3
+    #   values: |
+    #     nidhogg:
+    #       yggdrasil:
+    #         {{- toYaml .Values.yggdrasil | nindent 12 }}
+    #       {{- with (index .Values "lb-proxy") }}
+    #       {{- if .enabled }}
+    #       lb-proxy:
+    #         enabled: {{ .enabled }}
+    #         config:
+    #           {{- toYaml .config | nindent 14 }}
+    #       {{- end }}
+    #       {{- end }}
+    #       {{- with (index .Values "argo-cd-proxy-chart") }}
+    #       argo-cd-proxy-chart:
+    #         # This dummy value is set so that this argo-cd-proxy-chart is not ever empty and thereby overwrites the values that should be propagated
+    #         dummy: "true"
+    #         {{- if .config }}
+    #         config:
+    #           {{- toYaml .config | nindent 14 }}
+    #         {{- end }}
+    #         {{- with (index . "argo-cd") }}
+    #         {{- if or .server.volumeMounts .repoServer.volumeMounts }}
+    #         argo-cd:
+    #           server:
+    #             volumeMounts:
+    #               {{- toYaml .server.volumeMounts | nindent 18 }}
+    #             volumes:
+    #               {{- toYaml .server.volumes | nindent 18 }}
+    #           repoServer:
+    #             volumeMounts:
+    #               {{- toYaml .repoServer.volumeMounts | nindent 18 }}
+    #             volumes:
+    #               {{- toYaml .repoServer.volumes | nindent 18 }}
+    #         {{- end }}
+    #         {{- end }}
+    #       {{- end }}
+
+  destination:
+    server: {{ .Values.destination}}
+    namespace: {{ .Release.Namespace }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+{{- end }}
