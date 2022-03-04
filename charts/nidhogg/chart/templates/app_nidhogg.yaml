@@ -1,6 +1,6 @@
 ---
 {{- if (.Values.nidhogg).valuesFile }}
-# {{ required ".Values.repo.repoURL is required!" .Values.repo.repoURL }}
+# {{ required ".Values.repo.URL is required!" .Values.repo.URL }}
 # {{ required ".Values.repo.targetRevision is required!" .Values.repo.targetRevision }}
 # {{ required ".Values.repo.path is required!" .Values.repo.path }}
 # {{ required ".Values.overdriveConf.baseFolder is required!" .Values.overdriveConf.baseFolder }}
@@ -17,7 +17,7 @@ metadata:
 spec:
   project: yggdrasil
   source:
-    repoURL: {{ .Values.repo.repoURL }}
+    repoURL: {{ .Values.repo.URL }}
     targetRevision: {{ .Values.repo.targetRevision }}
     path: {{ .Values.repo.path }}
     plugin:
