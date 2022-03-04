@@ -3,8 +3,9 @@
 # {{ required ".Values.repo.repoURL is required!" .Values.repo.repoURL }}
 # {{ required ".Values.repo.targetRevision is required!" .Values.repo.targetRevision }}
 # {{ required ".Values.repo.path is required!" .Values.repo.path }}
-# {{ required ".Values.baseFolder is required!" .Values.baseFolder }}
-# {{ required ".Values.envFolder is required!" .Values.envFolder }}
+# {{ required ".Values.overdriveConf.baseFolder is required!" .Values.overdriveConf.baseFolder }}
+# {{ required ".Values.overdriveConf.envFolder is required!" .Values.overdriveConf.envFolder }}
+# {{ required ".Values.overdriveConf.globalsFile is required!" .Values.overdriveConf.globalsFile }}
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -30,20 +31,20 @@ spec:
           value: {{ .Values.nidhogg.chart.version }}
 
         - name: BASE_VALUES
-          value: {{ .Values.baseFolder }}/{{ .Values.nidhogg.valuesFile }}
+          value: {{ .Values.overdriveConf.baseFolder }}/{{ .Values.nidhogg.valuesFile }}
         - name: BASE_GLOBAL
-          value: {{ .Values.baseFolder }}/{{ .Values.globalsFile }}
+          value: {{ .Values.overdriveConf.baseFolder }}/{{ .Values.overdriveConf.globalsFile }}
 
         - name: ENV_VALUES
-          value: {{ .Values.envFolder }}/{{ .Values.nidhogg.valuesFile }}
+          value: {{ .Values.overdriveConf.envFolder }}/{{ .Values.nidhogg.valuesFile }}
         - name: ENV_GLOBAL
-          value: {{ .Values.envFolder }}/{{ .Values.globalsFile }}
+          value: {{ .Values.overdriveConf.envFolder }}/{{ .Values.overdriveConf.globalsFile }}
 
 {{- if .Values.yggdrasil.additionalResources }}
         - name: BASE_EXTRA
-          value: {{ $.Values.baseFolder }}/{{ .Values.nidhogg.additionalResources }}
+          value: {{ $.Values.overdriveConf.baseFolder }}/{{ .Values.nidhogg.additionalResources }}
         - name: ENV_EXTRA
-          value: {{ $.Values.envFolder }}/{{ .Values.nidhogg.additionalResources }}
+          value: {{ $.Values.overdriveConf.envFolder }}/{{ .Values.nidhogg.additionalResources }}
 {{- end }}
     # helm:
     #   version: v3

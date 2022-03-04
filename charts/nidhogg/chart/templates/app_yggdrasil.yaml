@@ -3,8 +3,9 @@
 # {{ required ".Values.repo.repoURL is required!" .Values.repo.repoURL }}
 # {{ required ".Values.repo.targetRevision is required!" .Values.repo.targetRevision }}
 # {{ required ".Values.repo.path is required!" .Values.repo.path }}
-# {{ required ".Values.baseFolder is required!" .Values.baseFolder }}
-# {{ required ".Values.envFolder is required!" .Values.envFolder }}
+# {{ required ".Values.overdriveConf.baseFolder is required!" .Values.overdriveConf.baseFolder }}
+# {{ required ".Values.overdriveConf.envFolder is required!" .Values.overdriveConf.envFolder }}
+# {{ required ".Values.overdriveConf.globalsFile is required!" .Values.overdriveConf.globalsFile }}
 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -30,20 +31,20 @@ spec:
           value: {{ .Values.yggdrasil.chart.version }}
 
         - name: BASE_VALUES
-          value: {{ .Values.baseFolder }}/{{ .Values.yggdrasil.valuesFile }}
+          value: {{ .Values.overdriveConf.baseFolder }}/{{ .Values.yggdrasil.valuesFile }}
         - name: BASE_GLOBAL
-          value: {{ .Values.baseFolder }}/{{ .Values.globalsFile }}
+          value: {{ .Values.overdriveConf.baseFolder }}/{{ .Values.overdriveConf.globalsFile }}
 
         - name: ENV_VALUES
-          value: {{ .Values.envFolder }}/{{ .Values.yggdrasil.valuesFile }}
+          value: {{ .Values.overdriveConf.envFolder }}/{{ .Values.yggdrasil.valuesFile }}
         - name: ENV_GLOBAL
-          value: {{ .Values.envFolder }}/{{ .Values.globalsFile }}
+          value: {{ .Values.overdriveConf.envFolder }}/{{ .Values.overdriveConf.globalsFile }}
 
 {{- if .Values.yggdrasil.additionalResources }}
         - name: BASE_EXTRA
-          value: {{ $.Values.baseFolder }}/{{ .Values.yggdrasil.additionalResources }}
+          value: {{ $.Values.overdriveConf.baseFolder }}/{{ .Values.yggdrasil.additionalResources }}
         - name: ENV_EXTRA
-          value: {{ $.Values.envFolder }}/{{ .Values.yggdrasil.additionalResources }}
+          value: {{ $.Values.overdriveConf.envFolder }}/{{ .Values.yggdrasil.additionalResources }}
 {{- end }}
   destination:
     server: {{ .Values.destination}}

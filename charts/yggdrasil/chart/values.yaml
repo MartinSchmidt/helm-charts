@@ -4,12 +4,14 @@ repo:
   targetRevision: # example: main
   path: # example: .
 
-baseFolder: # example: /base
-envFolder: # example: /env/production 
-globalsFile: # example: globals.yaml
-destination: # example: https://kubernetes.default.svc
+overdriveConf:
+  baseFolder: # example: /base
+  envFolder: # example: /env/production 
+  globalsFile: # example: globals.yaml
 
 # --- additional parameters ---
+
+destination: https://kubernetes.default.svc
 
 # The applications to be created by yggdrasil in the short format
 projects:

@@ -6,13 +6,14 @@ repo:
   targetRevision: # example: main
   path: # example: .
 
-baseFolder: # example: /base
-envFolder: # example: /env/production 
-globalsFile: # example: globals.yaml
-destination: # example: https://kubernetes.default.svc
+overdriveConf:
+  baseFolder: # example: /base
+  envFolder: # example: /env/production 
+  globalsFile: # example: globals.yaml
 
 # --- additional parameters ---
 
+destination: https://kubernetes.default.svc
 
 nidhogg:
   # # if not configured, nidhogg wil not monitor itself
@@ -20,7 +21,7 @@ nidhogg:
   chart:
     repo: https://martinschmidt.github.io/helm-charts/
     name: nidhogg
-    version: 2.0.0-rc.1
+    version: 2.0.0-rc.2
   # additionalResources: 
 
 yggdrasil:
@@ -29,8 +30,27 @@ yggdrasil:
   chart:
     repo: https://martinschmidt.github.io/helm-charts/
     name: yggdrasil
-    version: 3.0.0-rc.1
+    version: 3.0.0-rc.2
   # additionalResources: 
+
+cni:
+  enabled: false
+
+lb-proxy:
+  enabled: false
+
+additionalManifests:
+  # # additional manifests can be added as a list.
+  # - apiVersion: v1
+  #   kind: Secret
+  #   metadata:
+  #     name: mysecret
+  #   type: Opaque
+  #   data:
+  #     USER_NAME: YWRtaW4=
+  #     PASSWORD: MWYyZDFlMmU2N2Rm
+
+# --- default configurations ---
 
 argo-cd:
   controller:
@@ -62,19 +82,3 @@ argo-cd:
             hs.status = "Healthy"
             return hs
             
-cni:
-  enabled: false
-
-lb-proxy:
-  enabled: false
-
-additionalManifests:
-  # # additional manifests can be added as a list.
-  # - apiVersion: v1
-  #   kind: Secret
-  #   metadata:
-  #     name: mysecret
-  #   type: Opaque
-  #   data:
-  #     USER_NAME: YWRtaW4=
-  #     PASSWORD: MWYyZDFlMmU2N2Rm

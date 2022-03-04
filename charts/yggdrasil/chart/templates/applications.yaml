@@ -1,9 +1,9 @@
 ---
 {{- range .Values.applications }}
-# {{ required ".Values.baseFolder is required!" .Values.baseFolder }}
-# {{ required ".Values.envFolder is required!" .Values.envFolder }}
-# {{ required ".Values.globalsFile is required!" .Values.globalsFile }}
 # {{ required ".Values.destination is required!" .Values.destination }}
+# {{ required ".Values.overdriveConf.baseFolder is required!" .Values.overdriveConf.baseFolder }}
+# {{ required ".Values.overdriveConf.envFolder is required!" .Values.overdriveConf.envFolder }}
+# {{ required ".Values.overdriveConf.globalsFile is required!" .Values.overdriveConf.globalsFile }}
 # {{ required "name is required for an application!" .name }}
 # {{ required "project is required for an application!" .project }}
 # {{ required "namespace is required for an application!" .namespace }}
@@ -35,20 +35,20 @@ spec:
           value: {{ .chart.version }}
 
         - name: BASE_VALUES
-          value: {{ $.Values.baseFolder }}/{{ .overdrive.valuesFile }}
+          value: {{ $.Values.overdriveConf.baseFolder }}/{{ .overdrive.valuesFile }}
         - name: BASE_GLOBAL
-          value: {{ $.Values.baseFolder }}/{{ $.Values.globalsFile }}
+          value: {{ $.Values.overdriveConf.baseFolder }}/{{ $.Values.overdriveConf.globalsFile }}
 
         - name: ENV_VALUES
-          value: {{ $.Values.envFolder }}/{{ .overdrive.valuesFile }}
+          value: {{ $.Values.overdriveConf.envFolder }}/{{ .overdrive.valuesFile }}
         - name: ENV_GLOBAL
-          value: {{ $.Values.envFolder }}/{{ $.Values.globalsFile }}
+          value: {{ $.Values.overdriveConf.envFolder }}/{{ $.Values.overdriveConf.globalsFile }}
 
 {{- if .overdrive.additionalResources }}
         - name: BASE_EXTRA
-          value: {{ $.Values.baseFolder }}/{{ .overdrive.additionalResources }}
+          value: {{ $.Values.overdriveConf.baseFolder }}/{{ .overdrive.additionalResources }}
         - name: ENV_EXTRA
-          value: {{ $.Values.envFolder }}/{{ .overdrive.additionalResources }}
+          value: {{ $.Values.overdriveConf.envFolder }}/{{ .overdrive.additionalResources }}
 {{- end }}
   destination:
     server: {{ .Values.destination }}
