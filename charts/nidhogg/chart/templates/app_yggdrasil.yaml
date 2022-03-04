@@ -42,9 +42,9 @@ spec:
 
 {{- if .Values.yggdrasil.additionalResources }}
         - name: BASE_EXTRA
-          value: {{ $.Values.overdriveConf.baseFolder }}/{{ .Values.yggdrasil.additionalResources }}
+          value: {{ .Values.overdriveConf.baseFolder }}/{{ .Values.yggdrasil.additionalResources }}
         - name: ENV_EXTRA
-          value: {{ $.Values.overdriveConf.envFolder }}/{{ .Values.yggdrasil.additionalResources }}
+          value: {{ .Values.overdriveConf.envFolder }}/{{ .Values.yggdrasil.additionalResources }}
 {{- end }}
   destination:
     server: {{ .Values.destination}}
