@@ -21,7 +21,6 @@ spec:
     targetRevision: {{ .Values.repo.targetRevision }}
     path: {{ .Values.repo.path }}
     plugin:
-      name: helm-overdrive
       env:
         - name: HELM_REPO
           value: {{ .Values.nidhogg.chart.repo }}
