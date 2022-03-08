@@ -41,9 +41,9 @@ spec:
           value: {{ .Values.overdriveConf.envFolder }}/{{ .Values.overdriveConf.globalsFile }}
 
 {{- if .Values.yggdrasil.additionalResources }}
-        - name: BASE_EXTRA
+        - name: BASE_ADDITIONAL_RESOURCES
           value: {{ .Values.overdriveConf.baseFolder }}/{{ .Values.yggdrasil.additionalResources }}
-        - name: ENV_EXTRA
+        - name: ENV_ADDITIONAL_RESOURCES
           value: {{ .Values.overdriveConf.envFolder }}/{{ .Values.yggdrasil.additionalResources }}
 {{- end }}
   destination:
