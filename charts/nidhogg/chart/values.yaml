@@ -21,7 +21,7 @@ nidhogg:
   chart:
     repo: https://martinschmidt.github.io/helm-charts/
     name: nidhogg
-    version: 2.0.0-rc.12
+    version: 2.0.0-rc.13
   # additionalResources: 
 
 yggdrasil:
@@ -67,7 +67,7 @@ argo-cd:
     extraContainers:
       - name: helm-overdrive
         command: [/var/run/argocd/argocd-cmp-server]
-        image: ghcr.io/distributed-technologies/argocd-plugin/helm-overdrive:0.0.0-pr.2-d56ef2d
+        image: ghcr.io/distributed-technologies/argocd-plugin/helm-overdrive:0.0.0-pr.2-798ce25
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
