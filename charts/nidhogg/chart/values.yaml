@@ -21,7 +21,7 @@ nidhogg:
   chart:
     repo: https://martinschmidt.github.io/helm-charts/
     name: nidhogg
-    version: 2.0.0-rc.7s
+    version: 2.0.0-rc.8
   # additionalResources: 
 
 yggdrasil:
@@ -67,7 +67,7 @@ argo-cd:
     extraContainers:
       - name: helm-overdrive
         command: [/var/run/argocd/argocd-cmp-server]
-        image: ghcr.io/distributed-technologies/argocd-plugin/helm-overdrive:0.0.0-pr.2-97f5ea6
+        image: ghcr.io/distributed-technologies/argocd-plugin/helm-overdrive:0.0.0-pr.2-590905b
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
@@ -81,15 +81,6 @@ argo-cd:
   server:
     replicas: 3
     config:
-      configManagementPlugins: |
-        - name: pluginName
-          init:                          # Optional command to initialize application source directory
-            command: ["sample command"]
-            args: ["sample args"]
-          generate:                      # Command to generate manifests YAML
-            command: ["sample command"]
-            args: ["sample args"]
-          lockRepo: true                 # Defaults to false. See below.
       resource.customizations: |
         admissionregistration.k8s.io/MutatingWebhookConfiguration:
           ignoreDifferences: |
