@@ -67,7 +67,7 @@ argo-cd:
     extraContainers:
       - name: helm-overdrive
         command: [/var/run/argocd/argocd-cmp-server]
-        image: ghcr.io/distributed-technologies/argocd-plugin/helm-overdrive:0.0.0-pr.2-6b890c9
+        image: ghcr.io/distributed-technologies/argocd-plugin/helm-overdrive:0.0.0-pr.2-67d670c
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
