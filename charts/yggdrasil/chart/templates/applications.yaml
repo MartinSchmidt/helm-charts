@@ -50,7 +50,7 @@ spec:
           value: {{ $.Values.overdriveConf.envFolder }}/{{ .overdrive.additionalResources }}
 {{- end }}
   destination:
-    server: {{ .Values.destination }}
+    server: {{ $.Values.destination }}
     namespace: {{ .namespace }}
   syncPolicy:
     automated:
