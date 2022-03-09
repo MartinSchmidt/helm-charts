@@ -18,7 +18,7 @@ spec:
   # Only permit applications to deploy to the guestbook namespace in the same cluster
   destinations:
   - namespace: {{ required "namespace is required for a project." .namespace }}
-    server: {{ $.destination }}
+    server: {{ required "$.Values.destination is required for projects." $.Values.destination }}
 
   # Allow all namespaced-scoped resources to being created
   namespaceResourceWhitelist:
