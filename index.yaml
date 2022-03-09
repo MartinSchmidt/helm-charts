@@ -621,6 +621,27 @@ entries:
     version: 0.1.2
   nidhogg:
   - apiVersion: v2
+    created: "2022-03-09T07:39:11.573076225Z"
+    dependencies:
+    - name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 3.33.6
+    - condition: cni.enabled
+      name: cni
+      repository: https://distributed-technologies.github.io/helm-charts
+      version: 1.0.0
+    - condition: lb-proxy.enabled
+      name: lb-proxy
+      repository: https://distributed-technologies.github.io/helm-charts
+      version: 0.1.0
+    description: A chart that deploys nidhogg.
+    digest: dcdb75e5255af6aecd0fb6d4cde362e319a853ad9b28d8bbe0e1c909143ddcca
+    name: nidhogg
+    type: application
+    urls:
+    - https://github.com/MartinSchmidt/helm-charts/releases/download/nidhogg-2.0.0-rc.19/nidhogg-2.0.0-rc.19.tgz
+    version: 2.0.0-rc.19
+  - apiVersion: v2
     created: "2022-03-09T07:25:06.644742267Z"
     dependencies:
     - name: argo-cd
@@ -1446,6 +1467,15 @@ entries:
     version: 0.1.1
   yggdrasil:
   - apiVersion: v2
+    created: "2022-03-09T07:39:11.685024339Z"
+    description: A chart that deploys yggdrasil.
+    digest: 125ac32dd5b97910e8ed391985ea731c2ee101d925301dfec0b9bc65de2b66df
+    name: yggdrasil
+    type: application
+    urls:
+    - https://github.com/MartinSchmidt/helm-charts/releases/download/yggdrasil-3.0.0-rc.10/yggdrasil-3.0.0-rc.10.tgz
+    version: 3.0.0-rc.10
+  - apiVersion: v2
     created: "2022-03-09T07:25:06.763598166Z"
     description: A chart that deploys yggdrasil.
     digest: 2f9897354c478d45891271fcc3a2b8cfbdc1f390e64a696e099f65d704883e0e
@@ -1517,4 +1547,4 @@ entries:
     urls:
     - https://github.com/MartinSchmidt/helm-charts/releases/download/yggdrasil-3.0.0-rc.1/yggdrasil-3.0.0-rc.1.tgz
     version: 3.0.0-rc.1
-generated: "2022-03-09T07:25:06.76428197Z"
+generated: "2022-03-09T07:39:11.68581236Z"
