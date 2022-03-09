@@ -1,9 +1,9 @@
 ---
 {{- range .Values.applications }}
-# {{ required ".Values.destination is required!" .Values.destination }}
-# {{ required ".Values.overdriveConf.baseFolder is required!" .Values.overdriveConf.baseFolder }}
-# {{ required ".Values.overdriveConf.envFolder is required!" .Values.overdriveConf.envFolder }}
-# {{ required ".Values.overdriveConf.globalsFile is required!" .Values.overdriveConf.globalsFile }}
+# {{ required "Values.destination is required!" $.Values.destination }}
+# {{ required "Values.overdriveConf.baseFolder is required!" $.Values.overdriveConf.baseFolder }}
+# {{ required "Values.overdriveConf.envFolder is required!" $.Values.overdriveConf.envFolder }}
+# {{ required "Values.overdriveConf.globalsFile is required!" $.Values.overdriveConf.globalsFile }}
 # {{ required "name is required for an application!" .name }}
 # {{ required "project is required for an application!" .project }}
 # {{ required "namespace is required for an application!" .namespace }}

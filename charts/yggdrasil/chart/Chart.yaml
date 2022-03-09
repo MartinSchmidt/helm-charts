@@ -2,4 +2,4 @@ apiVersion: v2
 type: application
 name: yggdrasil
 description: A chart that deploys yggdrasil.
-version: 3.0.0-rc.8
+version: 3.0.0-rc.9
